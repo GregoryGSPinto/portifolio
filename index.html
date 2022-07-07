@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grégory Guimarães</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="image/logo.png" alt="">
+        </div>
+        <div class="menu">
+            <ul>
+                <li><a href="#home">Inicio</a></li>
+                <li><a href="#about">Sobre</a></li>
+                <li><a href="#port">Portfólio</a></li>
+                <li><a href="#contact">Contato</a></li>
+            </ul>
+        </div>
+        <div class="menu-mobile">
+            <ul>
+                <li><a href="#home">Inicio</a></li>
+                <li><a href="#about">Sobre</a></li>
+                <li><a href="#port">Portfólio</a></li>
+                <li><a href="#contact">Contato</a></li>
+            </ul>
+        </div>
+        <div class="btn-mobile">
+            <ion-icon name="grid-outline"></ion-icon>
+        </div>
+    </header>
+
+    <main id="home">
+        <div class="container">
+            <div class="icons">
+                <a href="https://www.instagram.com/gregoryguimaraes12/"><ion-icon name="logo-instagram"></ion-icon></a>
+                <a href="https://www.facebook.com/GregoryGuimaraes.12"><ion-icon name="logo-facebook"></ion-icon></a>
+                <a href="https://github.com/GregoryGSPinto/GregoryGSPinto.git"><ion-icon name="logo-github"></ion-icon></a>
+                <a href="https://www.linkedin.com/in/mqt-gregory/"><ion-icon name="logo-linkedin"></ion-icon></a>
+            </div>
+            <div class="title">
+                <h2>Grégory</h2>
+                <h2>Guimarães</h2>
+                <h3>Estudante de programação</h3>
+            </div>
+        </div>
+    </main>
+
+    <section id="about">
+        <div class="container">
+            <div class="title">
+                <h1>Estudante de Programação</h1>
+                <p>Este portifólio visa claramente mostrar minhas habilidades e 
+                experiências de forma a permitir que quem o analise
+                consiga extrair todas as informações necessárias.
+                o gráfico abaixo é a forma a qual me considero sobre cada 
+                tecnologia aqui citada.
+                </p>
+                <div class="box-title">
+                    <p>90%</p>
+                    <div class="b1"><div class="b2"></div></div>
+                    <span>HTML</span>
+
+                    <p>80%</p>
+                    <div class="b1"><div class="b3"></div></div>
+                    <span>CSS</span>
+
+                    <p>87%</p>
+                    <div class="b1"><div class="b4"></div></div>
+                    <span>JavaScript</span>
+
+                    <p>76%</p>
+                    <div class="b1"><div class="b5"></div></div>
+                    <span>Python</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="port">
+        <div class="container">
+            <input type="radio" name="slider" id="item-1" checked>
+            <input type="radio" name="slider" id="item-2">
+            <input type="radio" name="slider" id="item-3">
+            <div class="cards">
+                <label class="card" for="item-1" id="song-1">
+                    <img src="image/01.png" alt="">
+                    <button>Acessar lista de tarefas</button>
+                </label>
+
+                <label class="card" for="item-2" id="song-2">
+                    <img src="image/02.png" alt="">
+                    <button>Acesse Calculadora IMC</button>
+                </label>
+
+                <label class="card" for="item-3" id="song-3">
+                    <img src="image/03.png" alt="">
+                    <button>Acesse Formulário de Cadastro</button>
+                </label>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="container">
+            <div class="content-contact">
+                <div class="contact-left">
+                    <h1>CONTACTE-ME</h1>
+                    <div class="linha"></div>
+                    <ion-icon name="mail-outline"></ion-icon>
+                    <span>gregoryguimaraes12@outlook.com</span>
+                    <ion-icon name="call-outline"></ion-icon>
+                    <span>+55 31 99679-3625</span>
+                    <ion-icon name="location-outline"></ion-icon>
+                    <span>Goiás,Brazil</span>
+                </div>                
+            </div>
+        </div>
+    </section>
+    <footer>
+        <span>Muito obrigado pela sua visita....</span>
+    </footer>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $(".btn-mobile").click(function(){
+                $(".menu-mobile").slideToggle("slow")
+            })
+        })
+    </script>
+</body>
+</html>
