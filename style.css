@@ -268,7 +268,6 @@ header .btn-mobile{
     z-index: 1;
 }
 
-
 /*===== Contact =====*/
 #contact .container{
     width: 100%;
@@ -394,7 +393,7 @@ footer a{
     header .menu-mobile{
         display: none;
         width: 50%;
-        height: 27vh;
+        height: 20vh;
         box-shadow: 0 0 15px 0 rgba(21,111,195,0.5);
         position: fixed;
         top: 20px;
