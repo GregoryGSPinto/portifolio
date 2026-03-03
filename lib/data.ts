@@ -44,59 +44,6 @@ export const architectureLayers = [
 
 export const caseStudies = [
   {
-    id: 'optima-work-ai',
-    slug: 'optima-work-ai',
-    title: 'OPTIMA WORK AI',
-    subtitle: {
-      pt: 'Sistema Inteligente de Gestão de Tripulação Ferroviária com IA Preditiva',
-      en: 'Intelligent Railway Crew Management System with Predictive AI',
-    },
-    challenge: {
-      pt: 'Na operação ferroviária de carga pesada da EFVM, falhas na gestão de tripulação causam prejuízos de ~R$180K/hora por trem parado, violações regulatórias de jornada de 12h, e perda de 15-20% em eficiência operacional. O processo atual depende de planilhas, telefonemas e conhecimento tribal para coordenar ~34 tripulações ativas/dia em 5 pátios.',
-      en: 'In EFVM heavy-haul railway operations, crew management failures cause losses of ~R$180K/hour per stopped train, 12-hour shift regulatory violations, and 15-20% operational efficiency loss. The current process relies on spreadsheets, phone calls, and tribal knowledge to coordinate ~34 active crews/day across 5 yards.',
-    },
-    approach: {
-      pt: 'Plataforma full-stack com motor de alocação por scoring multi-fator (localização + fadiga + certificação + performance), monitor de jornada 12h em tempo real, previsão de demanda com XGBoost, assistente RAG sobre documentação operacional (ROF), e interface de voz para supervisores em campo.',
-      en: 'Full-stack platform with multi-factor scoring allocation engine (location + fatigue + certification + performance), real-time 12h shift monitor, demand forecasting with XGBoost, RAG assistant over operational documentation (ROF), and voice interface for field supervisors.',
-    },
-    architecture: {
-      pt: 'Backend Python com FastAPI (async-first), PostgreSQL + TimescaleDB para dados transacionais e séries temporais, Redis para estado em tempo real e PubSub, Apache Kafka para event streaming entre serviços, Pinecone como vector store para RAG, XGBoost para previsão de demanda com MLflow para versionamento, e infraestrutura AWS (ECS Fargate + RDS Multi-AZ) na região sa-east-1.',
-      en: 'Python backend with FastAPI (async-first), PostgreSQL + TimescaleDB for transactional and time-series data, Redis for real-time state and PubSub, Apache Kafka for inter-service event streaming, Pinecone as vector store for RAG, XGBoost for demand forecasting with MLflow versioning, and AWS infrastructure (ECS Fargate + RDS Multi-AZ) in sa-east-1 region.',
-    },
-    results: {
-      pt: 'Arquitetura documentada com diagramas C4, 6 ADRs (Architecture Decision Records), projeção de ROI de R$4.1M/ano, sistema de scoring que elimina trens parados, monitor de 12h que previne violações regulatórias, e pipeline de ML com retreino semanal automatizado e detecção de drift.',
-      en: 'Architecture documented with C4 diagrams, 6 ADRs (Architecture Decision Records), projected ROI of R$4.1M/year, scoring system that eliminates unmanned trains, 12h monitor preventing regulatory violations, and ML pipeline with automated weekly retraining and drift detection.',
-    },
-    metrics: [
-      { value: 'R$4.1M', label: { pt: 'ROI Anual', en: 'Annual ROI' }, context: { pt: 'Projeção de economia', en: 'Projected savings' } },
-      { value: '0', label: { pt: 'Trens Parados', en: 'Unmanned Trains' }, context: { pt: 'Meta: zero incidentes', en: 'Target: zero incidents' } },
-      { value: '5', label: { pt: 'Pátios', en: 'Yards' }, context: { pt: 'Operação multi-pátio', en: 'Multi-yard operation' } },
-      { value: '<2min', label: { pt: 'Alocação', en: 'Allocation' }, context: { pt: 'Tempo de decisão IA', en: 'AI decision time' } },
-    ],
-    decisions: [
-      { icon: '◆', title: { pt: 'FastAPI sobre Django/NestJS', en: 'FastAPI over Django/NestJS' }, description: { pt: 'Python async-first para integração nativa com ecossistema ML (XGBoost, LangChain, MLflow). Pydantic para validação strict em operações safety-critical. WebSocket nativo para status de tripulação em tempo real.', en: 'Python async-first for native ML ecosystem integration (XGBoost, LangChain, MLflow). Pydantic for strict validation in safety-critical operations. Native WebSocket for real-time crew status.' } },
-      { icon: '◇', title: { pt: 'Kafka + Redis Híbrido', en: 'Hybrid Kafka + Redis' }, description: { pt: 'Kafka para event streaming durável (audit trail regulatório, replay para ML training). Redis PubSub para fanout de baixa latência (<100ms) para dashboards WebSocket. Cada sistema otimizado para seu caso de uso.', en: 'Kafka for durable event streaming (regulatory audit trail, ML training replay). Redis PubSub for low-latency fanout (<100ms) to WebSocket dashboards. Each system optimized for its use case.' } },
-      { icon: '⚡', title: { pt: 'XGBoost sobre Deep Learning', en: 'XGBoost over Deep Learning' }, description: { pt: 'Dataset de 15K registros insuficiente para redes neurais. XGBoost com SHAP values fornece interpretabilidade — supervisores precisam entender as previsões em domínio safety-critical. Inferência <10ms sem GPU.', en: 'Dataset of 15K records insufficient for neural networks. XGBoost with SHAP values provides interpretability — supervisors need to understand predictions in safety-critical domain. Inference <10ms without GPU.' } },
-      { icon: '⬡', title: { pt: 'PWA + React Native', en: 'PWA + React Native' }, description: { pt: 'PWA com Service Workers para funcionamento offline em pátios com conectividade ruim. Cache local de escalas e tripulações. React Native complementar para features nativas (push, voz always-on).', en: 'PWA with Service Workers for offline operation in yards with poor connectivity. Local cache of schedules and crews. Complementary React Native for native features (push, always-on voice).' } },
-    ],
-    tags: ['Python', 'FastAPI', 'React', 'TypeScript', 'PostgreSQL', 'Redis', 'Kafka', 'XGBoost', 'Claude AI', 'RAG', 'Docker', 'AWS'],
-    url: 'https://github.com/gregoryalvess/optima-work-ai',
-    accentColor: '#6366F1',
-    stackDetails: [
-      { name: 'FastAPI', role: { pt: 'API Gateway async', en: 'Async API Gateway' } },
-      { name: 'PostgreSQL + TimescaleDB', role: { pt: 'OLTP + Séries Temporais', en: 'OLTP + Time Series' } },
-      { name: 'Redis', role: { pt: 'Cache + PubSub real-time', en: 'Cache + Real-time PubSub' } },
-      { name: 'Apache Kafka', role: { pt: 'Event streaming durável', en: 'Durable event streaming' } },
-      { name: 'XGBoost + MLflow', role: { pt: 'Previsão de demanda + ML Registry', en: 'Demand forecasting + ML Registry' } },
-      { name: 'Pinecone + Claude AI', role: { pt: 'RAG sobre docs operacionais', en: 'RAG over operational docs' } },
-      { name: 'React + TypeScript', role: { pt: 'Dashboard PWA offline-first', en: 'Offline-first PWA Dashboard' } },
-      { name: 'AWS (ECS + RDS)', role: { pt: 'Infraestrutura sa-east-1', en: 'Infrastructure sa-east-1' } },
-    ],
-    timeline: { pt: '2025 · Sistema Empresarial', en: '2025 · Enterprise System' },
-    previewType: 'screenshots' as const,
-    screenshots: [],
-  },
-  {
     id: 'efvm360',
     slug: 'efvm360',
     title: 'EFVM 360',
