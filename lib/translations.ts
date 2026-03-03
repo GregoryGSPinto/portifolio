@@ -1,8 +1,8 @@
 export const translations = {
   pt: {
     nav: {
-      items: ['Início', 'Visão', 'Arquitetura', 'Cases', 'Stack', 'Trajetória', 'Insights', 'Contato'],
-      ids: ['hero', 'vision', 'architecture', 'cases', 'stack', 'journey', 'insights', 'contact'],
+      items: ['Início', 'Visão', 'Arquitetura', 'Cases', 'IA', 'Stack', 'Trajetória', 'Insights', 'Contato'],
+      ids: ['hero', 'vision', 'architecture', 'cases', 'ai', 'stack', 'journey', 'insights', 'contact'],
     },
     hero: {
       preTitle: 'AI Solutions Architect',
@@ -54,6 +54,33 @@ export const translations = {
       stackLabel: 'Stack Detalhado',
       timelineLabel: 'Período',
     },
+    ai: {
+      label: 'AI & Automation',
+      title: 'Inteligência\nAplicada',
+      desc: 'Experiência prática na integração de modelos de linguagem, automação inteligente e arquiteturas AI-first em produtos reais.',
+      cards: [
+        {
+          number: '01',
+          title: 'Integração com LLMs',
+          desc: 'Implementação de chatbots inteligentes e assistentes IA usando Claude API e OpenAI API. Este chatbot no portfólio é um exemplo real — converse com ele.',
+          tags: ['Claude API', 'OpenAI API', 'Prompt Engineering', 'Streaming'],
+        },
+        {
+          number: '02',
+          title: 'RAG & Bases de Conhecimento',
+          desc: 'Arquitetura de pipelines RAG para sistemas que combinam conhecimento proprietário com modelos de linguagem. Embeddings, vector stores e chunking strategies.',
+          tags: ['RAG', 'Embeddings', 'Vector DB', 'LangChain'],
+        },
+        {
+          number: '03',
+          title: 'Automação com IA',
+          desc: 'Desenvolvimento de workflows automatizados que usam IA para classificação, extração de dados, geração de conteúdo e tomada de decisão assistida.',
+          tags: ['Automation', 'AI Workflows', 'API Integration', 'n8n'],
+        },
+      ],
+      cta: 'Quer ver na prática? Converse com meu assistente IA.',
+      ctaButton: 'Abrir Chat IA',
+    },
     stack: {
       label: 'Tech Radar',
       title: 'Arsenal\nTecnológico',
@@ -86,8 +113,8 @@ export const translations = {
   },
   en: {
     nav: {
-      items: ['Home', 'Vision', 'Architecture', 'Cases', 'Stack', 'Journey', 'Insights', 'Contact'],
-      ids: ['hero', 'vision', 'architecture', 'cases', 'stack', 'journey', 'insights', 'contact'],
+      items: ['Home', 'Vision', 'Architecture', 'Cases', 'AI', 'Stack', 'Journey', 'Insights', 'Contact'],
+      ids: ['hero', 'vision', 'architecture', 'cases', 'ai', 'stack', 'journey', 'insights', 'contact'],
     },
     hero: {
       preTitle: 'AI Solutions Architect',
@@ -138,6 +165,33 @@ export const translations = {
       decisionsLabel: 'Technical Decisions',
       stackLabel: 'Detailed Stack',
       timelineLabel: 'Timeline',
+    },
+    ai: {
+      label: 'AI & Automation',
+      title: 'Applied\nIntelligence',
+      desc: 'Hands-on experience integrating language models, intelligent automation and AI-first architectures into real products.',
+      cards: [
+        {
+          number: '01',
+          title: 'LLM Integration',
+          desc: "Implementation of intelligent chatbots and AI assistants using Claude API and OpenAI API. This portfolio chatbot is a live example — try it out.",
+          tags: ['Claude API', 'OpenAI API', 'Prompt Engineering', 'Streaming'],
+        },
+        {
+          number: '02',
+          title: 'RAG & Knowledge Systems',
+          desc: 'Architecture of RAG pipelines for systems that combine proprietary knowledge with language models. Embeddings, vector stores and chunking strategies.',
+          tags: ['RAG', 'Embeddings', 'Vector DB', 'LangChain'],
+        },
+        {
+          number: '03',
+          title: 'AI-Powered Automation',
+          desc: 'Development of automated workflows using AI for classification, data extraction, content generation and assisted decision-making.',
+          tags: ['Automation', 'AI Workflows', 'API Integration', 'n8n'],
+        },
+      ],
+      cta: 'Want to see it in action? Chat with my AI assistant.',
+      ctaButton: 'Open AI Chat',
     },
     stack: {
       label: 'Tech Radar',
