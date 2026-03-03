@@ -47,6 +47,57 @@ export function useScrollPosition() {
   return scrollY;
 }
 
+interface GitHubStackItem {
+  name: string;
+  skill: number;
+  repos: string[];
+}
+
+interface GitHubStackCategory {
+  category: string;
+  items: GitHubStackItem[];
+}
+
+interface GitHubStackData {
+  lastUpdated: string;
+  reposAnalyzed: number;
+  stack: GitHubStackCategory[];
+}
+
+export function useGitHubStack() {
+  const [data, setData] = useState<GitHubStackData | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
+
+  useEffect(() => {
+    let cancelled = false;
+
+    fetch('/api/github-stack')
+      .then((res) => {
+        if (!res.ok) throw new Error('API error');
+        return res.json();
+      })
+      .then((json: GitHubStackData) => {
+        if (!cancelled) {
+          setData(json);
+          setLoading(false);
+        }
+      })
+      .catch(() => {
+        if (!cancelled) {
+          setError(true);
+          setLoading(false);
+        }
+      });
+
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  return { data, loading, error };
+}
+
 export function useIsMobile(breakpoint = 640) {
   const [isMobile, setIsMobile] = useState(false);
 

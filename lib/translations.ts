@@ -3,6 +3,7 @@ export const translations = {
     nav: {
       items: ['Início', 'Visão', 'Arquitetura', 'Processo', 'Cases', 'IA', 'Stack', 'Trajetória', 'Certificações', 'Insights', 'Contato'],
       ids: ['hero', 'vision', 'architecture', 'methodology', 'cases', 'ai', 'stack', 'journey', 'certifications', 'insights', 'contact'],
+      more: 'Mais',
     },
     hero: {
       preTitle: 'AI Solutions Architect',
@@ -130,6 +131,7 @@ export const translations = {
     nav: {
       items: ['Home', 'Vision', 'Architecture', 'Process', 'Cases', 'AI', 'Stack', 'Journey', 'Certifications', 'Insights', 'Contact'],
       ids: ['hero', 'vision', 'architecture', 'methodology', 'cases', 'ai', 'stack', 'journey', 'certifications', 'insights', 'contact'],
+      more: 'More',
     },
     hero: {
       preTitle: 'AI Solutions Architect',

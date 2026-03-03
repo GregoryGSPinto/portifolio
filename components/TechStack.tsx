@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import { useLanguage } from '@/context/LanguageContext';
 import { translations } from '@/lib/translations';
 import { techStack } from '@/lib/data';
-import { useIntersectionObserver } from '@/lib/hooks';
+import { useIntersectionObserver, useGitHubStack } from '@/lib/hooks';
 import SectionLabel from './SectionLabel';
 
 const fadeInUp = {
@@ -45,12 +45,47 @@ function SkillBar({ name, level, isVisible }: { name: string; level: number; isV
   );
 }
 
+function SkillBarSkeleton() {
+  return (
+    <div className="flex items-center gap-3 sm:gap-4 animate-pulse">
+      <div
+        className="h-3 rounded shrink-0"
+        style={{ width: '100px', background: 'var(--skill-bar-bg)' }}
+      />
+      <div className="flex-1 h-[3px] rounded-full" style={{ background: 'var(--skill-bar-bg)' }} />
+      <div
+        className="h-3 rounded shrink-0"
+        style={{ width: '32px', background: 'var(--skill-bar-bg)' }}
+      />
+    </div>
+  );
+}
+
+function timeAgo(dateStr: string, lang: string): string {
+  const diff = Date.now() - new Date(dateStr).getTime();
+  const mins = Math.floor(diff / 60000);
+  if (mins < 1) return lang === 'pt' ? 'agora' : 'just now';
+  if (mins < 60) return `${mins}min`;
+  const hours = Math.floor(mins / 60);
+  if (hours < 24) return `${hours}h`;
+  const days = Math.floor(hours / 24);
+  return `${days}d`;
+}
+
 export default function TechStack() {
   const { language } = useLanguage();
   const t = translations[language].stack;
   const [ref, isVisible] = useIntersectionObserver(0.2);
+  const { data: ghData, loading, error } = useGitHubStack();
 
-  const categories = Object.entries(techStack) as [keyof typeof techStack, (typeof techStack)[keyof typeof techStack]][];
+  // Use dynamic data if available, else static fallback
+  const useDynamic = !loading && !error && ghData && ghData.stack.length > 0;
+
+  // Static fallback categories
+  const staticCategories = Object.entries(techStack) as [
+    keyof typeof techStack,
+    (typeof techStack)[keyof typeof techStack],
+  ][];
 
   return (
     <section id="stack" className="py-20 md:py-28 lg:py-40 relative">
@@ -73,38 +108,112 @@ export default function TechStack() {
           {t.title}
         </motion.h2>
 
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          variants={stagger}
-          className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16"
-        >
-          {categories.map(([key, category]) => (
-            <motion.div
-              key={key}
-              variants={fadeInUp}
-              transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-            >
-              <h3
-                className="font-mono text-[11px] uppercase tracking-[3px] mb-6 md:mb-8"
-                style={{ color: 'var(--text-tertiary)' }}
-              >
-                {category.label[language]}
-              </h3>
-              <div className="flex flex-col gap-5">
-                {category.skills.map((skill) => (
-                  <SkillBar
-                    key={skill.name}
-                    name={skill.name}
-                    level={skill.level}
-                    isVisible={isVisible}
-                  />
-                ))}
+        {/* Loading skeleton */}
+        {loading && (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16">
+            {[0, 1, 2, 3].map((i) => (
+              <div key={i}>
+                <div
+                  className="h-3 w-24 rounded mb-6 md:mb-8 animate-pulse"
+                  style={{ background: 'var(--skill-bar-bg)' }}
+                />
+                <div className="flex flex-col gap-5">
+                  {[0, 1, 2, 3].map((j) => (
+                    <SkillBarSkeleton key={j} />
+                  ))}
+                </div>
               </div>
-            </motion.div>
-          ))}
-        </motion.div>
+            ))}
+          </div>
+        )}
+
+        {/* Dynamic stack from GitHub */}
+        {!loading && useDynamic && (
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={stagger}
+            className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16"
+          >
+            {ghData.stack.map((cat) => (
+              <motion.div
+                key={cat.category}
+                variants={fadeInUp}
+                transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+              >
+                <h3
+                  className="font-mono text-[11px] uppercase tracking-[3px] mb-6 md:mb-8"
+                  style={{ color: 'var(--text-tertiary)' }}
+                >
+                  {cat.category}
+                </h3>
+                <div className="flex flex-col gap-5">
+                  {cat.items.map((item) => (
+                    <SkillBar
+                      key={item.name}
+                      name={item.name}
+                      level={item.skill}
+                      isVisible={isVisible}
+                    />
+                  ))}
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
+        )}
+
+        {/* Static fallback */}
+        {!loading && !useDynamic && (
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={stagger}
+            className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16"
+          >
+            {staticCategories.map(([key, category]) => (
+              <motion.div
+                key={key}
+                variants={fadeInUp}
+                transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+              >
+                <h3
+                  className="font-mono text-[11px] uppercase tracking-[3px] mb-6 md:mb-8"
+                  style={{ color: 'var(--text-tertiary)' }}
+                >
+                  {category.label[language]}
+                </h3>
+                <div className="flex flex-col gap-5">
+                  {category.skills.map((skill) => (
+                    <SkillBar
+                      key={skill.name}
+                      name={skill.name}
+                      level={skill.level}
+                      isVisible={isVisible}
+                    />
+                  ))}
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
+        )}
+
+        {/* Dynamic source footer */}
+        {useDynamic && ghData && (
+          <motion.p
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 0.5 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.5 }}
+            className="font-mono text-[10px] mt-12 text-center"
+            style={{ color: 'var(--text-tertiary)' }}
+          >
+            Auto-detected from {ghData.reposAnalyzed} GitHub repositories
+            {' · '}
+            Last updated {timeAgo(ghData.lastUpdated, language)}
+          </motion.p>
+        )}
       </div>
     </section>
   );
