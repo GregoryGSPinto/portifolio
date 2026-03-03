@@ -133,7 +133,7 @@ export const caseStudies = [
       { icon: '⬡', title: { pt: 'ECharts para Dashboards BI+', en: 'ECharts for BI+ Dashboards' }, description: { pt: 'Visualizações operacionais complexas (matriz de risco 5×5, ocupação de pátio, tendências por linha) exigem biblioteca com suporte a heatmaps, gauges e gráficos compostos. ECharts oferece isso com renderização Canvas performática e bundle tree-shakeable.', en: 'Complex operational visualizations (5×5 risk matrix, yard occupancy, per-track trends) require a library supporting heatmaps, gauges, and composite charts. ECharts provides this with performant Canvas rendering and tree-shakeable bundle.' } },
     ],
     tags: ['React', 'TypeScript', 'Vite', 'Express', 'MySQL', 'Sequelize', 'ECharts', 'Azure', 'Docker', 'DDD', 'PWA', 'JWT'],
-    url: '',
+    url: 'https://efvm360.vercel.app',
     accentColor: '#F59E0B',
     stackDetails: [
       { name: 'React 18 + Vite', role: { pt: 'Frontend SPA offline-first', en: 'Offline-first SPA Frontend' } },
@@ -146,8 +146,8 @@ export const caseStudies = [
       { name: 'IndexedDB + Workbox', role: { pt: 'Persistência offline + PWA', en: 'Offline persistence + PWA' } },
     ],
     timeline: { pt: '2025 · Sistema Empresarial', en: '2025 · Enterprise System' },
-    previewType: 'screenshots' as const,
-    screenshots: [],
+    previewType: 'iframe' as const,
+    previewUrl: 'https://efvm360.vercel.app',
   },
   {
     id: 'blackbelt',
