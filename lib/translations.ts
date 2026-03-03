@@ -1,8 +1,8 @@
 export const translations = {
   pt: {
     nav: {
-      items: ['Início', 'Visão', 'Arquitetura', 'Cases', 'IA', 'Stack', 'Trajetória', 'Insights', 'Contato'],
-      ids: ['hero', 'vision', 'architecture', 'cases', 'ai', 'stack', 'journey', 'insights', 'contact'],
+      items: ['Início', 'Visão', 'Arquitetura', 'Processo', 'Cases', 'IA', 'Stack', 'Trajetória', 'Certificações', 'Insights', 'Contato'],
+      ids: ['hero', 'vision', 'architecture', 'methodology', 'cases', 'ai', 'stack', 'journey', 'certifications', 'insights', 'contact'],
     },
     hero: {
       preTitle: 'AI Solutions Architect',
@@ -38,6 +38,12 @@ export const translations = {
       label: 'System Design',
       title: 'Pensamento\nArquitetural',
       desc: 'Visão macro dos ecossistemas que projeto — da interface ao banco de dados, cada camada tem propósito e responsabilidade clara.',
+    },
+    methodology: {
+      label: 'Processo',
+      title: 'Como Eu\nTrabalho',
+      desc: 'Cada projeto segue um processo estruturado que combina rigor técnico com foco em resultado de negócio. Da descoberta ao monitoramento, cada fase tem entregáveis claros.',
+      deliverablesLabel: 'Entregáveis',
     },
     cases: {
       label: 'Case Studies',
@@ -95,6 +101,15 @@ export const translations = {
       label: 'Trajetória',
       title: 'Evolução\nProfissional',
     },
+    certifications: {
+      label: 'Certificações',
+      title: 'Formação &\nCertificações',
+      desc: 'Aprendizado contínuo e certificações que validam expertise técnica e capacidade de liderança.',
+      continuousTitle: 'Aprendizado Contínuo',
+      statusInProgress: 'Em andamento',
+      statusCompleted: 'Concluído',
+      banner: 'Certificações formais em Cloud e IA planejadas para 2025.',
+    },
     insights: {
       label: 'Insights',
       title: 'Pensamento\nTécnico',
@@ -113,8 +128,8 @@ export const translations = {
   },
   en: {
     nav: {
-      items: ['Home', 'Vision', 'Architecture', 'Cases', 'AI', 'Stack', 'Journey', 'Insights', 'Contact'],
-      ids: ['hero', 'vision', 'architecture', 'cases', 'ai', 'stack', 'journey', 'insights', 'contact'],
+      items: ['Home', 'Vision', 'Architecture', 'Process', 'Cases', 'AI', 'Stack', 'Journey', 'Certifications', 'Insights', 'Contact'],
+      ids: ['hero', 'vision', 'architecture', 'methodology', 'cases', 'ai', 'stack', 'journey', 'certifications', 'insights', 'contact'],
     },
     hero: {
       preTitle: 'AI Solutions Architect',
@@ -150,6 +165,12 @@ export const translations = {
       label: 'System Design',
       title: 'Architectural\nThinking',
       desc: 'Macro view of the ecosystems I design — from interface to database, each layer has clear purpose and responsibility.',
+    },
+    methodology: {
+      label: 'Process',
+      title: 'How I\nWork',
+      desc: 'Every project follows a structured process combining technical rigor with business outcome focus. From discovery to monitoring, each phase has clear deliverables.',
+      deliverablesLabel: 'Deliverables',
     },
     cases: {
       label: 'Case Studies',
@@ -206,6 +227,15 @@ export const translations = {
     timeline: {
       label: 'Journey',
       title: 'Professional\nEvolution',
+    },
+    certifications: {
+      label: 'Certifications',
+      title: 'Education &\nCertifications',
+      desc: 'Continuous learning and certifications that validate technical expertise and leadership capability.',
+      continuousTitle: 'Continuous Learning',
+      statusInProgress: 'In Progress',
+      statusCompleted: 'Completed',
+      banner: 'Formal Cloud and AI certifications planned for 2025.',
     },
     insights: {
       label: 'Insights',

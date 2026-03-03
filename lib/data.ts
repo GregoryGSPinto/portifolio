@@ -214,6 +214,103 @@ export const timelineItems = [
   },
 ];
 
+export const methodologySteps = [
+  {
+    number: '01',
+    title: { pt: 'Descoberta', en: 'Discovery' },
+    desc: {
+      pt: 'Entendimento profundo do problema, stakeholders, restrições técnicas e métricas de sucesso. Nada é construído antes de entender o porquê.',
+      en: 'Deep understanding of the problem, stakeholders, technical constraints and success metrics. Nothing is built before understanding the why.',
+    },
+    deliverables: {
+      pt: 'Brief técnico, requisitos, métricas de sucesso',
+      en: 'Technical brief, requirements, success metrics',
+    },
+    icon: '◎',
+  },
+  {
+    number: '02',
+    title: { pt: 'Arquitetura', en: 'Architecture' },
+    desc: {
+      pt: 'Definição da arquitetura de sistema, escolha de stack, modelagem de dados e ADRs (Architecture Decision Records). Cada decisão é documentada e justificada.',
+      en: 'System architecture definition, stack selection, data modeling and ADRs (Architecture Decision Records). Every decision is documented and justified.',
+    },
+    deliverables: {
+      pt: 'System design, ADRs, diagramas',
+      en: 'System design, ADRs, diagrams',
+    },
+    icon: '◇',
+  },
+  {
+    number: '03',
+    title: { pt: 'Implementação', en: 'Implementation' },
+    desc: {
+      pt: 'Desenvolvimento iterativo com sprints curtos, code reviews rigorosos e testes automatizados. TypeScript strict e CI/CD desde o dia 1.',
+      en: 'Iterative development with short sprints, rigorous code reviews and automated tests. Strict TypeScript and CI/CD from day 1.',
+    },
+    deliverables: {
+      pt: 'MVP funcional, testes, documentação',
+      en: 'Functional MVP, tests, documentation',
+    },
+    icon: '⬡',
+  },
+  {
+    number: '04',
+    title: { pt: 'Deploy & Validação', en: 'Deploy & Validation' },
+    desc: {
+      pt: 'Deploy automatizado com preview environments. Validação com usuários reais, métricas de performance e ajustes baseados em feedback.',
+      en: 'Automated deploy with preview environments. Validation with real users, performance metrics and feedback-based adjustments.',
+    },
+    deliverables: {
+      pt: 'Produção live, métricas baseline',
+      en: 'Live production, baseline metrics',
+    },
+    icon: '▲',
+  },
+  {
+    number: '05',
+    title: { pt: 'Monitoramento', en: 'Monitoring' },
+    desc: {
+      pt: 'Observabilidade contínua, alertas proativos e evolução baseada em dados. O lançamento é só o começo.',
+      en: 'Continuous observability, proactive alerts and data-driven evolution. Launch is just the beginning.',
+    },
+    deliverables: {
+      pt: 'Dashboards, alertas, roadmap',
+      en: 'Dashboards, alerts, roadmap',
+    },
+    icon: '◈',
+  },
+];
+
+export const certifications = [
+  {
+    name: 'AI & Machine Learning',
+    issuer: { pt: 'Em andamento', en: 'In Progress' },
+    year: '2025',
+    status: 'in-progress' as const,
+  },
+  {
+    name: 'Full Stack Development',
+    issuer: { pt: 'Estudos Independentes + Projetos', en: 'Independent Studies + Projects' },
+    year: '2024',
+    status: 'completed' as const,
+  },
+  {
+    name: 'Frontend Fundamentals',
+    issuer: { pt: 'Autodidata + Cursos Online', en: 'Self-taught + Online Courses' },
+    year: '2023',
+    status: 'completed' as const,
+  },
+];
+
+export const continuousLearning = [
+  { pt: 'Arquiteturas de Agentes IA', en: 'AI Agent Architectures' },
+  { pt: 'RAG & Vector Databases', en: 'RAG & Vector Databases' },
+  { pt: 'System Design Patterns', en: 'System Design Patterns' },
+  { pt: 'Cloud Architecture (AWS/GCP)', en: 'Cloud Architecture (AWS/GCP)' },
+  { pt: 'Liderança Técnica & Mentoria', en: 'Technical Leadership & Mentoring' },
+];
+
 export const contactLinks = [
   {
     label: 'Email',

@@ -25,7 +25,7 @@ export default function AIExperience() {
   return (
     <section id="ai" className="py-20 md:py-28 lg:py-40 relative">
       <div className="max-w-[1200px] mx-auto px-5 md:px-8 lg:px-12">
-        <SectionLabel number="04" label={t.label} />
+        <SectionLabel number="05" label={t.label} />
 
         <motion.h2
           initial="hidden"

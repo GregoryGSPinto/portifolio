@@ -22,7 +22,7 @@ export default function Contact() {
   return (
     <section id="contact" className="py-20 md:py-28 lg:py-40 relative">
       <div className="max-w-[1200px] mx-auto px-5 md:px-8 lg:px-12">
-        <SectionLabel number="08" label={t.label} />
+        <SectionLabel number="10" label={t.label} />
 
         <div className="grid grid-cols-1 lg:grid-cols-[1.2fr_1fr] gap-10 lg:gap-20">
           {/* Left */}
