@@ -140,6 +140,55 @@ export const caseStudies = [
     previewType: 'screenshots' as const,
     screenshots: [],
   },
+  {
+    id: 'imc-pro-ai',
+    slug: 'imc-pro-ai',
+    title: 'IMC Pro AI',
+    subtitle: {
+      pt: 'Calculadora Inteligente de Massa Corporal com IA',
+      en: 'Smart Body Mass Index Calculator with AI',
+    },
+    challenge: {
+      pt: 'Transformar uma calculadora de IMC básica em HTML/CSS/JS em uma aplicação profissional nível portfólio, com design premium, análise inteligente via IA e experiência de usuário sofisticada que demonstrasse domínio completo do stack moderno.',
+      en: 'Transform a basic HTML/CSS/JS BMI calculator into a portfolio-grade professional application with premium design, AI-powered intelligent analysis, and a sophisticated user experience demonstrating full mastery of the modern stack.',
+    },
+    approach: {
+      pt: 'Arquitetura modular com Next.js 14 App Router, componentização inteligente (GaugeChart SVG, AnimatedNumber, AIInsight), API Route como proxy seguro para a Anthropic, e sistema de temas com CSS variables para alternância suave entre modo claro e escuro.',
+      en: 'Modular architecture with Next.js 14 App Router, smart componentization (SVG GaugeChart, AnimatedNumber, AIInsight), API Route as a secure proxy for Anthropic, and theme system with CSS variables for smooth light/dark mode switching.',
+    },
+    architecture: {
+      pt: 'Frontend React com gauge chart SVG customizado, animações com easing cúbico, 8 faixas de classificação OMS com cores dinâmicas, grid responsivo mobile-first, e integração server-side com Claude AI via API route protegida — chave nunca exposta ao cliente.',
+      en: 'React frontend with custom SVG gauge chart, cubic easing animations, 8 WHO classification ranges with dynamic colors, mobile-first responsive grid, and server-side Claude AI integration via protected API route — key never exposed to client.',
+    },
+    results: {
+      pt: 'Aplicação completa deployada na Vercel com build 100% limpo, análise de saúde personalizada via IA, design premium com dois temas, gauge chart interativo e UX profissional que eleva significativamente o nível do portfólio.',
+      en: 'Complete application deployed on Vercel with clean build, personalized health analysis via AI, premium design with dual themes, interactive gauge chart, and professional UX that significantly elevates portfolio quality.',
+    },
+    metrics: [
+      { value: '8', label: { pt: 'Faixas OMS', en: 'WHO Ranges' }, context: { pt: 'Classificação completa', en: 'Full classification' } },
+      { value: 'IA', label: { pt: 'Claude AI', en: 'Claude AI' }, context: { pt: 'Análise personalizada', en: 'Personalized analysis' } },
+      { value: '2', label: { pt: 'Temas', en: 'Themes' }, context: { pt: 'Claro e escuro', en: 'Light and dark' } },
+      { value: '100%', label: { pt: 'Responsivo', en: 'Responsive' }, context: { pt: 'Mobile-first', en: 'Mobile-first' } },
+    ],
+    decisions: [
+      { title: { pt: 'IA como Diferencial', en: 'AI as Differentiator' }, description: { pt: 'Integração com Claude AI via API route server-side para análise personalizada de saúde. Proxy seguro que protege a chave da API e permite recomendações contextualizadas baseadas em idade, sexo e nível de atividade.', en: 'Claude AI integration via server-side API route for personalized health analysis. Secure proxy protecting the API key while enabling contextualized recommendations based on age, gender, and activity level.' }, icon: '◆' },
+      { title: { pt: 'Design System Dual-Theme', en: 'Dual-Theme Design System' }, description: { pt: 'Sistema de temas claro/escuro implementado com CSS variables e toggle no header. Cada componente — incluindo o gauge SVG — adapta cores automaticamente, garantindo acessibilidade e elegância em ambos os modos.', en: 'Light/dark theme system implemented with CSS variables and header toggle. Every component — including the SVG gauge — adapts colors automatically, ensuring accessibility and elegance in both modes.' }, icon: '◇' },
+      { title: { pt: 'Gauge Chart SVG Customizado', en: 'Custom SVG Gauge Chart' }, description: { pt: 'Visualização semicircular com gradiente multicolorido, agulha animada, ticks de referência OMS e valor central dinâmico. Tudo em SVG puro sem dependências externas, com animações performáticas.', en: 'Semicircular visualization with multicolor gradient, animated needle, WHO reference ticks, and dynamic center value. Pure SVG with no external dependencies and performant animations.' }, icon: '⚡' },
+    ],
+    tags: ['Next.js 14', 'React 18', 'Tailwind CSS', 'Claude AI', 'Anthropic API', 'SVG Charts'],
+    url: 'https://imc-pro-ai.vercel.app',
+    accentColor: '#2EC4B6',
+    stackDetails: [
+      { name: 'Next.js 14', role: { pt: 'Framework & App Router', en: 'Framework & App Router' } },
+      { name: 'React 18', role: { pt: 'UI & Componentização', en: 'UI & Componentization' } },
+      { name: 'Tailwind CSS', role: { pt: 'Estilização responsiva', en: 'Responsive styling' } },
+      { name: 'Claude AI', role: { pt: 'Análise inteligente', en: 'Intelligent analysis' } },
+      { name: 'Vercel', role: { pt: 'Deploy & hosting', en: 'Deploy & hosting' } },
+    ],
+    timeline: { pt: '2025 · Projeto Pessoal', en: '2025 · Personal Project' },
+    previewType: 'iframe' as const,
+    previewUrl: 'https://imc-pro-ai.vercel.app',
+  },
 ];
 
 export const techStack = {
