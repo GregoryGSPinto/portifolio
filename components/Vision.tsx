@@ -19,8 +19,8 @@ export default function Vision() {
   const t = translations[language].vision;
 
   return (
-    <section id="vision" className="py-40 relative">
-      <div className="max-w-[1200px] mx-auto px-6 md:px-12">
+    <section id="vision" className="py-20 md:py-28 lg:py-40 relative">
+      <div className="max-w-[1200px] mx-auto px-5 md:px-8 lg:px-12">
         <SectionLabel number="01" label={t.label} />
 
         <motion.h2
@@ -29,11 +29,11 @@ export default function Vision() {
           viewport={{ once: true }}
           variants={fadeInUp}
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-          className="font-display font-light mb-20 whitespace-pre-line"
+          className="font-display font-light mb-12 md:mb-20 whitespace-pre-line"
           style={{
-            fontSize: 'clamp(36px, 5vw, 64px)',
+            fontSize: 'clamp(28px, 5vw, 64px)',
             lineHeight: 1.1,
-            color: '#E8E4DE',
+            color: 'var(--text-primary)',
           }}
         >
           {t.title}
@@ -45,13 +45,13 @@ export default function Vision() {
           whileInView="visible"
           viewport={{ once: true }}
           variants={stagger}
-          className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20 mb-24"
+          className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-20 mb-16 md:mb-24"
         >
           <motion.p
             variants={fadeInUp}
             transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
             className="font-body text-[15px] leading-[1.8]"
-            style={{ color: 'rgba(232, 228, 222, 0.4)' }}
+            style={{ color: 'var(--text-secondary)' }}
           >
             {t.p1}
           </motion.p>
@@ -59,7 +59,7 @@ export default function Vision() {
             variants={fadeInUp}
             transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
             className="font-body text-[15px] leading-[1.8]"
-            style={{ color: 'rgba(232, 228, 222, 0.4)' }}
+            style={{ color: 'var(--text-secondary)' }}
           >
             {t.p2}
           </motion.p>
@@ -72,7 +72,7 @@ export default function Vision() {
           viewport={{ once: true }}
           variants={stagger}
           className="grid grid-cols-1 md:grid-cols-3 gap-px"
-          style={{ background: 'rgba(255, 255, 255, 0.04)' }}
+          style={{ background: 'var(--pillar-gap-bg)' }}
         >
           {t.pillars.map((pillar) => (
             <motion.div
@@ -80,24 +80,24 @@ export default function Vision() {
               variants={fadeInUp}
               transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
               whileHover={{ y: -4 }}
-              className="p-12 md:py-12 md:px-9 cursor-default transition-colors duration-300 group"
-              style={{ background: '#0A0A0B' }}
+              className="p-8 md:py-12 md:px-9 cursor-default transition-colors duration-300 group"
+              style={{ background: 'var(--bg-primary)' }}
             >
               <span
                 className="font-display text-5xl font-light block mb-6 transition-colors duration-300 group-hover:text-accent"
-                style={{ color: 'rgba(201, 168, 76, 0.15)' }}
+                style={{ color: 'var(--pillar-number)' }}
               >
                 {pillar.number}
               </span>
               <h3
                 className="font-body text-lg font-bold mb-3"
-                style={{ color: '#E8E4DE' }}
+                style={{ color: 'var(--text-primary)' }}
               >
                 {pillar.title}
               </h3>
               <p
                 className="font-body text-[13px] leading-relaxed"
-                style={{ color: 'rgba(232, 228, 222, 0.35)' }}
+                style={{ color: 'var(--text-tertiary)' }}
               >
                 {pillar.desc}
               </p>

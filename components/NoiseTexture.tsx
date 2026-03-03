@@ -34,7 +34,7 @@ export default function NoiseTexture() {
       ref={canvasRef}
       className="pointer-events-none fixed inset-0 z-[9999] h-full w-full"
       style={{
-        opacity: 0.4,
+        opacity: 'var(--noise-opacity)',
         mixBlendMode: 'overlay',
       }}
     />

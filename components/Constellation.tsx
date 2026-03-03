@@ -30,9 +30,11 @@ export default function Constellation() {
     resize();
     window.addEventListener('resize', resize);
 
-    // Initialize particles
+    const isMobile = window.innerWidth < 640;
+    const particleCount = isMobile ? 25 : 45;
+
     const particles: Particle[] = [];
-    for (let i = 0; i < 45; i++) {
+    for (let i = 0; i < particleCount; i++) {
       particles.push({
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
@@ -48,11 +50,16 @@ export default function Constellation() {
     };
     window.addEventListener('mousemove', handleMouseMove);
 
+    const getColor = () => {
+      const style = getComputedStyle(document.documentElement);
+      return style.getPropertyValue('--constellation-color').trim() || '180, 160, 120';
+    };
+
     const animate = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
+      const color = getColor();
 
       for (const p of particles) {
-        // Mouse interaction
         const dx = mouseRef.current.x - p.x;
         const dy = mouseRef.current.y - p.y;
         const dist = Math.sqrt(dx * dx + dy * dy);
@@ -63,28 +70,22 @@ export default function Constellation() {
           p.vy -= (dy / dist) * force * 0.02;
         }
 
-        // Update position
         p.x += p.vx;
         p.y += p.vy;
-
-        // Dampen velocity
         p.vx *= 0.99;
         p.vy *= 0.99;
 
-        // Wrap around
         if (p.x < 0) p.x = canvas.width;
         if (p.x > canvas.width) p.x = 0;
         if (p.y < 0) p.y = canvas.height;
         if (p.y > canvas.height) p.y = 0;
 
-        // Draw particle
         ctx.beginPath();
         ctx.arc(p.x, p.y, 1.5, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(180, 160, 120, ${p.alpha})`;
+        ctx.fillStyle = `rgba(${color}, ${p.alpha})`;
         ctx.fill();
       }
 
-      // Draw connections
       for (let i = 0; i < particles.length; i++) {
         for (let j = i + 1; j < particles.length; j++) {
           const dx = particles[i].x - particles[j].x;
@@ -96,7 +97,7 @@ export default function Constellation() {
             ctx.beginPath();
             ctx.moveTo(particles[i].x, particles[i].y);
             ctx.lineTo(particles[j].x, particles[j].y);
-            ctx.strokeStyle = `rgba(180, 160, 120, ${alpha})`;
+            ctx.strokeStyle = `rgba(${color}, ${alpha})`;
             ctx.lineWidth = 0.5;
             ctx.stroke();
           }

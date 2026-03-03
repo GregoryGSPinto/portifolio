@@ -1,31 +1,210 @@
 @import "tailwindcss";
 
 @theme inline {
-  --color-bg-primary: #0A0A0B;
-  --color-text-primary: #E8E4DE;
-  --color-accent: #C9A84C;
-  --color-text-secondary: rgba(232, 228, 222, 0.4);
-  --color-text-tertiary: rgba(232, 228, 222, 0.25);
-  --color-text-ghost: rgba(232, 228, 222, 0.15);
-  --color-border-subtle: rgba(255, 255, 255, 0.04);
+  --color-bg-primary: var(--bg-primary);
+  --color-bg-secondary: var(--bg-secondary);
+  --color-bg-tertiary: var(--bg-tertiary);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-tertiary: var(--text-tertiary);
+  --color-text-ghost: var(--text-ghost);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-border-subtle: var(--border-subtle);
+  --color-border-hover: var(--border-hover);
+  --color-card-bg: var(--card-bg);
+  --color-card-bg-hover: var(--card-bg-hover);
+  --color-nav-bg: var(--nav-bg);
+  --color-skill-bar-bg: var(--skill-bar-bg);
+  --color-tag-bg: var(--tag-bg);
+  --color-tag-border: var(--tag-border);
 
   --font-display: var(--font-cormorant);
   --font-body: var(--font-dm-sans);
   --font-mono: var(--font-dm-mono);
 }
 
+/* Dark theme (default) */
+:root {
+  --bg-primary: #0A0A0B;
+  --bg-secondary: #111113;
+  --bg-tertiary: #1A1A1D;
+  --text-primary: #E8E4DE;
+  --text-secondary: rgba(232, 228, 222, 0.4);
+  --text-tertiary: rgba(232, 228, 222, 0.25);
+  --text-ghost: rgba(232, 228, 222, 0.15);
+  --accent: #C9A84C;
+  --accent-hover: #D4B65E;
+  --border-subtle: rgba(255, 255, 255, 0.04);
+  --border-hover: rgba(201, 168, 76, 0.2);
+  --card-bg: rgba(255, 255, 255, 0.02);
+  --card-bg-hover: rgba(255, 255, 255, 0.05);
+  --nav-bg: rgba(10, 10, 11, 0.92);
+  --noise-opacity: 0.4;
+  --constellation-color: 180, 160, 120;
+  --scrollbar-track: #0A0A0B;
+  --scrollbar-thumb: rgba(201, 168, 76, 0.13);
+  --scrollbar-thumb-hover: rgba(201, 168, 76, 0.27);
+  --selection-bg: rgba(201, 168, 76, 0.2);
+  --selection-color: #C9A84C;
+  --skill-bar-bg: rgba(255, 255, 255, 0.06);
+  --tag-bg: rgba(201, 168, 76, 0.06);
+  --tag-border: rgba(201, 168, 76, 0.15);
+  --pillar-number: rgba(201, 168, 76, 0.15);
+  --pillar-gap-bg: rgba(255, 255, 255, 0.04);
+  --gradient-bottom: #0A0A0B;
+  --glow-accent: rgba(201, 168, 76, 0.03);
+  --scroll-line: rgba(201, 168, 76, 0.3);
+  --timeline-line: rgba(201, 168, 76, 0.15);
+  --dot-inactive: rgba(232, 228, 222, 0.15);
+  --insight-border: rgba(201, 168, 76, 0.1);
+  --insight-bg: rgba(201, 168, 76, 0.02);
+  --insight-symbol: rgba(201, 168, 76, 0.2);
+  --link-border: rgba(255, 255, 255, 0.04);
+  --footer-border: rgba(255, 255, 255, 0.04);
+}
+
+/* Explicit dark class */
+.dark {
+  --bg-primary: #0A0A0B;
+  --bg-secondary: #111113;
+  --bg-tertiary: #1A1A1D;
+  --text-primary: #E8E4DE;
+  --text-secondary: rgba(232, 228, 222, 0.4);
+  --text-tertiary: rgba(232, 228, 222, 0.25);
+  --text-ghost: rgba(232, 228, 222, 0.15);
+  --accent: #C9A84C;
+  --accent-hover: #D4B65E;
+  --border-subtle: rgba(255, 255, 255, 0.04);
+  --border-hover: rgba(201, 168, 76, 0.2);
+  --card-bg: rgba(255, 255, 255, 0.02);
+  --card-bg-hover: rgba(255, 255, 255, 0.05);
+  --nav-bg: rgba(10, 10, 11, 0.92);
+  --noise-opacity: 0.4;
+  --constellation-color: 180, 160, 120;
+  --scrollbar-track: #0A0A0B;
+  --scrollbar-thumb: rgba(201, 168, 76, 0.13);
+  --scrollbar-thumb-hover: rgba(201, 168, 76, 0.27);
+  --selection-bg: rgba(201, 168, 76, 0.2);
+  --selection-color: #C9A84C;
+  --skill-bar-bg: rgba(255, 255, 255, 0.06);
+  --tag-bg: rgba(201, 168, 76, 0.06);
+  --tag-border: rgba(201, 168, 76, 0.15);
+  --pillar-number: rgba(201, 168, 76, 0.15);
+  --pillar-gap-bg: rgba(255, 255, 255, 0.04);
+  --gradient-bottom: #0A0A0B;
+  --glow-accent: rgba(201, 168, 76, 0.03);
+  --scroll-line: rgba(201, 168, 76, 0.3);
+  --timeline-line: rgba(201, 168, 76, 0.15);
+  --dot-inactive: rgba(232, 228, 222, 0.15);
+  --insight-border: rgba(201, 168, 76, 0.1);
+  --insight-bg: rgba(201, 168, 76, 0.02);
+  --insight-symbol: rgba(201, 168, 76, 0.2);
+  --link-border: rgba(255, 255, 255, 0.04);
+  --footer-border: rgba(255, 255, 255, 0.04);
+}
+
+/* Light theme */
+.light {
+  --bg-primary: #F8F7F4;
+  --bg-secondary: #EFEDE8;
+  --bg-tertiary: #E5E2DB;
+  --text-primary: #1A1A1D;
+  --text-secondary: rgba(26, 26, 29, 0.55);
+  --text-tertiary: rgba(26, 26, 29, 0.35);
+  --text-ghost: rgba(26, 26, 29, 0.2);
+  --accent: #9A7B2F;
+  --accent-hover: #7D6326;
+  --border-subtle: rgba(0, 0, 0, 0.06);
+  --border-hover: rgba(154, 123, 47, 0.25);
+  --card-bg: rgba(0, 0, 0, 0.02);
+  --card-bg-hover: rgba(0, 0, 0, 0.04);
+  --nav-bg: rgba(248, 247, 244, 0.92);
+  --noise-opacity: 0.15;
+  --constellation-color: 120, 100, 60;
+  --scrollbar-track: #F8F7F4;
+  --scrollbar-thumb: rgba(154, 123, 47, 0.15);
+  --scrollbar-thumb-hover: rgba(154, 123, 47, 0.3);
+  --selection-bg: rgba(154, 123, 47, 0.15);
+  --selection-color: #7D6326;
+  --skill-bar-bg: rgba(0, 0, 0, 0.06);
+  --tag-bg: rgba(154, 123, 47, 0.08);
+  --tag-border: rgba(154, 123, 47, 0.2);
+  --pillar-number: rgba(154, 123, 47, 0.15);
+  --pillar-gap-bg: rgba(0, 0, 0, 0.04);
+  --gradient-bottom: #F8F7F4;
+  --glow-accent: rgba(154, 123, 47, 0.03);
+  --scroll-line: rgba(154, 123, 47, 0.3);
+  --timeline-line: rgba(154, 123, 47, 0.15);
+  --dot-inactive: rgba(26, 26, 29, 0.15);
+  --insight-border: rgba(154, 123, 47, 0.1);
+  --insight-bg: rgba(154, 123, 47, 0.02);
+  --insight-symbol: rgba(154, 123, 47, 0.2);
+  --link-border: rgba(0, 0, 0, 0.06);
+  --footer-border: rgba(0, 0, 0, 0.06);
+}
+
+/* System preference fallback for users without JS */
+@media (prefers-color-scheme: light) {
+  :root:not(.dark) {
+    --bg-primary: #F8F7F4;
+    --bg-secondary: #EFEDE8;
+    --bg-tertiary: #E5E2DB;
+    --text-primary: #1A1A1D;
+    --text-secondary: rgba(26, 26, 29, 0.55);
+    --text-tertiary: rgba(26, 26, 29, 0.35);
+    --text-ghost: rgba(26, 26, 29, 0.2);
+    --accent: #9A7B2F;
+    --accent-hover: #7D6326;
+    --border-subtle: rgba(0, 0, 0, 0.06);
+    --border-hover: rgba(154, 123, 47, 0.25);
+    --card-bg: rgba(0, 0, 0, 0.02);
+    --card-bg-hover: rgba(0, 0, 0, 0.04);
+    --nav-bg: rgba(248, 247, 244, 0.92);
+    --noise-opacity: 0.15;
+    --constellation-color: 120, 100, 60;
+    --scrollbar-track: #F8F7F4;
+    --scrollbar-thumb: rgba(154, 123, 47, 0.15);
+    --scrollbar-thumb-hover: rgba(154, 123, 47, 0.3);
+    --selection-bg: rgba(154, 123, 47, 0.15);
+    --selection-color: #7D6326;
+    --skill-bar-bg: rgba(0, 0, 0, 0.06);
+    --tag-bg: rgba(154, 123, 47, 0.08);
+    --tag-border: rgba(154, 123, 47, 0.2);
+    --pillar-number: rgba(154, 123, 47, 0.15);
+    --pillar-gap-bg: rgba(0, 0, 0, 0.04);
+    --gradient-bottom: #F8F7F4;
+    --glow-accent: rgba(154, 123, 47, 0.03);
+    --scroll-line: rgba(154, 123, 47, 0.3);
+    --timeline-line: rgba(154, 123, 47, 0.15);
+    --dot-inactive: rgba(26, 26, 29, 0.15);
+    --insight-border: rgba(154, 123, 47, 0.1);
+    --insight-bg: rgba(154, 123, 47, 0.02);
+    --insight-symbol: rgba(154, 123, 47, 0.2);
+    --link-border: rgba(0, 0, 0, 0.06);
+    --footer-border: rgba(0, 0, 0, 0.06);
+  }
+}
+
 html {
   scroll-behavior: smooth;
 }
 
+html.theme-transition,
+html.theme-transition *,
+html.theme-transition *::before,
+html.theme-transition *::after {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease !important;
+}
+
 body {
-  background: #0A0A0B;
-  color: #E8E4DE;
+  background: var(--bg-primary);
+  color: var(--text-primary);
 }
 
 ::selection {
-  background: #C9A84C33;
-  color: #C9A84C;
+  background: var(--selection-bg);
+  color: var(--selection-color);
 }
 
 ::-webkit-scrollbar {
@@ -33,14 +212,14 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: #0A0A0B;
+  background: var(--scrollbar-track);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #C9A84C22;
+  background: var(--scrollbar-thumb);
   border-radius: 2px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #C9A84C44;
+  background: var(--scrollbar-thumb-hover);
 }

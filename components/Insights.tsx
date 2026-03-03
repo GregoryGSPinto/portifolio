@@ -15,8 +15,8 @@ export default function Insights() {
   const t = translations[language].insights;
 
   return (
-    <section id="insights" className="py-40 relative">
-      <div className="max-w-[1200px] mx-auto px-6 md:px-12">
+    <section id="insights" className="py-20 md:py-28 lg:py-40 relative">
+      <div className="max-w-[1200px] mx-auto px-5 md:px-8 lg:px-12">
         <SectionLabel number="06" label={t.label} />
 
         <motion.h2
@@ -25,11 +25,11 @@ export default function Insights() {
           viewport={{ once: true }}
           variants={fadeInUp}
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-          className="font-display font-light mb-16 whitespace-pre-line"
+          className="font-display font-light mb-10 md:mb-16 whitespace-pre-line"
           style={{
-            fontSize: 'clamp(36px, 5vw, 64px)',
+            fontSize: 'clamp(28px, 5vw, 64px)',
             lineHeight: 1.1,
-            color: '#E8E4DE',
+            color: 'var(--text-primary)',
           }}
         >
           {t.title}
@@ -41,22 +41,21 @@ export default function Insights() {
           viewport={{ once: true }}
           variants={fadeInUp}
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-          className="text-center rounded-lg"
+          className="text-center rounded-lg px-5 py-12 sm:px-12 sm:py-20"
           style={{
-            border: '1px solid rgba(201, 168, 76, 0.1)',
-            background: 'rgba(201, 168, 76, 0.02)',
-            padding: '80px 48px',
+            border: '1px solid var(--insight-border)',
+            background: 'var(--insight-bg)',
           }}
         >
           <span
-            className="font-display text-4xl block mb-6"
-            style={{ color: 'rgba(201, 168, 76, 0.2)' }}
+            className="font-display text-3xl sm:text-4xl block mb-6"
+            style={{ color: 'var(--insight-symbol)' }}
           >
             ✦
           </span>
           <p
             className="font-mono text-[13px]"
-            style={{ color: 'rgba(232, 228, 222, 0.35)' }}
+            style={{ color: 'var(--text-tertiary)' }}
           >
             {t.placeholder}
           </p>

@@ -16,14 +16,13 @@ export default function Hero() {
 
   return (
     <section id="hero" className="relative min-h-screen flex items-center overflow-hidden">
-      {/* Constellation Background */}
       <Constellation />
 
       {/* Radial glow */}
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
-          background: 'radial-gradient(ellipse at 80% 50%, rgba(201, 168, 76, 0.03), transparent)',
+          background: 'radial-gradient(ellipse at 80% 50%, var(--glow-accent), transparent)',
         }}
       />
 
@@ -32,12 +31,12 @@ export default function Hero() {
         className="absolute bottom-0 left-0 right-0 pointer-events-none"
         style={{
           height: '30%',
-          background: 'linear-gradient(to top, #0A0A0B, transparent)',
+          background: 'linear-gradient(to top, var(--gradient-bottom), transparent)',
         }}
       />
 
       {/* Content */}
-      <div className="relative z-10 max-w-[1200px] mx-auto px-6 md:px-12 w-full">
+      <div className="relative z-10 max-w-[1200px] mx-auto px-5 md:px-12 w-full">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -45,8 +44,11 @@ export default function Hero() {
         >
           {/* Pre-title */}
           <div className="flex items-center gap-4 mb-8">
-            <div className="w-[60px] h-px bg-accent" />
-            <span className="font-mono text-[11px] tracking-[3px] uppercase text-accent">
+            <div className="w-[60px] h-px" style={{ background: 'var(--accent)' }} />
+            <span
+              className="font-mono text-[10px] sm:text-[11px] tracking-[3px] uppercase"
+              style={{ color: 'var(--accent)' }}
+            >
               {t.preTitle}
             </span>
           </div>
@@ -55,9 +57,9 @@ export default function Hero() {
           <h1
             className="font-display font-light leading-[0.92] mb-8"
             style={{
-              fontSize: 'clamp(56px, 7.5vw, 108px)',
+              fontSize: 'clamp(36px, 10vw, 108px)',
               letterSpacing: '-3px',
-              color: '#E8E4DE',
+              color: 'var(--text-primary)',
             }}
           >
             Gregory
@@ -67,20 +69,20 @@ export default function Hero() {
 
           {/* Tagline */}
           <p
-            className="font-body text-base md:text-lg max-w-[520px] mb-12 leading-relaxed"
-            style={{ color: 'rgba(232, 228, 222, 0.4)' }}
+            className="font-body text-[15px] md:text-lg max-w-[520px] mb-12 leading-relaxed"
+            style={{ color: 'var(--text-secondary)' }}
           >
             {t.tagline}
           </p>
 
           {/* CTAs */}
-          <div className="flex items-center gap-4 flex-wrap">
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4">
             <button
               onClick={() => handleScrollTo('cases')}
               className="font-mono text-[12px] uppercase tracking-[2px] px-9 py-3.5 transition-all duration-300 hover:opacity-90"
               style={{
-                background: '#C9A84C',
-                color: '#0A0A0B',
+                background: 'var(--accent)',
+                color: 'var(--bg-primary)',
                 borderRadius: '2px',
               }}
             >
@@ -88,10 +90,10 @@ export default function Hero() {
             </button>
             <button
               onClick={() => handleScrollTo('contact')}
-              className="font-mono text-[12px] uppercase tracking-[2px] px-9 py-3.5 transition-all duration-300 hover:bg-accent/10"
+              className="font-mono text-[12px] uppercase tracking-[2px] px-9 py-3.5 transition-all duration-300"
               style={{
-                border: '1px solid rgba(201, 168, 76, 0.3)',
-                color: '#C9A84C',
+                border: '1px solid var(--border-hover)',
+                color: 'var(--accent)',
                 borderRadius: '2px',
                 background: 'transparent',
               }}
@@ -102,13 +104,13 @@ export default function Hero() {
         </motion.div>
       </div>
 
-      {/* Scroll indicator */}
-      <div className="absolute right-6 md:right-12 top-1/2 -translate-y-1/2 flex flex-col items-center gap-3 z-10">
+      {/* Scroll indicator - hidden on mobile */}
+      <div className="hidden md:flex absolute right-12 top-1/2 -translate-y-1/2 flex-col items-center gap-3 z-10">
         <span
           className="font-mono text-[10px] tracking-[3px] uppercase"
           style={{
             writingMode: 'vertical-rl',
-            color: 'rgba(232, 228, 222, 0.15)',
+            color: 'var(--text-ghost)',
           }}
         >
           {t.scroll}
@@ -116,7 +118,7 @@ export default function Hero() {
         <div
           className="w-px h-16"
           style={{
-            background: 'linear-gradient(to bottom, rgba(201, 168, 76, 0.3), transparent)',
+            background: 'linear-gradient(to bottom, var(--scroll-line), transparent)',
           }}
         />
       </div>

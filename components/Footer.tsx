@@ -9,21 +9,18 @@ export default function Footer() {
 
   return (
     <footer
-      className="flex flex-col md:flex-row items-center justify-between gap-4"
-      style={{
-        padding: '32px 48px',
-        borderTop: '1px solid rgba(255, 255, 255, 0.04)',
-      }}
+      className="flex flex-col md:flex-row items-center justify-between gap-4 px-5 py-8 md:px-12 md:py-8"
+      style={{ borderTop: '1px solid var(--footer-border)' }}
     >
       <span
-        className="font-mono text-[11px] tracking-[2px]"
-        style={{ color: 'rgba(232, 228, 222, 0.15)' }}
+        className="font-mono text-[10px] md:text-[11px] tracking-[2px]"
+        style={{ color: 'var(--text-ghost)' }}
       >
         {t.left}
       </span>
       <span
-        className="font-mono text-[11px] tracking-[2px]"
-        style={{ color: 'rgba(232, 228, 222, 0.1)' }}
+        className="font-mono text-[10px] md:text-[11px] tracking-[2px]"
+        style={{ color: 'var(--text-ghost)' }}
       >
         {t.right}
       </span>

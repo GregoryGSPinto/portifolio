@@ -18,14 +18,14 @@ export default function SectionLabel({ number, label }: SectionLabelProps) {
     >
       <span
         className="font-mono text-[11px] tracking-[3px] uppercase"
-        style={{ color: 'rgba(232, 228, 222, 0.25)' }}
+        style={{ color: 'var(--text-tertiary)' }}
       >
         {number}
       </span>
-      <div className="w-[40px] h-px" style={{ background: 'rgba(201, 168, 76, 0.3)' }} />
+      <div className="w-[40px] h-px" style={{ background: 'var(--scroll-line)' }} />
       <span
         className="font-mono text-[11px] tracking-[3px] uppercase"
-        style={{ color: 'rgba(232, 228, 222, 0.25)' }}
+        style={{ color: 'var(--text-tertiary)' }}
       >
         {label}
       </span>

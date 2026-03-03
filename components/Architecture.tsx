@@ -22,11 +22,11 @@ export default function Architecture() {
   const [hoveredLayer, setHoveredLayer] = useState<number | null>(null);
 
   return (
-    <section id="architecture" className="py-40 relative">
-      <div className="max-w-[1200px] mx-auto px-6 md:px-12">
+    <section id="architecture" className="py-20 md:py-28 lg:py-40 relative">
+      <div className="max-w-[1200px] mx-auto px-5 md:px-8 lg:px-12">
         <SectionLabel number="02" label={t.label} />
 
-        <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.3fr] gap-12 lg:gap-20">
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.3fr] gap-10 lg:gap-20">
           {/* Left: Title and desc */}
           <motion.div
             initial="hidden"
@@ -39,9 +39,9 @@ export default function Architecture() {
               transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
               className="font-display font-light mb-8 whitespace-pre-line"
               style={{
-                fontSize: 'clamp(36px, 5vw, 64px)',
+                fontSize: 'clamp(28px, 5vw, 64px)',
                 lineHeight: 1.1,
-                color: '#E8E4DE',
+                color: 'var(--text-primary)',
               }}
             >
               {t.title}
@@ -50,7 +50,7 @@ export default function Architecture() {
               variants={fadeInUp}
               transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
               className="font-body text-[15px] leading-[1.8]"
-              style={{ color: 'rgba(232, 228, 222, 0.4)' }}
+              style={{ color: 'var(--text-secondary)' }}
             >
               {t.desc}
             </motion.p>
@@ -71,39 +71,41 @@ export default function Architecture() {
                 transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
                 onMouseEnter={() => setHoveredLayer(index)}
                 onMouseLeave={() => setHoveredLayer(null)}
-                className="flex items-center gap-4 rounded-[14px] cursor-default transition-all duration-300"
+                className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 rounded-[14px] cursor-default transition-all duration-300"
                 style={{
-                  padding: '20px 28px',
+                  padding: '16px 20px',
                   background: hoveredLayer === index
                     ? `${layer.color}12`
-                    : 'rgba(255, 255, 255, 0.02)',
-                  border: `1px solid ${hoveredLayer === index ? `${layer.color}30` : 'rgba(255, 255, 255, 0.04)'}`,
+                    : 'var(--card-bg)',
+                  border: `1px solid ${hoveredLayer === index ? `${layer.color}30` : 'var(--border-subtle)'}`,
                   transform: hoveredLayer === index ? 'translateX(8px)' : 'translateX(0)',
                 }}
               >
-                {/* Dot indicator */}
-                <div
-                  className="w-2 h-2 rounded-full shrink-0 transition-all duration-300"
-                  style={{
-                    background: layer.color,
-                    opacity: hoveredLayer === index ? 1 : 0.4,
-                    boxShadow: hoveredLayer === index ? `0 0 12px ${layer.color}60` : 'none',
-                  }}
-                />
+                <div className="flex items-center gap-3 sm:gap-4">
+                  {/* Dot indicator */}
+                  <div
+                    className="w-2 h-2 rounded-full shrink-0 transition-all duration-300"
+                    style={{
+                      background: layer.color,
+                      opacity: hoveredLayer === index ? 1 : 0.4,
+                      boxShadow: hoveredLayer === index ? `0 0 12px ${layer.color}60` : 'none',
+                    }}
+                  />
 
-                {/* Layer name */}
-                <span
-                  className="font-mono text-[12px] tracking-[1px] uppercase shrink-0 transition-colors duration-300"
-                  style={{
-                    minWidth: '130px',
-                    color: hoveredLayer === index ? layer.color : 'rgba(232, 228, 222, 0.35)',
-                  }}
-                >
-                  {layer.name}
-                </span>
+                  {/* Layer name */}
+                  <span
+                    className="font-mono text-[12px] tracking-[1px] uppercase shrink-0 transition-colors duration-300"
+                    style={{
+                      minWidth: '110px',
+                      color: hoveredLayer === index ? layer.color : 'var(--text-tertiary)',
+                    }}
+                  >
+                    {layer.name}
+                  </span>
+                </div>
 
                 {/* Tags */}
-                <div className="flex flex-wrap gap-2">
+                <div className="flex flex-wrap gap-2 pl-5 sm:pl-0">
                   {layer.tags.map((tag) => (
                     <span
                       key={tag}
@@ -111,11 +113,11 @@ export default function Architecture() {
                       style={{
                         background: hoveredLayer === index
                           ? `${layer.color}15`
-                          : 'rgba(255, 255, 255, 0.03)',
+                          : 'var(--card-bg)',
                         color: hoveredLayer === index
                           ? layer.color
-                          : 'rgba(232, 228, 222, 0.25)',
-                        border: `1px solid ${hoveredLayer === index ? `${layer.color}25` : 'rgba(255, 255, 255, 0.04)'}`,
+                          : 'var(--text-tertiary)',
+                        border: `1px solid ${hoveredLayer === index ? `${layer.color}25` : 'var(--border-subtle)'}`,
                       }}
                     >
                       {tag}

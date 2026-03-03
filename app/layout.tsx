@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { Cormorant_Garamond, DM_Sans, DM_Mono } from 'next/font/google';
 import { LanguageProvider } from '@/context/LanguageContext';
+import { ThemeProvider } from '@/context/ThemeContext';
 import './globals.css';
 
 const cormorant = Cormorant_Garamond({
@@ -45,6 +46,21 @@ export const metadata: Metadata = {
   },
 };
 
+const themeScript = `
+(function() {
+  try {
+    var pref = localStorage.getItem('theme-preference');
+    var resolved = 'dark';
+    if (pref === 'light') resolved = 'light';
+    else if (pref === 'dark') resolved = 'dark';
+    else if (pref === 'system' || !pref) {
+      resolved = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+    }
+    document.documentElement.classList.add(resolved);
+  } catch(e) {}
+})();
+`;
+
 export default function RootLayout({
   children,
 }: {
@@ -53,10 +69,16 @@ export default function RootLayout({
   return (
     <html
       lang="pt-BR"
+      suppressHydrationWarning
       className={`${cormorant.variable} ${dmSans.variable} ${dmMono.variable}`}
     >
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+      </head>
       <body className="bg-bg-primary text-text-primary antialiased">
-        <LanguageProvider>{children}</LanguageProvider>
+        <ThemeProvider>
+          <LanguageProvider>{children}</LanguageProvider>
+        </ThemeProvider>
       </body>
     </html>
   );
