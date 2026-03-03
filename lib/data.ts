@@ -199,54 +199,6 @@ export const caseStudies = [
     previewUrl: 'https://blackbelt-five.vercel.app/',
   },
   {
-    id: 'shift-manager',
-    slug: 'shift-manager',
-    title: 'Shift Manager',
-    subtitle: {
-      pt: 'Sistema Inteligente de Gestão de Escalas',
-      en: 'Intelligent Shift Management System',
-    },
-    challenge: {
-      pt: 'Gestores de equipes operacionais gastavam horas toda semana montando escalas manualmente, lidando com conflitos de horário, preferências de funcionários e restrições legais de jornada. O resultado era escalas injustas, conflitos frequentes e alta rotatividade.',
-      en: 'Operations team managers spent hours every week manually building schedules, dealing with time conflicts, employee preferences and legal working hour restrictions. The result was unfair schedules, frequent conflicts and high turnover.',
-    },
-    approach: {
-      pt: 'Desenvolvi um simulador com algoritmo de distribuição balanceada que considera preferências, histórico de turnos e restrições. O sistema sugere escalas otimizadas e permite ajustes manuais com validação em tempo real. Dashboard analítico mostra métricas de equidade e cobertura.',
-      en: 'I developed a simulator with a balanced distribution algorithm that considers preferences, shift history and constraints. The system suggests optimized schedules and allows manual adjustments with real-time validation. Analytical dashboard shows equity and coverage metrics.',
-    },
-    architecture: {
-      pt: 'React SPA com state management via Context API para a lógica de escala. Algoritmo de distribuição implementado em Web Workers para não bloquear a UI. WebSocket para sincronização em tempo real entre gestores. Supabase para persistência e autenticação.',
-      en: 'React SPA with Context API state management for scheduling logic. Distribution algorithm implemented in Web Workers to avoid UI blocking. WebSocket for real-time sync between managers. Supabase for persistence and authentication.',
-    },
-    results: {
-      pt: 'Protótipo funcional que demonstra redução de 40% no tempo de criação de escalas em testes simulados. Interface responsiva funciona como PWA em dispositivos móveis dos gestores.',
-      en: 'Functional prototype demonstrating 40% reduction in schedule creation time in simulated tests. Responsive interface works as PWA on managers mobile devices.',
-    },
-    metrics: [
-      { value: '40%', label: { pt: 'Redução de Tempo', en: 'Time Reduction' }, context: { pt: 'Na criação de escalas', en: 'In schedule creation' } },
-      { value: 'Real-time', label: { pt: 'Sincronização', en: 'Sync' }, context: { pt: 'WebSocket entre gestores', en: 'WebSocket between managers' } },
-      { value: 'PWA', label: { pt: 'Mobile Ready', en: 'Mobile Ready' }, context: { pt: 'Funciona offline', en: 'Works offline' } },
-      { value: 'Workers', label: { pt: 'Performance', en: 'Performance' }, context: { pt: 'Algoritmo não bloqueia UI', en: 'Algorithm does not block UI' } },
-    ],
-    decisions: [
-      { title: { pt: 'Por que Web Workers?', en: 'Why Web Workers?' }, description: { pt: 'O algoritmo de distribuição processa todas as combinações possíveis. Em equipes com 20+ pessoas, isso leva segundos. Web Workers garantem que a UI continua responsiva durante o cálculo.', en: 'The distribution algorithm processes all possible combinations. For teams with 20+ people, this takes seconds. Web Workers ensure the UI stays responsive during calculation.' }, icon: '⬡' },
-      { title: { pt: 'Por que PWA?', en: 'Why PWA?' }, description: { pt: 'Gestores conferem escalas no celular durante o expediente. PWA permite acesso rápido sem instalação de app, com cache offline para consulta mesmo sem internet.', en: 'Managers check schedules on mobile during shifts. PWA enables quick access without app installation, with offline cache for viewing even without internet.' }, icon: '▣' },
-    ],
-    tags: ['React', 'TypeScript', 'Supabase', 'WebSocket', 'Web Workers', 'PWA', 'Charts.js'],
-    url: null,
-    accentColor: '#7B8794',
-    stackDetails: [
-      { name: 'React 18', role: { pt: 'UI reativa e componentizada', en: 'Reactive component-based UI' } },
-      { name: 'TypeScript', role: { pt: 'Type safety no algoritmo', en: 'Algorithm type safety' } },
-      { name: 'Web Workers', role: { pt: 'Processamento em background', en: 'Background processing' } },
-      { name: 'Supabase', role: { pt: 'Persistência + Realtime', en: 'Persistence + Realtime' } },
-      { name: 'Charts.js', role: { pt: 'Visualização de dados', en: 'Data visualization' } },
-    ],
-    timeline: { pt: 'Mar 2024 — Jun 2024', en: 'Mar 2024 — Jun 2024' },
-    previewType: 'screenshots' as const,
-    screenshots: [],
-  },
-  {
     id: 'imc-pro-ai',
     slug: 'imc-pro-ai',
     title: 'IMC Pro AI',
