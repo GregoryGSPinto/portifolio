@@ -72,7 +72,7 @@ export default function Certifications() {
                   background: 'var(--card-bg)',
                 }}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.borderColor = 'rgba(201, 168, 76, 0.3)';
+                  e.currentTarget.style.borderColor = 'var(--border-hover)';
                 }}
                 onMouseLeave={(e) => {
                   e.currentTarget.style.borderColor = 'var(--border-subtle)';

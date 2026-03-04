@@ -78,18 +78,17 @@ export default function Methodology() {
                 <div
                   className="w-[10px] h-[10px] rounded-full mb-6 transition-all duration-300 group-hover:scale-125"
                   style={{
-                    border: '2px solid var(--accent)',
-                    borderColor: 'rgba(201, 168, 76, 0.3)',
+                    border: '2px solid var(--border-hover)',
                     background: 'transparent',
                   }}
                   onMouseEnter={(e) => {
                     e.currentTarget.style.background = 'var(--accent)';
                     e.currentTarget.style.borderColor = 'var(--accent)';
-                    e.currentTarget.style.boxShadow = '0 0 16px rgba(201, 168, 76, 0.4)';
+                    e.currentTarget.style.boxShadow = '0 0 16px var(--accent-glow)';
                   }}
                   onMouseLeave={(e) => {
                     e.currentTarget.style.background = 'transparent';
-                    e.currentTarget.style.borderColor = 'rgba(201, 168, 76, 0.3)';
+                    e.currentTarget.style.borderColor = 'var(--border-hover)';
                     e.currentTarget.style.boxShadow = 'none';
                   }}
                 />
@@ -161,9 +160,9 @@ export default function Methodology() {
                   <div
                     className="w-[9px] h-[9px] rounded-full shrink-0"
                     style={{
-                      border: '2px solid rgba(201, 168, 76, 0.3)',
+                      border: '2px solid var(--border-hover)',
                       background: 'var(--accent)',
-                      boxShadow: '0 0 8px rgba(201, 168, 76, 0.3)',
+                      boxShadow: '0 0 8px var(--accent-glow)',
                     }}
                   />
                 </div>

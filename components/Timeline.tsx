@@ -73,7 +73,7 @@ export default function Timeline() {
                   className="w-[9px] h-[9px] rounded-full shrink-0 mt-2"
                   style={{
                     background: item.highlight ? 'var(--accent)' : 'var(--dot-inactive)',
-                    boxShadow: item.highlight ? '0 0 16px rgba(201, 168, 76, 0.4)' : 'none',
+                    boxShadow: item.highlight ? '0 0 16px var(--accent-glow)' : 'none',
                   }}
                 />
                 <div
