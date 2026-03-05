@@ -1,20 +1,18 @@
 All done. Here's what was built:
 
-**New files created:**
-- `components/about/About.tsx` — Main section with `01 — About` header, two-column photo+bio layout, metric counters grid, and tech badges grid
-- `components/about/PhotoFrame.tsx` — Gradient circle placeholder with "GG" initials, dashed accent border that rotates on hover, subtle glow effect
-- `components/about/AnimatedCounter.tsx` — Scroll-triggered counter using framer-motion `useMotionValue` + `useTransform` + `animate`, IntersectionObserver (once), 2s easeOut duration, mono font with accent color
-- `components/about/TechBadge.tsx` — Small badge with SVG icon + name, hover scale/bg effects
+**Files created (7):**
+- `lib/data/projects.ts` — Bilingual project data for all 3 projects with metrics, stack, links, challenge/approach/architecture/results/decisions content
+- `hooks/useTilt.ts` — 3D tilt hook with mouse tracking, 8deg max rotation, 150ms easing, spring reset, reduced-motion support
+- `components/projects/ProjectCard.tsx` — Premium card with tilt effect, shine overlay following cursor, border glow, gradient placeholder, tech badges, metrics, live/github/details links. Featured cards span 2 columns
+- `components/projects/FilterTabs.tsx` — All/Enterprise/AI-ML/Frontend tabs with Framer Motion `layoutId` sliding indicator
+- `components/projects/Projects.tsx` — Section with header, filter tabs, AnimatePresence grid with stagger
+- `app/projects/[slug]/page.tsx` — Server page with `generateStaticParams` and dynamic metadata
+- `app/projects/[slug]/ProjectDetail.tsx` — Full detail page with hero gradient, animated metric counters, Challenge/Approach/Architecture/Results sections, expandable accordion for technical decisions, stack badges, back navigation
 
-**Modified files:**
-- `lib/data/i18n.ts` — Added `about` section with PT-BR/EN translations (title, 3 bio paragraphs, 4 metric labels)
-- `app/page.tsx` — Imported and placed `<About />` between Hero and Vision
+**Modified:**
+- `app/page.tsx` — Replaced `<Cases />` with `<Projects />`
 
-**Key details:**
-- 4 metrics: `5+` Years, `3` Enterprise Projects, `900+` Tests Passing, `95+` Lighthouse Score
-- 15 tech badges in 5-col desktop / 3-col mobile grid: React, Next.js, TypeScript, Node.js, Supabase, Python, TailwindCSS, Docker, Azure, Vercel, DDD, Event Sourcing, CQRS, AI/ML, Figma
-- All animations use `whileInView` with stagger children pattern matching the existing codebase style
-- Build passes cleanly
+**Build output:** 3 static pages generated at `/projects/efvm360`, `/projects/blackbelt-os`, `/projects/portfolio`.
 
 > portfolio@0.1.0 build /Users/user_pc/Projetos/portifolio
 > next build
@@ -22,23 +20,28 @@ All done. Here's what was built:
 ▲ Next.js 16.1.6 (Turbopack)
 
   Creating an optimized production build ...
-✓ Compiled successfully in 2.0s
+✓ Compiled successfully in 2.2s
   Running TypeScript ...
   Collecting page data using 15 workers ...
-  Generating static pages using 15 workers (0/6) ...
-  Generating static pages using 15 workers (1/6) 
-  Generating static pages using 15 workers (2/6) 
-  Generating static pages using 15 workers (4/6) 
-✓ Generating static pages using 15 workers (6/6) in 417.0ms
+  Generating static pages using 15 workers (0/9) ...
+  Generating static pages using 15 workers (2/9) 
+  Generating static pages using 15 workers (4/9) 
+  Generating static pages using 15 workers (6/9) 
+✓ Generating static pages using 15 workers (9/9) in 480.2ms
   Finalizing page optimization ...
 
 Route (app)
 ┌ ○ /
 ├ ○ /_not-found
 ├ ƒ /api/chat
-└ ƒ /api/github-stack
+├ ƒ /api/github-stack
+└ ● /projects/[slug]
+  ├ /projects/efvm360
+  ├ /projects/blackbelt-os
+  └ /projects/portfolio
 
 
 ○  (Static)   prerendered as static content
+●  (SSG)      prerendered as static HTML (uses generateStaticParams)
 ƒ  (Dynamic)  server-rendered on demand
 
