@@ -1,18 +1,25 @@
-All done. Here's what was built:
+All done. Here's what was created:
 
-**Files created (7):**
-- `lib/data/projects.ts` — Bilingual project data for all 3 projects with metrics, stack, links, challenge/approach/architecture/results/decisions content
-- `hooks/useTilt.ts` — 3D tilt hook with mouse tracking, 8deg max rotation, 150ms easing, spring reset, reduced-motion support
-- `components/projects/ProjectCard.tsx` — Premium card with tilt effect, shine overlay following cursor, border glow, gradient placeholder, tech badges, metrics, live/github/details links. Featured cards span 2 columns
-- `components/projects/FilterTabs.tsx` — All/Enterprise/AI-ML/Frontend tabs with Framer Motion `layoutId` sliding indicator
-- `components/projects/Projects.tsx` — Section with header, filter tabs, AnimatePresence grid with stagger
-- `app/projects/[slug]/page.tsx` — Server page with `generateStaticParams` and dynamic metadata
-- `app/projects/[slug]/ProjectDetail.tsx` — Full detail page with hero gradient, animated metric counters, Challenge/Approach/Architecture/Results sections, expandable accordion for technical decisions, stack badges, back navigation
+**`lib/data/skills.ts`** — 6 skill categories with typed data:
+- Frontend (avg ~94%), Backend (~84%), Architecture (~88%), AI & ML (~78%), DevOps (~74%), UX/Design (~82%)
+- Each skill has a name, level percentage, and sub-items (specific technologies)
 
-**Modified:**
-- `app/page.tsx` — Replaced `<Cases />` with `<Projects />`
+**`components/skills/SkillBar.tsx`** — Animated horizontal bar:
+- Fills from 0% to target value using `whileInView` with `framer-motion`
+- Label left, percentage right (fades in after bar fills)
+- Sub-labels rendered as pill badges below each bar
+- Staggered animation with 100ms delay between bars
+- Accent gradient fill using existing CSS variables
 
-**Build output:** 3 static pages generated at `/projects/efvm360`, `/projects/blackbelt-os`, `/projects/portfolio`.
+**`components/skills/Skills.tsx`** — Section component:
+- Bilingual header via i18n ("Arsenal Tecnologico" / "Tech Radar")
+- Categories stacked vertically with category headers showing average %
+- Responsive layout, max-w-4xl centered
+
+**Integration:**
+- Added `skills` translations to both PT and EN in `lib/data/i18n.ts`
+- Added `<Skills />` to `page.tsx` between Projects and AIExperience (dynamically imported)
+- Build passes with no errors
 
 > portfolio@0.1.0 build /Users/user_pc/Projetos/portifolio
 > next build
@@ -20,14 +27,14 @@ All done. Here's what was built:
 ▲ Next.js 16.1.6 (Turbopack)
 
   Creating an optimized production build ...
-✓ Compiled successfully in 2.2s
+✓ Compiled successfully in 2.3s
   Running TypeScript ...
   Collecting page data using 15 workers ...
   Generating static pages using 15 workers (0/9) ...
   Generating static pages using 15 workers (2/9) 
   Generating static pages using 15 workers (4/9) 
   Generating static pages using 15 workers (6/9) 
-✓ Generating static pages using 15 workers (9/9) in 480.2ms
+✓ Generating static pages using 15 workers (9/9) in 546.3ms
   Finalizing page optimization ...
 
 Route (app)

@@ -105,6 +105,10 @@ export const translations = {
       cta: 'Quer ver na pratica? Converse com meu assistente IA.',
       ctaButton: 'Abrir Chat IA',
     },
+    skills: {
+      label: 'Competencias',
+      title: 'Arsenal\nTecnologico',
+    },
     stack: {
       label: 'Tech Radar',
       title: 'Arsenal\nTecnologico',
@@ -287,6 +291,10 @@ export const translations = {
       ],
       cta: 'Want to see it in action? Chat with my AI assistant.',
       ctaButton: 'Open AI Chat',
+    },
+    skills: {
+      label: 'Skills',
+      title: 'Tech\nRadar',
     },
     stack: {
       label: 'Tech Radar',

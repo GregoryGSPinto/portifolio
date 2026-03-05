@@ -9,6 +9,7 @@ import Methodology from '@/components/Methodology';
 
 const NoiseTexture = dynamic(() => import('@/components/NoiseTexture'), { ssr: false });
 const Projects = dynamic(() => import('@/components/projects/Projects'));
+const Skills = dynamic(() => import('@/components/skills/Skills'));
 const AIExperience = dynamic(() => import('@/components/AIExperience'));
 const TechStack = dynamic(() => import('@/components/TechStack'));
 const Timeline = dynamic(() => import('@/components/Timeline'));
@@ -28,6 +29,7 @@ export default function Home() {
         <Architecture />
         <Methodology />
         <Projects />
+        <Skills />
         <AIExperience />
         <TechStack />
         <Timeline />
