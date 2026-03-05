@@ -98,6 +98,35 @@ export function useGitHubStack() {
   return { data, loading, error };
 }
 
+export function useActiveSection(sectionIds: readonly string[]) {
+  const [activeId, setActiveId] = useState('');
+
+  useEffect(() => {
+    const observers: IntersectionObserver[] = [];
+
+    sectionIds.forEach((id) => {
+      const el = document.getElementById(id);
+      if (!el) return;
+
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) {
+            setActiveId(id);
+          }
+        },
+        { rootMargin: '-40% 0px -55% 0px', threshold: 0 }
+      );
+
+      observer.observe(el);
+      observers.push(observer);
+    });
+
+    return () => observers.forEach((o) => o.disconnect());
+  }, [sectionIds]);
+
+  return activeId;
+}
+
 export function useIsMobile(breakpoint = 640) {
   const [isMobile, setIsMobile] = useState(false);
 

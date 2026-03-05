@@ -122,9 +122,16 @@ export const translations = {
       desc: 'Pronto para transformar ideias em arquiteturas que escalam. Vamos conversar sobre seu próximo projeto.',
       cta: 'Enviar Email',
     },
+    navbar: {
+      items: ['Início', 'Projetos', 'Sobre', 'Blog', 'Contato'],
+      ids: ['hero', 'cases', 'vision', 'insights', 'contact'],
+    },
+    skipLink: 'Pular para o conteúdo principal',
     footer: {
       left: '© 2025 GREGORY GUIMARÃES',
       right: 'ARCHITECT · ENGINEER · LEADER',
+      built: 'Feito com Next.js, TypeScript &',
+      source: 'Código fonte',
     },
   },
   en: {
@@ -250,9 +257,16 @@ export const translations = {
       desc: "Ready to turn ideas into architectures that scale. Let's talk about your next project.",
       cta: 'Send Email',
     },
+    navbar: {
+      items: ['Home', 'Projects', 'About', 'Blog', 'Contact'],
+      ids: ['hero', 'cases', 'vision', 'insights', 'contact'],
+    },
+    skipLink: 'Skip to main content',
     footer: {
       left: '© 2025 GREGORY GUIMARÃES',
       right: 'ARCHITECT · ENGINEER · LEADER',
+      built: 'Built with Next.js, TypeScript &',
+      source: 'Source code',
     },
   },
 } as const;

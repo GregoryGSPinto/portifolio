@@ -1,13 +1,10 @@
 'use client';
 
 import dynamic from 'next/dynamic';
-import Navigation from '@/components/Navigation';
 import Hero from '@/components/Hero';
 import Vision from '@/components/Vision';
 import Architecture from '@/components/Architecture';
 import Methodology from '@/components/Methodology';
-import Footer from '@/components/Footer';
-import SkipLink from '@/components/SkipLink';
 
 const NoiseTexture = dynamic(() => import('@/components/NoiseTexture'), { ssr: false });
 const Cases = dynamic(() => import('@/components/Cases'));
@@ -22,9 +19,7 @@ const AIChatbot = dynamic(() => import('@/components/AIChatbot'), { ssr: false }
 export default function Home() {
   return (
     <>
-      <SkipLink />
       <NoiseTexture />
-      <Navigation />
       <main id="main-content">
         <Hero />
         <Vision />
@@ -38,7 +33,6 @@ export default function Home() {
         <Insights />
         <Contact />
       </main>
-      <Footer />
       <AIChatbot />
     </>
   );
