@@ -1,0 +1,51 @@
+---
+title:
+  pt: "Construindo um Assistente de IA com Voz, Memoria e 10 Modulos"
+  en: "Building an AI Assistant with Voice, Memory and 10 Modules"
+description:
+  pt: "Decisoes de arquitetura por tras do AdamBot: um assistente pessoal com reconhecimento de voz, memoria persistente e integracao modular."
+  en: "Architecture decisions behind AdamBot: a personal assistant with voice recognition, persistent memory, and modular integration."
+date: "2026-01-25"
+tags: ["ai", "chatbot", "voice", "architecture"]
+project: "efvm360"
+---
+
+## Beyond a Simple Chatbot
+
+AdamBot started as a weekend experiment: "What if I built a personal assistant that actually remembers context across sessions?" Most chatbot implementations are stateless — each conversation starts from zero. I wanted something that learns preferences, recalls past interactions, and integrates with real tools.
+
+The result is a modular assistant with 10 specialized modules, voice input/output, and persistent memory backed by a vector store.
+
+## Modular Architecture
+
+Each capability is an isolated module with a clear interface:
+
+```
+modules/
+  calendar/      # Schedule management
+  notes/         # Knowledge base queries
+  code/          # Code generation and review
+  search/        # Web search integration
+  voice/         # Speech-to-text and text-to-speech
+  memory/        # Long-term context storage
+  tasks/         # Task tracking and reminders
+  weather/       # Weather data integration
+  translate/     # Multi-language translation
+  system/        # System commands and settings
+```
+
+The orchestrator routes user intent to the appropriate module using a lightweight classification step. Modules can compose — a voice command like "remind me tomorrow about the deploy" triggers the voice module for transcription, then routes to the tasks module for scheduling.
+
+## Memory as a First-Class Concern
+
+The memory module stores conversation summaries and user preferences as embeddings. When a new query arrives, the system retrieves relevant past context and injects it into the prompt. This creates continuity without sending the entire conversation history on every request.
+
+The key decision was separating **episodic memory** (what happened in past conversations) from **semantic memory** (facts and preferences the user has stated). Episodic memories decay over time; semantic memories persist until explicitly updated.
+
+## Voice Pipeline
+
+The voice module chains speech-to-text (for input), LLM processing, and text-to-speech (for output) in a streaming pipeline. The challenge was latency — users expect near-instant responses in voice interactions. Streaming the LLM output directly to TTS, sentence by sentence, keeps perceived latency under one second.
+
+## Lessons Learned
+
+The biggest lesson: modularity pays off exponentially. Adding a new capability means writing a single module with a standard interface. The orchestrator, memory system, and voice pipeline remain untouched. This is the same bounded-context thinking from DDD, applied to AI assistant architecture.

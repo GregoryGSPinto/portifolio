@@ -1,0 +1,47 @@
+---
+title:
+  pt: "Event Sourcing para Operacoes Ferroviarias de Seguranca Critica"
+  en: "Event Sourcing for Safety-Critical Railway Operations"
+description:
+  pt: "Por que escolhemos Event Sourcing com cadeias de hash SHA-256 para garantir rastreabilidade completa no EFVM 360."
+  en: "Why we chose Event Sourcing with SHA-256 hash chains to ensure complete traceability in EFVM 360."
+date: "2026-02-10"
+tags: ["event-sourcing", "architecture", "safety"]
+project: "efvm360"
+---
+
+## Why CRUD Was Not Enough
+
+EFVM 360 manages safety inspections for one of the largest railway operations in Brazil. When a wagon is flagged for maintenance, that decision carries legal and safety implications. A traditional CRUD approach — where you overwrite the current state — destroys the history of how that state was reached.
+
+Regulators need to answer questions like: "Who approved this wagon for operation, when, and based on what data?" With CRUD, you are left guessing.
+
+## The Event Sourcing Model
+
+Every state change in EFVM 360 is stored as an immutable event. Instead of updating an inspection record in place, the system appends events like `InspectionStarted`, `DefectRecorded`, `WagonApproved`, or `InspectionRevoked`.
+
+The current state is a projection — a fold over the event stream. You can rebuild it at any point in time. More importantly, you can answer "what happened and why" for any entity in the system.
+
+```typescript
+interface DomainEvent {
+  id: string;
+  aggregateId: string;
+  type: string;
+  payload: Record<string, unknown>;
+  timestamp: string;
+  hash: string;       // SHA-256 of event content
+  previousHash: string; // Creates the chain
+}
+```
+
+## SHA-256 Hash Chains
+
+Each event includes a SHA-256 hash computed from its content plus the hash of the previous event. This creates a tamper-evident chain — similar to a blockchain but without the consensus overhead. If anyone modifies a historical event, every subsequent hash breaks.
+
+This was a non-negotiable requirement for the railway safety context. Audit logs must be provably unaltered. The hash chain provides cryptographic proof that the event history has not been tampered with after the fact.
+
+## Trade-offs
+
+Event Sourcing adds complexity. Projections need to be maintained. Event schema evolution requires careful versioning. Storage grows linearly with every action.
+
+For EFVM 360, these trade-offs were worth it. The system processes thousands of inspection events daily, and the ability to replay, audit, and reconstruct any past state has proven invaluable during compliance reviews. In safety-critical domains, knowing exactly what happened is not optional — it is the entire point.

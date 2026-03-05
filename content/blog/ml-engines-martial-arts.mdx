@@ -1,0 +1,47 @@
+---
+title:
+  pt: "8 Engines de ML para um SaaS de Artes Marciais"
+  en: "8 ML Engines for a Martial Arts SaaS"
+description:
+  pt: "Como projetei e integrei oito motores de machine learning no BlackBelt OS para personalizar treinos, prever evasao e gamificar progressao."
+  en: "How I designed and integrated eight machine learning engines into BlackBelt OS to personalize training, predict churn, and gamify progression."
+date: "2026-01-15"
+tags: ["machine-learning", "ai", "saas"]
+project: "blackbelt"
+---
+
+## The Problem Space
+
+BlackBelt OS is a gym management platform for martial arts schools. Unlike generic fitness apps, martial arts training has unique characteristics: belt progression systems, technique catalogs that vary by style, sparring performance metrics, and injury risk patterns specific to combat sports.
+
+Generic recommendation engines do not understand that a blue belt in BJJ needs different training than a brown belt, or that a fighter preparing for competition has different needs than a recreational practitioner.
+
+## The Eight Engines
+
+Each ML engine addresses a specific domain problem:
+
+1. **Training Recommender** — Suggests daily workouts based on belt level, recent performance, and fatigue indicators. Uses collaborative filtering combined with domain rules.
+
+2. **Technique Progression** — Tracks which techniques a student has drilled and identifies gaps. Models the skill tree as a directed graph with prerequisite relationships.
+
+3. **Churn Predictor** — Identifies students likely to cancel within 30 days based on attendance patterns, engagement metrics, and seasonal trends. Gives gym owners time to intervene.
+
+4. **Injury Risk Assessment** — Flags students at elevated injury risk based on training volume, recovery patterns, and historical injury data. Recommends rest or modified training.
+
+5. **Competition Readiness** — Scores a fighter's preparation level across cardio, technique diversity, and sparring results. Helps coaches decide when an athlete is ready to compete.
+
+6. **Class Scheduling Optimizer** — Analyzes attendance patterns and instructor availability to suggest optimal class times that maximize enrollment.
+
+7. **Video Analysis** — Processes uploaded training videos to provide basic form feedback on common techniques using pose estimation models.
+
+8. **Gamification Engine** — Generates personalized challenges and achievement milestones based on individual progress curves, keeping motivation high without making goals unrealistic.
+
+## Integration Architecture
+
+All engines share a common interface: input features, output predictions, and a confidence score. They run as serverless functions on Supabase Edge Functions, triggered by application events (class completed, attendance logged, video uploaded).
+
+The key architectural decision was keeping ML inference serverless rather than running persistent model servers. For a SaaS with variable load across hundreds of small gyms, cold-start latency of two to three seconds is acceptable, and the cost savings compared to always-on GPU instances are substantial.
+
+## What I Learned
+
+Domain expertise matters more than model sophistication. The churn predictor using simple logistic regression with carefully engineered features outperforms complex architectures with generic inputs. In vertical SaaS, understanding the domain deeply is the real competitive advantage.

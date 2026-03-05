@@ -138,6 +138,9 @@ export const translations = {
       label: 'Insights',
       title: 'Pensamento\nTecnico',
       placeholder: 'Artigos em desenvolvimento \u2014 em breve aqui.',
+      readMore: 'Ler artigo',
+      viewAll: 'Ver todos os artigos',
+      minRead: 'min de leitura',
     },
     contact: {
       label: 'Contato',
@@ -325,6 +328,9 @@ export const translations = {
       label: 'Insights',
       title: 'Technical\nThought',
       placeholder: 'Articles in development \u2014 coming soon.',
+      readMore: 'Read article',
+      viewAll: 'View all articles',
+      minRead: 'min read',
     },
     contact: {
       label: 'Contact',

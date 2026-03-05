@@ -1,0 +1,44 @@
+---
+title:
+  pt: "DDD no Frontend: Uma Abordagem Real com React"
+  en: "DDD in the Frontend: A Real-World Approach with React"
+description:
+  pt: "Como apliquei Domain-Driven Design no frontend do EFVM 360, organizando modulos por dominio com React e TypeScript."
+  en: "How I applied Domain-Driven Design in the EFVM 360 frontend, organizing modules by domain with React and TypeScript."
+date: "2026-02-20"
+tags: ["ddd", "react", "architecture", "event-sourcing"]
+project: "efvm360"
+---
+
+## The Problem with Feature Folders
+
+Most React projects organize code by technical role: `components/`, `hooks/`, `services/`. This works fine until you hit 15+ modules and multiple business domains. In EFVM 360 — a railway safety operations platform with 451 tests and 19 API endpoints — that flat structure broke down fast.
+
+Engineers were constantly jumping between unrelated folders to understand a single business flow. The wagon inspection module touched files scattered across six different directories. Something had to change.
+
+## Domain Modules as Boundaries
+
+Instead of grouping by technical concern, I restructured the frontend into domain modules: `inspection/`, `maintenance/`, `scheduling/`, `reporting/`. Each module encapsulates its own components, hooks, state, and API calls.
+
+```
+src/modules/inspection/
+  components/     # UI specific to inspections
+  hooks/          # Domain logic (useInspectionFlow)
+  api/            # Endpoint wrappers
+  types/          # Domain types (InspectionEvent, WagonStatus)
+  index.ts        # Public API - only export what other modules need
+```
+
+The key insight is the `index.ts` barrel file. It enforces a **bounded context** — other modules can only import what you explicitly export. Internal implementation details stay private.
+
+## Aggregates in React State
+
+Each domain module has an aggregate root managed through a custom hook. For inspections, `useInspectionAggregate` holds the current inspection state, validates transitions (you cannot close an inspection with pending items), and emits domain events.
+
+These events feed into the Event Sourcing pipeline on the backend, where every state change is recorded with SHA-256 hash chains for auditability. The frontend aggregate mirrors the backend's domain model, keeping validation consistent on both sides.
+
+## Results
+
+After the restructure, onboarding time for new developers dropped significantly. Engineers could understand a complete business flow by reading a single module directory. The bounded context pattern prevented accidental coupling — when the reporting module changed, inspection code stayed untouched.
+
+DDD in the frontend is not about importing the full tactical pattern catalog. It is about aligning your code structure with the business domains your team actually thinks in.
