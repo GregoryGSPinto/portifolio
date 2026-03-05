@@ -1,15 +1,4 @@
-All done. Here's a summary of changes:
-
-**tsconfig.json** — Added `noUnusedLocals: true` and `noUnusedParameters: true` (strict was already enabled)
-
-**package.json** — Added 3 new scripts:
-- `typecheck` — `tsc --noEmit`
-- `lint:strict` — `eslint --max-warnings 0` (used `eslint` directly since Next.js 16 removed `next lint`)
-- `check` — runs typecheck + lint:strict + build sequentially
-
-**app/api/chat/route.ts** — Removed 2 `console.error` statements and unused `error` catch binding
-
-All three checks pass clean: `pnpm typecheck`, `pnpm lint:strict`, and `pnpm build` — zero errors, zero warnings.
+Done. The `old/` directory has been removed and `pnpm build` passes cleanly. No files in the current project referenced anything from `old/` — it was just a legacy static HTML site with no content worth preserving.
 
 > portfolio@0.1.0 build /Users/user_pc/Projetos/portifolio
 > next build
@@ -17,14 +6,14 @@ All three checks pass clean: `pnpm typecheck`, `pnpm lint:strict`, and `pnpm bui
 ▲ Next.js 16.1.6 (Turbopack)
 
   Creating an optimized production build ...
-✓ Compiled successfully in 2.1s
+✓ Compiled successfully in 1964.9ms
   Running TypeScript ...
   Collecting page data using 15 workers ...
   Generating static pages using 15 workers (0/6) ...
   Generating static pages using 15 workers (1/6) 
   Generating static pages using 15 workers (2/6) 
   Generating static pages using 15 workers (4/6) 
-✓ Generating static pages using 15 workers (6/6) in 411.5ms
+✓ Generating static pages using 15 workers (6/6) in 401.2ms
   Finalizing page optimization ...
 
 Route (app)
