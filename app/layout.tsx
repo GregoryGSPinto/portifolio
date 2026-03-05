@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { Outfit, DM_Mono } from 'next/font/google';
-import { Analytics } from '@vercel/analytics/next';
+import { Analytics } from '@vercel/analytics/react';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 import { LangProvider } from '@/context/LangContext';
 import { ThemeProvider } from '@/context/ThemeContext';
 import Navbar from '@/components/layout/Navbar';
@@ -143,6 +144,7 @@ export default function RootLayout({
           </LangProvider>
         </ThemeProvider>
         <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
