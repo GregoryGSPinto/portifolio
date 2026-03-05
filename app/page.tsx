@@ -12,10 +12,10 @@ const Projects = dynamic(() => import('@/components/projects/Projects'));
 const Skills = dynamic(() => import('@/components/skills/Skills'));
 const AIExperience = dynamic(() => import('@/components/AIExperience'));
 const TechStack = dynamic(() => import('@/components/TechStack'));
-const Timeline = dynamic(() => import('@/components/Timeline'));
+const ExperienceTimeline = dynamic(() => import('@/components/experience/Timeline'));
 const Certifications = dynamic(() => import('@/components/Certifications'));
 const Insights = dynamic(() => import('@/components/Insights'));
-const Contact = dynamic(() => import('@/components/Contact'));
+const Contact = dynamic(() => import('@/components/contact/Contact'));
 const AIChatbot = dynamic(() => import('@/components/AIChatbot'), { ssr: false });
 
 export default function Home() {
@@ -32,7 +32,7 @@ export default function Home() {
         <Skills />
         <AIExperience />
         <TechStack />
-        <Timeline />
+        <ExperienceTimeline />
         <Certifications />
         <Insights />
         <Contact />
