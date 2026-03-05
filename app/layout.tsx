@@ -24,23 +24,57 @@ const dmMono = DM_Mono({
 });
 
 export const metadata: Metadata = {
-  title: 'Gregory Guimarães | AI Solutions Architect',
+  metadataBase: new URL('https://gregorypinto.dev'),
+  title: {
+    default: 'Gregory Pinto — AI Solutions Architect',
+    template: '%s | Gregory Pinto',
+  },
   description:
-    'Arquiteto de soluções inteligentes que transformam operações complexas em sistemas escaláveis e decisões data-driven.',
+    'Solution Architect specializing in DDD, scalable systems, and AI/ML — transforming complex operations into data-driven decisions.',
   keywords: [
     'AI Solutions Architect',
-    'CTO',
+    'Solution Architecture',
+    'Domain-Driven Design',
+    'DDD',
+    'AI/ML',
     'Full Stack Developer',
     'Next.js',
     'TypeScript',
     'React',
+    'Node.js',
+    'Python',
+    'Machine Learning',
+    'CTO',
+    'Scalable Systems',
   ],
-  authors: [{ name: 'Gregory Guimarães' }],
+  authors: [{ name: 'Gregory Pinto' }],
   openGraph: {
-    title: 'Gregory Guimarães | AI Solutions Architect',
+    title: 'Gregory Pinto — AI Solutions Architect',
     description:
-      'Arquiteto de soluções inteligentes que transformam operações complexas em sistemas escaláveis e decisões data-driven.',
+      'Solution Architect specializing in DDD, scalable systems, and AI/ML — transforming complex operations into data-driven decisions.',
     type: 'website',
+    locale: 'en_US',
+    alternateLocale: 'pt_BR',
+    siteName: 'Gregory Pinto',
+    images: [
+      {
+        url: '/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'Gregory Pinto — AI Solutions Architect',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Gregory Pinto — AI Solutions Architect',
+    description:
+      'Solution Architect specializing in DDD, scalable systems, and AI/ML — transforming complex operations into data-driven decisions.',
+    images: ['/og-image.png'],
+  },
+  robots: {
+    index: true,
+    follow: true,
   },
 };
 

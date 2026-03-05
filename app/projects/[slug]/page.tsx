@@ -16,13 +16,29 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const project = getProjectBySlug(slug);
   if (!project) return { title: 'Project Not Found' };
 
+  const ogImageUrl = `/api/og?title=${encodeURIComponent(project.title)}&subtitle=${encodeURIComponent(project.subtitle.en)}`;
+
   return {
-    title: `${project.title} | Gregory Guimaraes`,
+    title: project.title,
     description: project.description.en,
     openGraph: {
       title: `${project.title} — ${project.subtitle.en}`,
       description: project.description.en,
       type: 'article',
+      images: [
+        {
+          url: ogImageUrl,
+          width: 1200,
+          height: 630,
+          alt: project.title,
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: project.title,
+      description: project.description.en,
+      images: [ogImageUrl],
     },
   };
 }
