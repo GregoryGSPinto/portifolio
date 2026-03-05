@@ -50,6 +50,31 @@
   50% { box-shadow: 0 0 30px var(--accent-glow), 0 0 60px var(--accent-glow); }
 }
 
+/* Hero gradient mesh blob animations */
+@keyframes blobDrift1 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(5%, 8%) scale(1.05); }
+  66% { transform: translate(-3%, 4%) scale(0.95); }
+}
+
+@keyframes blobDrift2 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(-6%, -4%) scale(1.08); }
+  66% { transform: translate(4%, -6%) scale(0.92); }
+}
+
+@keyframes blobDrift3 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(4%, -5%) scale(0.96); }
+  66% { transform: translate(-5%, 3%) scale(1.04); }
+}
+
+@keyframes blobDrift4 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(-4%, 6%) scale(1.06); }
+  66% { transform: translate(6%, -3%) scale(0.94); }
+}
+
 /* Dark theme (default) */
 :root {
   --bg-primary: #0A0A0B;

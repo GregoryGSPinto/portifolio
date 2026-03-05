@@ -1,29 +1,25 @@
-All done. Here's a summary of what was implemented:
+Build passes. Here's what was created:
 
-## Summary
+### New files
+- **`components/hero/Hero.tsx`** — Main wrapper with staggered framer-motion animation timeline (bg→name→subtitle→typewriter→CTAs→scroll indicator)
+- **`components/hero/GradientMesh.tsx`** — 4 animated color blobs (emerald/teal/subtle blue) using CSS `@keyframes` with `blur(80px)`. Respects `prefers-reduced-motion` via the existing global CSS rule
+- **`components/hero/Typewriter.tsx`** — Cycles through i18n roles with 80ms type / 40ms delete / 2s pause / 530ms cursor blink. Resets on language change
 
-### 1. ThemeContext (`context/ThemeContext.tsx`) — Already complete
-- Dark/light/system mode with localStorage persistence (`theme-preference`)
-- Respects `prefers-color-scheme` as default
-- Applies `dark`/`light` class to `<html>`
-- Anti-flash inline script in `layout.tsx` `<head>` sets theme before render
+### Modified files
+- **`lib/data/i18n.ts`** — Updated roles (PT: `Arquiteto de Solucoes`, `Especialista em IA`, etc. / EN: `Solution Architect`, `AI Specialist`, etc.) and CTA labels (`View My Work` / `Download CV`)
+- **`app/globals.css`** — Added 4 `blobDrift` keyframes for the gradient mesh
+- **`app/page.tsx`** — Import updated to `@/components/hero/Hero`
 
-### 2. LangContext (`context/LangContext.tsx`) — New file
-- PT-BR and EN support with localStorage persistence (`lang` key)
-- Detects `navigator.language` as default (pt* → pt, else → en)
-- `useLang()` returns `{ t, lang, toggleLang }` where `t` is the full translation tree
-- Sets `document.documentElement.lang` attribute
-
-### 3. i18n translations (`lib/data/i18n.ts`) — New file
-- Complete bilingual translations for all sections: nav, hero, vision, architecture, methodology, cases, ai, stack, timeline, certifications, insights, contact, footer, chatbot, theme labels, menu labels, loading text
-- Added new keys: `hero.name`, `hero.subtitle`, `hero.roles`, `cases.viewSource`, form labels, social labels, `footer.copyright`, chatbot strings, theme/menu aria-labels
-
-### 4. All components updated
-- 15 components migrated from `useLanguage()` + `translations[language]` to `useLang()` with `t` object
-- Hero, Vision, Architecture, Methodology, Cases, AIExperience, TechStack, Timeline, Certifications, Insights, Contact, Navbar, Footer, SkipLink, AIChatbot — all use the new system
-- Hardcoded strings (loading text, aria-labels, error messages) moved to i18n
-
-### 5. Build passes cleanly
+### Animation timeline
+| Time | Element |
+|------|---------|
+| 0.0s | Background gradient mesh fades in |
+| 0.2s | Pre-title label appears |
+| 0.3s | Name reveals (translateY 40→0, blur 10→0) |
+| 0.6s | Subtitle slides up with blur clear |
+| 0.9s | Typewriter starts cycling |
+| 1.2s | CTA buttons fade in |
+| 1.8s | Scroll indicator with animated chevron |
 
 > portfolio@0.1.0 build /Users/user_pc/Projetos/portifolio
 > next build
@@ -31,14 +27,14 @@ All done. Here's a summary of what was implemented:
 ▲ Next.js 16.1.6 (Turbopack)
 
   Creating an optimized production build ...
-✓ Compiled successfully in 2.0s
+✓ Compiled successfully in 2.1s
   Running TypeScript ...
   Collecting page data using 15 workers ...
   Generating static pages using 15 workers (0/6) ...
   Generating static pages using 15 workers (1/6) 
   Generating static pages using 15 workers (2/6) 
   Generating static pages using 15 workers (4/6) 
-✓ Generating static pages using 15 workers (6/6) in 412.4ms
+✓ Generating static pages using 15 workers (6/6) in 411.2ms
   Finalizing page optimization ...
 
 Route (app)

@@ -1,7 +1,7 @@
 'use client';
 
 import dynamic from 'next/dynamic';
-import Hero from '@/components/Hero';
+import Hero from '@/components/hero/Hero';
 import Vision from '@/components/Vision';
 import Architecture from '@/components/Architecture';
 import Methodology from '@/components/Methodology';
