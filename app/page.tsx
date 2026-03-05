@@ -7,6 +7,7 @@ import Vision from '@/components/Vision';
 import Architecture from '@/components/Architecture';
 import Methodology from '@/components/Methodology';
 import Footer from '@/components/Footer';
+import SkipLink from '@/components/SkipLink';
 
 const NoiseTexture = dynamic(() => import('@/components/NoiseTexture'), { ssr: false });
 const Cases = dynamic(() => import('@/components/Cases'));
@@ -21,9 +22,10 @@ const AIChatbot = dynamic(() => import('@/components/AIChatbot'), { ssr: false }
 export default function Home() {
   return (
     <>
+      <SkipLink />
       <NoiseTexture />
       <Navigation />
-      <main>
+      <main id="main-content">
         <Hero />
         <Vision />
         <Architecture />

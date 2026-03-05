@@ -217,6 +217,7 @@ export default function Navigation() {
                 borderColor: 'var(--border-hover)',
                 color: 'var(--accent)',
               }}
+              aria-label={language === 'pt' ? 'Switch to English' : 'Mudar para Português'}
             >
               {language === 'pt' ? 'EN' : 'PT'}
             </button>

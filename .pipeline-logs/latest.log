@@ -1,25 +1,26 @@
-All tasks complete. Here's a summary:
+All accessibility improvements are complete. Here's a summary of changes:
 
-## Performance Optimizations Applied
+### Files modified:
 
-### 1. `<img>` tags → Already clean, none found in the codebase.
+**`components/SkipLink.tsx`** (new) — Skip-to-content link, visible only on focus
 
-### 2. Fonts → Already using `next/font/google` with `display: 'swap'` for all 3 fonts (Cormorant Garamond, DM Sans, DM Mono). No external font stylesheets.
+**`app/page.tsx`** — Added `<SkipLink />` before navigation, added `id="main-content"` to `<main>`
 
-### 3. Dynamic imports added in `app/page.tsx`:
-- **`NoiseTexture`** — `ssr: false` (canvas-only, no server rendering needed)
-- **`AIChatbot`** — `ssr: false` (chat widget, client-side only)
-- **`Cases`, `AIExperience`, `TechStack`, `Timeline`, `Certifications`, `Insights`, `Contact`** — lazy-loaded (below-the-fold sections)
-- Above-the-fold components (`Navigation`, `Hero`, `Vision`, `Architecture`, `Methodology`, `Footer`) remain eagerly loaded for fast initial render.
+**`app/globals.css`** — Three additions:
+- `.skip-link` styles (hidden by default, slides in on `:focus`)
+- `*:focus-visible` outline with `var(--accent)` color and 2px offset
+- `@media (prefers-reduced-motion: reduce)` — disables all animations and transitions
 
-### 4. Image sizes/priority → Not applicable. Project uses canvas-based graphics and SVGs, no raster `<Image>` components.
+**`app/globals.css`** — Contrast fix: bumped `--text-tertiary` alpha from 0.4→0.55 (dark) and 0.5→0.64 (light) across all three theme blocks (`:root`, `.dark`, `.light`, system fallback) to meet WCAG 4.5:1
 
-### 5. Image formats config added to `next.config.ts`:
-```ts
-images: { formats: ['image/avif', 'image/webp'] }
-```
+**`components/Navigation.tsx`** — Added `aria-label` to language toggle button
 
-### 6. Build passes successfully with Turbopack.
+**`context/LanguageContext.tsx`** — Syncs `document.documentElement.lang` to `pt-BR`/`en` when language changes
+
+### Already in good shape (no changes needed):
+- `lang="pt-BR"` already on `<html>`
+- Heading hierarchy: exactly one `<h1>`, proper h2→h3→h4→h5 nesting
+- Icon-only buttons (theme toggle, hamburger, AI chat open/close/send) already had `aria-label`
 
 > portfolio@0.1.0 build /Users/user_pc/Projetos/portifolio
 > next build
@@ -34,7 +35,7 @@ images: { formats: ['image/avif', 'image/webp'] }
   Generating static pages using 15 workers (1/6) 
   Generating static pages using 15 workers (2/6) 
   Generating static pages using 15 workers (4/6) 
-✓ Generating static pages using 15 workers (6/6) in 417.9ms
+✓ Generating static pages using 15 workers (6/6) in 399.5ms
   Finalizing page optimization ...
 
 Route (app)
