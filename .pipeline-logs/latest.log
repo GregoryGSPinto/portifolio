@@ -1,0 +1,49 @@
+## Security Audit Results
+
+### 1. Git History — No leaked secrets
+The `.env.example` file was the only env-related file ever committed, and it only contained placeholders (`your_api_key_here`, `ghp_your_token_here`). No real secrets were found in history. No rotation needed.
+
+### 2. Hardcoded Keys/Tokens — Clean
+No hardcoded API keys, tokens, or secrets found in any `.ts`/`.tsx` files. `process.env` is used correctly in server-only API routes:
+- `app/api/chat/route.ts:52` — `ANTHROPIC_API_KEY`
+- `app/api/github-stack/route.ts:77,105` — `GITHUB_TOKEN`
+
+Both are server-side route handlers, so these values stay on the server.
+
+### 3. `.gitignore` — Updated
+Added missing entries: `/dist`, `.vscode`, `.idea`. All requested patterns were already covered (`.env*`, `node_modules`, `.next`, `out`, `build`, `.DS_Store`, `.vercel`, `*.tsbuildinfo`, `next-env.d.ts`).
+
+### 4. `.env.example` — Updated
+Now contains all requested placeholder keys plus `ANTHROPIC_API_KEY` and `GITHUB_TOKEN` (already in use by the project).
+
+### 5. `next.config.ts` — Safe
+Minimal config with no `env` or `publicRuntimeConfig` blocks. No server secrets are exposed to the client bundle.
+
+### Summary: No action needed for secret rotation. The project is clean.
+
+> portfolio@0.1.0 build /Users/user_pc/Projetos/portifolio
+> next build
+
+▲ Next.js 16.1.6 (Turbopack)
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 2.1s
+  Running TypeScript ...
+  Collecting page data using 15 workers ...
+  Generating static pages using 15 workers (0/6) ...
+  Generating static pages using 15 workers (1/6) 
+  Generating static pages using 15 workers (2/6) 
+  Generating static pages using 15 workers (4/6) 
+✓ Generating static pages using 15 workers (6/6) in 407.2ms
+  Finalizing page optimization ...
+
+Route (app)
+┌ ○ /
+├ ○ /_not-found
+├ ƒ /api/chat
+└ ƒ /api/github-stack
+
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+
