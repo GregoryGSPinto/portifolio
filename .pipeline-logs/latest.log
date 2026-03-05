@@ -1,18 +1,15 @@
-Build passes. Here's a summary of what was created:
 
-**Experience Timeline:**
-- `lib/data/experience.ts` — 3 bilingual entries (2025, 2024, 2023) with roles, companies, periods, descriptions, and tech tags
-- `components/experience/TimelineEntry.tsx` — Alternating left/right layout on desktop, single-side on mobile, with year/period badge, role, company, description, and tech tags
-- `components/experience/Timeline.tsx` — Vertical center line with dots that pulse when in viewport (using `framer-motion` `useInView`), scroll-triggered animations
 
-**Contact Section:**
-- `components/contact/ContactForm.tsx` — 4 fields (name, email, subject, message) with inline validation, state machine (idle → loading with spinner → success with checkmark → error with retry), styled with design tokens
-- `components/contact/SocialLinks.tsx` — Email (with copy-to-clipboard), GitHub, LinkedIn, Phone — each with SVG icon and hover underline effect
-- `components/contact/Contact.tsx` — Wrapper combining form (left) and social links (right) in a grid layout
-- `app/api/contact/route.ts` — Validates input, sends via Resend if `RESEND_API_KEY` is set, otherwise logs to console
+The linter ran on all the modified files and the changes look good — everything is consistent. The dev server also started and exited cleanly. All tasks are complete:
 
-**Integration:**
-- `app/page.tsx` updated to import from new component paths (`ExperienceTimeline`, `Contact`)
+- **SectionHeader** component created (`components/SectionHeader.tsx`)
+- **Preloader** with GG SVG draw-on animation, sessionStorage first-visit check, reduced-motion disabled
+- **page.tsx** streamlined to 6 sections with `SectionWrap` framer-motion transitions
+- **Section IDs** unified: `#hero`, `#about`, `#projects`, `#skills`, `#experience`, `#contact`
+- **Section numbers** sequential: 01-05
+- **Navbar** updated in both PT/EN i18n
+- **Project detail links** updated from `/#cases` to `/#projects`
+- **`pnpm build`** passes with zero errors
 
 > portfolio@0.1.0 build /Users/user_pc/Projetos/portifolio
 > next build
@@ -27,7 +24,7 @@ Build passes. Here's a summary of what was created:
   Generating static pages using 15 workers (2/10) 
   Generating static pages using 15 workers (4/10) 
   Generating static pages using 15 workers (7/10) 
-✓ Generating static pages using 15 workers (10/10) in 542.4ms
+✓ Generating static pages using 15 workers (10/10) in 471.7ms
   Finalizing page optimization ...
 
 Route (app)

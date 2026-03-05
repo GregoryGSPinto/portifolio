@@ -15,13 +15,13 @@ export default function Projects() {
 
   return (
     <section
-      id="cases"
+      id="projects"
       className="relative py-32 md:py-40"
       style={{ background: 'var(--bg-primary)' }}
     >
       <div className="mx-auto max-w-6xl px-6">
         <SectionLabel
-          number="04"
+          number="02"
           label={lang === 'pt' ? 'Projetos' : 'Projects'}
         />
 

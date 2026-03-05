@@ -154,8 +154,8 @@ export const translations = {
       socialPhone: 'Telefone',
     },
     navbar: {
-      items: ['Inicio', 'Projetos', 'Sobre', 'Blog', 'Contato'],
-      ids: ['hero', 'cases', 'vision', 'insights', 'contact'],
+      items: ['Inicio', 'Sobre', 'Projetos', 'Skills', 'Experiencia', 'Contato'],
+      ids: ['hero', 'about', 'projects', 'skills', 'experience', 'contact'],
     },
     skipLink: 'Pular para o conteudo principal',
     footer: {
@@ -341,8 +341,8 @@ export const translations = {
       socialPhone: 'Phone',
     },
     navbar: {
-      items: ['Home', 'Projects', 'About', 'Blog', 'Contact'],
-      ids: ['hero', 'cases', 'vision', 'insights', 'contact'],
+      items: ['Home', 'About', 'Projects', 'Skills', 'Experience', 'Contact'],
+      ids: ['hero', 'about', 'projects', 'skills', 'experience', 'contact'],
     },
     skipLink: 'Skip to main content',
     footer: {

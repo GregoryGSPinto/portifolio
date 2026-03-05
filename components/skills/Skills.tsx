@@ -12,7 +12,7 @@ export default function Skills() {
   return (
     <section id="skills" className="relative py-32 px-6">
       <div className="max-w-4xl mx-auto">
-        <SectionLabel number="07" label={t.skills.label} />
+        <SectionLabel number="03" label={t.skills.label} />
 
         <motion.h2
           className="text-[clamp(2rem,5vw,3.5rem)] font-bold leading-[1.1] tracking-tight mb-16 whitespace-pre-line"

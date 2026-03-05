@@ -112,7 +112,7 @@ export default function Hero() {
           variants={fadeIn(1.2)}
         >
           <button
-            onClick={() => handleScrollTo('cases')}
+            onClick={() => handleScrollTo('projects')}
             className="font-mono text-[12px] uppercase tracking-[2px] px-9 py-3.5 transition-all duration-300 hover:brightness-110 cursor-pointer"
             style={{
               background: 'var(--accent)',

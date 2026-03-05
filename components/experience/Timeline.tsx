@@ -11,9 +11,9 @@ export default function ExperienceTimeline() {
   const { t, lang } = useLang();
 
   return (
-    <section id="journey" className="py-20 md:py-28 lg:py-40 relative">
+    <section id="experience" className="py-20 md:py-28 lg:py-40 relative">
       <div className="max-w-[1200px] mx-auto px-5 md:px-8 lg:px-12">
-        <SectionLabel number="07" label={t.timeline.label} />
+        <SectionLabel number="04" label={t.timeline.label} />
 
         <motion.h2
           initial={{ opacity: 0, y: 20 }}

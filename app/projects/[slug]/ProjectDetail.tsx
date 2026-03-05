@@ -221,7 +221,7 @@ export default function ProjectDetail({ project }: { project: Project }) {
             transition={{ duration: 0.4 }}
           >
             <Link
-              href="/#cases"
+              href="/#projects"
               className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-wider mb-12 transition-colors duration-200"
               style={{ color: 'var(--text-tertiary)' }}
             >
@@ -439,7 +439,7 @@ export default function ProjectDetail({ project }: { project: Project }) {
       <section className="py-16 md:py-24">
         <div className="mx-auto max-w-4xl px-6 text-center">
           <Link
-            href="/#cases"
+            href="/#projects"
             className="inline-flex items-center gap-3 font-mono text-sm uppercase tracking-wider px-8 py-4 rounded-xl transition-all duration-300 hover:scale-[1.02]"
             style={{
               border: '1px solid var(--border-hover)',
