@@ -1,8 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { useLanguage } from '@/context/LanguageContext';
-import { translations } from '@/lib/translations';
+import { useLang } from '@/context/LangContext';
 import { certifications, continuousLearning } from '@/lib/data';
 import SectionLabel from './SectionLabel';
 
@@ -16,8 +15,8 @@ const stagger = {
 };
 
 export default function Certifications() {
-  const { language } = useLanguage();
-  const t = translations[language].certifications;
+  const { t: root, lang } = useLang();
+  const t = root.certifications;
 
   return (
     <section id="certifications" className="py-20 md:py-28 lg:py-40 relative">
@@ -108,7 +107,7 @@ export default function Certifications() {
                       className="font-body text-[13px]"
                       style={{ color: 'var(--text-secondary)' }}
                     >
-                      {cert.issuer[language]}
+                      {cert.issuer[lang]}
                     </p>
                   </div>
                   <span
@@ -154,7 +153,7 @@ export default function Certifications() {
                     className="font-body text-[14px] leading-[1.6]"
                     style={{ color: 'var(--text-secondary)' }}
                   >
-                    {topic[language]}
+                    {topic[lang]}
                   </span>
                 </motion.div>
               ))}

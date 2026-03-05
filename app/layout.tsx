@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { Outfit, DM_Mono } from 'next/font/google';
 import { Analytics } from '@vercel/analytics/next';
-import { LanguageProvider } from '@/context/LanguageContext';
+import { LangProvider } from '@/context/LangContext';
 import { ThemeProvider } from '@/context/ThemeContext';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
@@ -75,13 +75,13 @@ export default function RootLayout({
       </head>
       <body className="bg-bg-primary text-text-primary antialiased font-body">
         <ThemeProvider>
-          <LanguageProvider>
+          <LangProvider>
             <SkipLink />
             <ScrollProgress />
             <Navbar />
             {children}
             <Footer />
-          </LanguageProvider>
+          </LangProvider>
         </ThemeProvider>
         <Analytics />
       </body>

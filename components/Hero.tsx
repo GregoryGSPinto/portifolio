@@ -1,13 +1,11 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { useLanguage } from '@/context/LanguageContext';
-import { translations } from '@/lib/translations';
+import { useLang } from '@/context/LangContext';
 import Constellation from './Constellation';
 
 export default function Hero() {
-  const { language } = useLanguage();
-  const t = translations[language].hero;
+  const { t } = useLang();
 
   const handleScrollTo = (id: string) => {
     const el = document.getElementById(id);
@@ -49,7 +47,7 @@ export default function Hero() {
               className="font-mono text-[10px] sm:text-[11px] tracking-[3px] uppercase"
               style={{ color: 'var(--accent)' }}
             >
-              {t.preTitle}
+              {t.hero.preTitle}
             </span>
           </div>
 
@@ -72,7 +70,7 @@ export default function Hero() {
             className="font-body text-[15px] md:text-lg max-w-[520px] mb-12 leading-relaxed"
             style={{ color: 'var(--text-secondary)' }}
           >
-            {t.tagline}
+            {t.hero.tagline}
           </p>
 
           {/* CTAs */}
@@ -86,7 +84,7 @@ export default function Hero() {
                 borderRadius: '2px',
               }}
             >
-              {t.cta1}
+              {t.hero.cta1}
             </button>
             <button
               onClick={() => handleScrollTo('contact')}
@@ -98,7 +96,7 @@ export default function Hero() {
                 background: 'transparent',
               }}
             >
-              {t.cta2}
+              {t.hero.cta2}
             </button>
           </div>
         </motion.div>
@@ -113,7 +111,7 @@ export default function Hero() {
             color: 'var(--text-ghost)',
           }}
         >
-          {t.scroll}
+          {t.hero.scroll}
         </span>
         <div
           className="w-px h-16"

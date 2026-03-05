@@ -1,8 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { useLanguage } from '@/context/LanguageContext';
-import { translations } from '@/lib/translations';
+import { useLang } from '@/context/LangContext';
 import SectionLabel from './SectionLabel';
 
 const fadeInUp = {
@@ -15,8 +14,8 @@ const stagger = {
 };
 
 export default function AIExperience() {
-  const { language } = useLanguage();
-  const t = translations[language].ai;
+  const { t: root } = useLang();
+  const t = root.ai;
 
   const handleOpenChatbot = () => {
     window.dispatchEvent(new Event('open-chatbot'));

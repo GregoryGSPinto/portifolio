@@ -1,27 +1,29 @@
-All done. Here's a summary of what was built:
+All done. Here's a summary of what was implemented:
 
-### Components created in `components/layout/`
+## Summary
 
-**Navbar.tsx** — Full-featured navigation:
-- `GG` monogram logo with accent color hover glow effect
-- 5 nav links (Home, Projects, About, Blog, Contact) with smooth scroll
-- Active section detection via `IntersectionObserver` with animated underline indicator (`layoutId` spring animation)
-- PT|EN pill-style language toggle (active language gets accent bg)
-- Sun/moon/system theme toggle with framer-motion morphing SVG icons
-- Scroll behavior: transparent at top → `backdrop-blur(20px)` + nav bg + border after 80px
-- Mobile: hamburger → slide-in panel from right with backdrop blur
+### 1. ThemeContext (`context/ThemeContext.tsx`) — Already complete
+- Dark/light/system mode with localStorage persistence (`theme-preference`)
+- Respects `prefers-color-scheme` as default
+- Applies `dark`/`light` class to `<html>`
+- Anti-flash inline script in `layout.tsx` `<head>` sets theme before render
 
-**ScrollProgress.tsx** — 2px accent-colored bar at z-60, width tracks scroll percentage
+### 2. LangContext (`context/LangContext.tsx`) — New file
+- PT-BR and EN support with localStorage persistence (`lang` key)
+- Detects `navigator.language` as default (pt* → pt, else → en)
+- `useLang()` returns `{ t, lang, toggleLang }` where `t` is the full translation tree
+- Sets `document.documentElement.lang` attribute
 
-**Footer.tsx** — Copyright, "Built with Next.js, TypeScript & ♥", source code link
+### 3. i18n translations (`lib/data/i18n.ts`) — New file
+- Complete bilingual translations for all sections: nav, hero, vision, architecture, methodology, cases, ai, stack, timeline, certifications, insights, contact, footer, chatbot, theme labels, menu labels, loading text
+- Added new keys: `hero.name`, `hero.subtitle`, `hero.roles`, `cases.viewSource`, form labels, social labels, `footer.copyright`, chatbot strings, theme/menu aria-labels
 
-**SkipLink.tsx** — i18n-aware skip link (PT/EN)
+### 4. All components updated
+- 15 components migrated from `useLanguage()` + `translations[language]` to `useLang()` with `t` object
+- Hero, Vision, Architecture, Methodology, Cases, AIExperience, TechStack, Timeline, Certifications, Insights, Contact, Navbar, Footer, SkipLink, AIChatbot — all use the new system
+- Hardcoded strings (loading text, aria-labels, error messages) moved to i18n
 
-### Files modified
-- `lib/translations.ts` — Added `navbar`, `skipLink`, and enhanced `footer` keys for both PT/EN
-- `lib/hooks.ts` — Added `useActiveSection()` hook using `IntersectionObserver`
-- `app/layout.tsx` — Imports and renders SkipLink, ScrollProgress, Navbar, Footer globally
-- `app/page.tsx` — Removed old Navigation/Footer/SkipLink imports (now in layout)
+### 5. Build passes cleanly
 
 > portfolio@0.1.0 build /Users/user_pc/Projetos/portifolio
 > next build
@@ -29,14 +31,14 @@ All done. Here's a summary of what was built:
 ▲ Next.js 16.1.6 (Turbopack)
 
   Creating an optimized production build ...
-✓ Compiled successfully in 2.1s
+✓ Compiled successfully in 2.0s
   Running TypeScript ...
   Collecting page data using 15 workers ...
   Generating static pages using 15 workers (0/6) ...
   Generating static pages using 15 workers (1/6) 
   Generating static pages using 15 workers (2/6) 
   Generating static pages using 15 workers (4/6) 
-✓ Generating static pages using 15 workers (6/6) in 429.8ms
+✓ Generating static pages using 15 workers (6/6) in 412.4ms
   Finalizing page optimization ...
 
 Route (app)

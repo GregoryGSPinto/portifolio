@@ -2,9 +2,8 @@
 
 import { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useLanguage } from '@/context/LanguageContext';
+import { useLang } from '@/context/LangContext';
 import { useTheme } from '@/context/ThemeContext';
-import { translations } from '@/lib/translations';
 import { useScrollPosition, useActiveSection } from '@/lib/hooks';
 
 const ease = [0.22, 1, 0.36, 1] as [number, number, number, number];
@@ -85,9 +84,8 @@ function SystemIcon() {
 }
 
 export default function Navbar() {
-  const { language, toggleLanguage } = useLanguage();
+  const { lang, toggleLang, t } = useLang();
   const { preference, cycleTheme } = useTheme();
-  const t = translations[language];
   const scrollY = useScrollPosition();
   const [menuOpen, setMenuOpen] = useState(false);
   const activeSection = useActiveSection(t.navbar.ids);
@@ -117,10 +115,10 @@ export default function Navbar() {
   }, [menuOpen]);
 
   const themeLabel = preference === 'light'
-    ? (language === 'pt' ? 'Tema claro' : 'Light theme')
+    ? t.theme.light
     : preference === 'dark'
-      ? (language === 'pt' ? 'Tema escuro' : 'Dark theme')
-      : (language === 'pt' ? 'Tema do sistema' : 'System theme');
+      ? t.theme.dark
+      : t.theme.system;
 
   return (
     <>
@@ -203,22 +201,22 @@ export default function Navbar() {
               style={{ borderColor: 'var(--border-subtle)' }}
             >
               <button
-                onClick={() => { if (language !== 'pt') toggleLanguage(); }}
+                onClick={() => { if (lang !== 'pt') toggleLang(); }}
                 className="font-mono text-[10px] uppercase tracking-[1.5px] px-2.5 py-1 transition-all duration-300"
                 style={{
-                  color: language === 'pt' ? 'var(--bg-primary)' : 'var(--text-secondary)',
-                  background: language === 'pt' ? 'var(--accent)' : 'transparent',
+                  color: lang === 'pt' ? 'var(--bg-primary)' : 'var(--text-secondary)',
+                  background: lang === 'pt' ? 'var(--accent)' : 'transparent',
                 }}
                 aria-label="Mudar para Português"
               >
                 PT
               </button>
               <button
-                onClick={() => { if (language !== 'en') toggleLanguage(); }}
+                onClick={() => { if (lang !== 'en') toggleLang(); }}
                 className="font-mono text-[10px] uppercase tracking-[1.5px] px-2.5 py-1 transition-all duration-300"
                 style={{
-                  color: language === 'en' ? 'var(--bg-primary)' : 'var(--text-secondary)',
-                  background: language === 'en' ? 'var(--accent)' : 'transparent',
+                  color: lang === 'en' ? 'var(--bg-primary)' : 'var(--text-secondary)',
+                  background: lang === 'en' ? 'var(--accent)' : 'transparent',
                 }}
                 aria-label="Switch to English"
               >
@@ -253,8 +251,7 @@ export default function Navbar() {
               className="md:hidden flex flex-col justify-center items-center w-10 h-10 ml-1"
               style={{ gap: 5 }}
               aria-label={menuOpen
-                ? (language === 'pt' ? 'Fechar menu' : 'Close menu')
-                : (language === 'pt' ? 'Abrir menu' : 'Open menu')}
+                ? t.menu.close : t.menu.open}
               aria-expanded={menuOpen}
             >
               <span
@@ -323,7 +320,7 @@ export default function Navbar() {
               }}
               role="dialog"
               aria-modal="true"
-              aria-label={language === 'pt' ? 'Menu de navegação' : 'Navigation menu'}
+              aria-label={t.menu.navLabel}
             >
               <div className="flex flex-col justify-center flex-1 px-8" style={{ gap: 36 }}>
                 {t.navbar.items.map((item, i) => {

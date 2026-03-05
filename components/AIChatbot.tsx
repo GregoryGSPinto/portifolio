@@ -2,25 +2,16 @@
 
 import { useState, useRef, useEffect, KeyboardEvent } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useLanguage } from '@/context/LanguageContext';
+import { useLang } from '@/context/LangContext';
 
 interface Message {
   role: 'user' | 'assistant';
   content: string;
 }
 
-const suggestions = {
-  pt: ['Quais seus projetos?', 'Stack técnico?', 'Experiência com IA?', 'Disponibilidade?'],
-  en: ['Your projects?', 'Tech stack?', 'AI experience?', 'Availability?'],
-};
-
-const welcomeMessage = {
-  pt: 'Olá! Sou o assistente IA do Gregory. Posso responder sobre seus projetos, stack técnico, experiência e disponibilidade. O que gostaria de saber?',
-  en: "Hi! I'm Gregory's AI assistant. I can answer questions about his projects, tech stack, experience and availability. What would you like to know?",
-};
-
 export default function AIChatbot() {
-  const { language } = useLanguage();
+  const { t, lang } = useLang();
+  const chat = t.chatbot;
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState('');
@@ -63,7 +54,7 @@ export default function AIChatbot() {
       const res = await fetch('/api/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ messages: newMessages, language }),
+        body: JSON.stringify({ messages: newMessages, language: lang }),
       });
 
       const data = await res.json();
@@ -73,10 +64,7 @@ export default function AIChatbot() {
           ...newMessages,
           {
             role: 'assistant',
-            content:
-              language === 'pt'
-                ? 'Desculpe, não consegui processar sua pergunta. Tente novamente ou entre em contato por email: gregoryguimaraes12@outlook.com'
-                : 'Sorry, I could not process your question. Please try again or contact via email: gregoryguimaraes12@outlook.com',
+            content: chat.errorProcess,
           },
         ]);
       } else {
@@ -87,10 +75,7 @@ export default function AIChatbot() {
         ...newMessages,
         {
           role: 'assistant',
-          content:
-            language === 'pt'
-              ? 'Erro de conexão. Tente novamente em alguns segundos.'
-              : 'Connection error. Please try again in a few seconds.',
+          content: chat.errorConnection,
         },
       ]);
     } finally {
@@ -121,7 +106,7 @@ export default function AIChatbot() {
               background: 'var(--accent)',
               boxShadow: '0 4px 24px rgba(201, 168, 76, 0.3)',
             }}
-            aria-label="Open AI chat"
+            aria-label={chat.open}
           >
             <span className="font-mono text-[13px] font-bold" style={{ color: 'var(--bg-primary)' }}>
               AI
@@ -178,7 +163,7 @@ export default function AIChatbot() {
                 onClick={() => setIsOpen(false)}
                 className="w-8 h-8 flex items-center justify-center rounded-full transition-colors duration-200"
                 style={{ color: 'var(--text-tertiary)' }}
-                aria-label="Close chat"
+                aria-label={chat.close}
               >
                 ✕
               </button>
@@ -196,14 +181,14 @@ export default function AIChatbot() {
                     borderRadius: '16px 16px 16px 4px',
                   }}
                 >
-                  {welcomeMessage[language]}
+                  {chat.welcome}
                 </div>
               </div>
 
               {/* Suggestions */}
               {!hasInteracted && (
                 <div className="flex flex-wrap gap-2 pt-1">
-                  {suggestions[language].map((s) => (
+                  {chat.suggestions.map((s) => (
                     <button
                       key={s}
                       onClick={() => sendMessage(s)}
@@ -283,11 +268,7 @@ export default function AIChatbot() {
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
                   onKeyDown={handleKeyDown}
-                  placeholder={
-                    language === 'pt'
-                      ? 'Pergunte sobre meus projetos...'
-                      : 'Ask about my projects...'
-                  }
+                  placeholder={chat.placeholder}
                   rows={1}
                   className="flex-1 resize-none bg-transparent font-body text-[13px] outline-none placeholder:text-text-ghost"
                   style={{

@@ -2,8 +2,8 @@
 
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useLanguage } from '@/context/LanguageContext';
-import { translations } from '@/lib/translations';
+import { useLang } from '@/context/LangContext';
+import { translations } from '@/lib/data/i18n';
 import { caseStudies } from '@/lib/data';
 import { useIsMobile } from '@/lib/hooks';
 import SectionLabel from './SectionLabel';
@@ -17,20 +17,18 @@ const stagger = {
   visible: { transition: { staggerChildren: 0.1 } },
 };
 
-const storyLabels = (t: ReturnType<typeof getT>) => [
-  { key: 'challenge' as const, num: '01', label: t.challengeLabel },
-  { key: 'approach' as const, num: '02', label: t.approachLabel },
-  { key: 'architecture' as const, num: '03', label: t.architectureLabel },
-  { key: 'results' as const, num: '04', label: t.resultsLabel },
+type CasesT = typeof translations.pt.cases;
+
+const storyLabels = (c: CasesT) => [
+  { key: 'challenge' as const, num: '01', label: c.challengeLabel },
+  { key: 'approach' as const, num: '02', label: c.approachLabel },
+  { key: 'architecture' as const, num: '03', label: c.architectureLabel },
+  { key: 'results' as const, num: '04', label: c.resultsLabel },
 ];
 
-function getT(language: 'pt' | 'en') {
-  return translations[language].cases;
-}
-
 export default function Cases() {
-  const { language } = useLanguage();
-  const t = getT(language);
+  const { t, lang } = useLang();
+  const c = t.cases;
   const isMobile = useIsMobile();
   const [activeCase, setActiveCase] = useState(0);
   const currentCase = caseStudies[activeCase];
@@ -39,7 +37,7 @@ export default function Cases() {
   return (
     <section id="cases" className="py-20 md:py-28 lg:py-40 relative">
       <div className="max-w-[1200px] mx-auto px-5 md:px-8 lg:px-12">
-        <SectionLabel number="04" label={t.label} />
+        <SectionLabel number="04" label={c.label} />
 
         <motion.h2
           initial="hidden"
@@ -54,7 +52,7 @@ export default function Cases() {
             color: 'var(--text-primary)',
           }}
         >
-          {t.title}
+          {c.title}
         </motion.h2>
 
         {/* Tabs */}
@@ -98,7 +96,7 @@ export default function Cases() {
                   className="font-mono text-[11px] tracking-[2px] uppercase block mb-3"
                   style={{ color: currentCase.accentColor }}
                 >
-                  {currentCase.timeline[language]}
+                  {currentCase.timeline[lang]}
                 </span>
 
                 <h3
@@ -112,7 +110,7 @@ export default function Cases() {
                   className="font-mono text-[11px] sm:text-[12px] tracking-[2px] uppercase block mb-6"
                   style={{ color: currentCase.accentColor }}
                 >
-                  {currentCase.subtitle[language]}
+                  {currentCase.subtitle[lang]}
                 </span>
 
                 {/* Tags */}
@@ -140,7 +138,7 @@ export default function Cases() {
                     className="inline-flex items-center gap-2 font-mono text-[13px] tracking-[1px] transition-opacity hover:opacity-70"
                     style={{ color: currentCase.accentColor }}
                   >
-                    {t.viewProject} <span aria-hidden>→</span>
+                    {c.viewProject} <span aria-hidden>→</span>
                   </a>
                 )}
               </motion.div>
@@ -154,7 +152,7 @@ export default function Cases() {
               >
                 {currentCase.metrics.map((metric) => (
                   <div
-                    key={metric.label[language]}
+                    key={metric.label[lang]}
                     className="flex flex-col items-center justify-center text-center p-4 md:p-6"
                     style={{ background: 'var(--bg-primary)' }}
                   >
@@ -168,13 +166,13 @@ export default function Cases() {
                       className="font-mono text-[10px] uppercase tracking-[2px] mb-1"
                       style={{ color: 'var(--text-tertiary)' }}
                     >
-                      {metric.label[language]}
+                      {metric.label[lang]}
                     </span>
                     <span
                       className="font-body text-[11px]"
                       style={{ color: 'var(--text-ghost)' }}
                     >
-                      {metric.context[language]}
+                      {metric.context[lang]}
                     </span>
                   </div>
                 ))}
@@ -189,7 +187,7 @@ export default function Cases() {
               variants={stagger}
               className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-4 mb-16 md:mb-24"
             >
-              {storyLabels(t).map((item) => (
+              {storyLabels(c).map((item) => (
                 <motion.div
                   key={item.key}
                   variants={fadeInUp}
@@ -212,7 +210,7 @@ export default function Cases() {
                     className="font-body text-[14px] leading-[1.8]"
                     style={{ color: 'var(--text-secondary)' }}
                   >
-                    {currentCase[item.key][language]}
+                    {currentCase[item.key][lang]}
                   </p>
                 </motion.div>
               ))}
@@ -232,13 +230,13 @@ export default function Cases() {
                 className="font-display text-[22px] md:text-[24px] font-light mb-8"
                 style={{ color: 'var(--text-primary)' }}
               >
-                {t.decisionsLabel}
+                {c.decisionsLabel}
               </motion.h4>
 
               <div className="flex flex-col gap-2">
                 {currentCase.decisions.map((decision) => (
                   <motion.div
-                    key={decision.title[language]}
+                    key={decision.title[lang]}
                     variants={fadeInUp}
                     transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
                     className="group p-5 rounded-md transition-all duration-300 hover:bg-card-bg-hover"
@@ -262,13 +260,13 @@ export default function Cases() {
                           className="font-body text-[15px] font-semibold mb-2"
                           style={{ color: 'var(--text-primary)' }}
                         >
-                          {decision.title[language]}
+                          {decision.title[lang]}
                         </h5>
                         <p
                           className="font-body text-[13px] leading-[1.7]"
                           style={{ color: 'var(--text-secondary)' }}
                         >
-                          {decision.description[language]}
+                          {decision.description[lang]}
                         </p>
                       </div>
                     </div>
@@ -291,7 +289,7 @@ export default function Cases() {
                 className="font-mono text-[11px] uppercase tracking-[3px] block mb-6"
                 style={{ color: 'var(--text-tertiary)' }}
               >
-                {t.stackLabel}
+                {c.stackLabel}
               </motion.span>
 
               <motion.div
@@ -316,7 +314,7 @@ export default function Cases() {
                       className="font-body text-[12px]"
                       style={{ color: 'var(--text-tertiary)' }}
                     >
-                      {item.role[language]}
+                      {item.role[lang]}
                     </span>
                   </div>
                 ))}
@@ -337,7 +335,7 @@ export default function Cases() {
                     className="font-mono text-[11px] uppercase tracking-[3px]"
                     style={{ color: 'var(--text-tertiary)' }}
                   >
-                    {t.livePreview}
+                    {c.livePreview}
                   </span>
                   <a
                     href={currentCase.previewUrl}
@@ -346,7 +344,7 @@ export default function Cases() {
                     className="font-mono text-[11px] tracking-[1px] transition-opacity hover:opacity-70"
                     style={{ color: currentCase.accentColor }}
                   >
-                    {t.openNewTab} ↗
+                    {c.openNewTab} ↗
                   </a>
                 </div>
 
@@ -362,7 +360,7 @@ export default function Cases() {
                       color: 'var(--bg-primary)',
                     }}
                   >
-                    {t.viewProject} →
+                    {c.viewProject} →
                   </a>
                 ) : (
                   <div
@@ -387,7 +385,7 @@ export default function Cases() {
                             }}
                           />
                           <span className="font-mono text-[11px]" style={{ color: 'var(--text-ghost)' }}>
-                            Loading preview...
+                            {t.loading}
                           </span>
                         </div>
                       </div>

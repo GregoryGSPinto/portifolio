@@ -1,8 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { useLanguage } from '@/context/LanguageContext';
-import { translations } from '@/lib/translations';
+import { useLang } from '@/context/LangContext';
 import { contactLinks } from '@/lib/data';
 import SectionLabel from './SectionLabel';
 
@@ -16,8 +15,8 @@ const stagger = {
 };
 
 export default function Contact() {
-  const { language } = useLanguage();
-  const t = translations[language].contact;
+  const { t: root } = useLang();
+  const t = root.contact;
 
   return (
     <section id="contact" className="py-20 md:py-28 lg:py-40 relative">

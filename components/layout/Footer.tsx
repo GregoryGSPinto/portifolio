@@ -1,11 +1,10 @@
 'use client';
 
-import { useLanguage } from '@/context/LanguageContext';
-import { translations } from '@/lib/translations';
+import { useLang } from '@/context/LangContext';
 
 export default function Footer() {
-  const { language } = useLanguage();
-  const t = translations[language].footer;
+  const { t: root } = useLang();
+  const t = root.footer;
 
   return (
     <footer

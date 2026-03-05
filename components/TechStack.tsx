@@ -1,8 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { useLanguage } from '@/context/LanguageContext';
-import { translations } from '@/lib/translations';
+import { useLang } from '@/context/LangContext';
 import { techStack } from '@/lib/data';
 import { useIntersectionObserver, useGitHubStack } from '@/lib/hooks';
 import SectionLabel from './SectionLabel';
@@ -73,8 +72,8 @@ function timeAgo(dateStr: string, lang: string): string {
 }
 
 export default function TechStack() {
-  const { language } = useLanguage();
-  const t = translations[language].stack;
+  const { t: root, lang } = useLang();
+  const t = root.stack;
   const [ref, isVisible] = useIntersectionObserver(0.2);
   const { data: ghData, loading, error } = useGitHubStack();
 
@@ -182,7 +181,7 @@ export default function TechStack() {
                   className="font-mono text-[11px] uppercase tracking-[3px] mb-6 md:mb-8"
                   style={{ color: 'var(--text-tertiary)' }}
                 >
-                  {category.label[language]}
+                  {category.label[lang]}
                 </h3>
                 <div className="flex flex-col gap-5">
                   {category.skills.map((skill) => (
@@ -209,9 +208,9 @@ export default function TechStack() {
             className="font-mono text-[10px] mt-12 text-center"
             style={{ color: 'var(--text-tertiary)' }}
           >
-            Auto-detected from {ghData.reposAnalyzed} GitHub repositories
-            {' · '}
-            Last updated {timeAgo(ghData.lastUpdated, language)}
+            {root.stack.dynamicFooter.replace('{count}', String(ghData.reposAnalyzed))}
+            {' \u00B7 '}
+            {root.stack.lastUpdated.replace('{time}', timeAgo(ghData.lastUpdated, lang))}
           </motion.p>
         )}
       </div>

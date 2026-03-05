@@ -2,15 +2,13 @@
 
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useLanguage } from '@/context/LanguageContext';
+import { useLang } from '@/context/LangContext';
 import { useTheme } from '@/context/ThemeContext';
-import { translations } from '@/lib/translations';
 import { useScrollPosition } from '@/lib/hooks';
 
 export default function Navigation() {
-  const { language, toggleLanguage } = useLanguage();
+  const { lang, toggleLang, t } = useLang();
   const { preference, cycleTheme } = useTheme();
-  const t = translations[language];
   const scrollY = useScrollPosition();
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -211,15 +209,15 @@ export default function Navigation() {
 
             {/* Language Toggle */}
             <button
-              onClick={toggleLanguage}
+              onClick={toggleLang}
               className="font-mono text-[11px] uppercase tracking-[2px] px-3 py-1.5 rounded-sm border transition-all duration-300"
               style={{
                 borderColor: 'var(--border-hover)',
                 color: 'var(--accent)',
               }}
-              aria-label={language === 'pt' ? 'Switch to English' : 'Mudar para Português'}
+              aria-label={lang === 'pt' ? 'Switch to English' : 'Mudar para Português'}
             >
-              {language === 'pt' ? 'EN' : 'PT'}
+              {lang === 'pt' ? 'EN' : 'PT'}
             </button>
 
             {/* Hamburger — mobile only */}

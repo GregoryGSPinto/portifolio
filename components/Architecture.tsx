@@ -2,8 +2,7 @@
 
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { useLanguage } from '@/context/LanguageContext';
-import { translations } from '@/lib/translations';
+import { useLang } from '@/context/LangContext';
 import { architectureLayers } from '@/lib/data';
 import SectionLabel from './SectionLabel';
 
@@ -17,14 +16,14 @@ const stagger = {
 };
 
 export default function Architecture() {
-  const { language } = useLanguage();
-  const t = translations[language].architecture;
+  const { t } = useLang();
+  const a = t.architecture;
   const [hoveredLayer, setHoveredLayer] = useState<number | null>(null);
 
   return (
     <section id="architecture" className="py-20 md:py-28 lg:py-40 relative">
       <div className="max-w-[1200px] mx-auto px-5 md:px-8 lg:px-12">
-        <SectionLabel number="02" label={t.label} />
+        <SectionLabel number="02" label={a.label} />
 
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.3fr] gap-10 lg:gap-20">
           {/* Left: Title and desc */}
@@ -44,7 +43,7 @@ export default function Architecture() {
                 color: 'var(--text-primary)',
               }}
             >
-              {t.title}
+              {a.title}
             </motion.h2>
             <motion.p
               variants={fadeInUp}
@@ -52,7 +51,7 @@ export default function Architecture() {
               className="font-body text-[15px] leading-[1.8]"
               style={{ color: 'var(--text-secondary)' }}
             >
-              {t.desc}
+              {a.desc}
             </motion.p>
           </motion.div>
 

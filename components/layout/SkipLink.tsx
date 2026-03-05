@@ -1,7 +1,6 @@
 'use client';
 
-import { useLanguage } from '@/context/LanguageContext';
-import { translations } from '@/lib/translations';
+import { useLang } from '@/context/LangContext';
 
 export default function SkipLink() {
   return (
@@ -10,8 +9,8 @@ export default function SkipLink() {
 }
 
 function SkipLinkInner() {
-  const { language } = useLanguage();
-  const label = translations[language].skipLink;
+  const { t } = useLang();
+  const label = t.skipLink;
 
   return (
     <a href="#main-content" className="skip-link">

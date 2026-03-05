@@ -1,8 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { useLanguage } from '@/context/LanguageContext';
-import { translations } from '@/lib/translations';
+import { useLang } from '@/context/LangContext';
 import SectionLabel from './SectionLabel';
 
 const fadeInUp = {
@@ -15,13 +14,13 @@ const stagger = {
 };
 
 export default function Vision() {
-  const { language } = useLanguage();
-  const t = translations[language].vision;
+  const { t } = useLang();
+  const v = t.vision;
 
   return (
     <section id="vision" className="py-20 md:py-28 lg:py-40 relative">
       <div className="max-w-[1200px] mx-auto px-5 md:px-8 lg:px-12">
-        <SectionLabel number="01" label={t.label} />
+        <SectionLabel number="01" label={v.label} />
 
         <motion.h2
           initial="hidden"
@@ -36,7 +35,7 @@ export default function Vision() {
             color: 'var(--text-primary)',
           }}
         >
-          {t.title}
+          {v.title}
         </motion.h2>
 
         {/* Two-column paragraphs */}
@@ -53,7 +52,7 @@ export default function Vision() {
             className="font-body text-[15px] leading-[1.8]"
             style={{ color: 'var(--text-secondary)' }}
           >
-            {t.p1}
+            {v.p1}
           </motion.p>
           <motion.p
             variants={fadeInUp}
@@ -61,7 +60,7 @@ export default function Vision() {
             className="font-body text-[15px] leading-[1.8]"
             style={{ color: 'var(--text-secondary)' }}
           >
-            {t.p2}
+            {v.p2}
           </motion.p>
         </motion.div>
 
@@ -74,7 +73,7 @@ export default function Vision() {
           className="grid grid-cols-1 md:grid-cols-3 gap-px"
           style={{ background: 'var(--pillar-gap-bg)' }}
         >
-          {t.pillars.map((pillar) => (
+          {v.pillars.map((pillar) => (
             <motion.div
               key={pillar.number}
               variants={fadeInUp}

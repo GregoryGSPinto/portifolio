@@ -1,8 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { useLanguage } from '@/context/LanguageContext';
-import { translations } from '@/lib/translations';
+import { useLang } from '@/context/LangContext';
 import { timelineItems } from '@/lib/data';
 import SectionLabel from './SectionLabel';
 
@@ -16,8 +15,8 @@ const stagger = {
 };
 
 export default function Timeline() {
-  const { language } = useLanguage();
-  const t = translations[language].timeline;
+  const { t: root, lang } = useLang();
+  const t = root.timeline;
 
   return (
     <section id="journey" className="py-20 md:py-28 lg:py-40 relative">
@@ -96,19 +95,19 @@ export default function Timeline() {
                   className="font-body text-base md:text-lg font-semibold mb-1"
                   style={{ color: 'var(--text-primary)' }}
                 >
-                  {item.role[language]}
+                  {item.role[lang]}
                 </h3>
                 <span
                   className="font-mono text-[11px] uppercase tracking-[2px] block mb-3 md:mb-4"
                   style={{ color: 'var(--text-tertiary)' }}
                 >
-                  {item.company[language]}
+                  {item.company[lang]}
                 </span>
                 <p
                   className="font-body text-[13px] md:text-[14px] leading-[1.7]"
                   style={{ color: 'var(--text-tertiary)' }}
                 >
-                  {item.desc[language]}
+                  {item.desc[lang]}
                 </p>
               </div>
             </motion.div>

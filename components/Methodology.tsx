@@ -1,8 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { useLanguage } from '@/context/LanguageContext';
-import { translations } from '@/lib/translations';
+import { useLang } from '@/context/LangContext';
 import { methodologySteps } from '@/lib/data';
 import SectionLabel from './SectionLabel';
 
@@ -16,13 +15,13 @@ const stagger = {
 };
 
 export default function Methodology() {
-  const { language } = useLanguage();
-  const t = translations[language].methodology;
+  const { t, lang } = useLang();
+  const m = t.methodology;
 
   return (
     <section id="methodology" className="py-20 md:py-28 lg:py-40 relative">
       <div className="max-w-[1200px] mx-auto px-5 md:px-8 lg:px-12">
-        <SectionLabel number="03" label={t.label} />
+        <SectionLabel number="03" label={m.label} />
 
         <motion.h2
           initial="hidden"
@@ -37,7 +36,7 @@ export default function Methodology() {
             color: 'var(--text-primary)',
           }}
         >
-          {t.title}
+          {m.title}
         </motion.h2>
 
         <motion.p
@@ -49,7 +48,7 @@ export default function Methodology() {
           className="font-body text-[15px] leading-[1.8] mb-12 md:mb-20 max-w-[640px]"
           style={{ color: 'var(--text-secondary)' }}
         >
-          {t.desc}
+          {m.desc}
         </motion.p>
 
         {/* Desktop: Horizontal Timeline */}
@@ -106,7 +105,7 @@ export default function Methodology() {
                   className="font-body text-[16px] font-semibold mb-3 transition-colors duration-300 group-hover:text-accent"
                   style={{ color: 'var(--text-primary)' }}
                 >
-                  {step.title[language]}
+                  {step.title[lang]}
                 </h3>
 
                 {/* Description */}
@@ -114,7 +113,7 @@ export default function Methodology() {
                   className="font-body text-[13px] leading-[1.7] mb-3"
                   style={{ color: 'var(--text-secondary)' }}
                 >
-                  {step.desc[language]}
+                  {step.desc[lang]}
                 </p>
 
                 {/* Deliverables tag */}
@@ -126,7 +125,7 @@ export default function Methodology() {
                     color: 'var(--accent)',
                   }}
                 >
-                  {step.deliverables[language]}
+                  {step.deliverables[lang]}
                 </span>
               </motion.div>
             ))}
@@ -179,13 +178,13 @@ export default function Methodology() {
                     className="font-body text-[15px] font-semibold mb-2"
                     style={{ color: 'var(--text-primary)' }}
                   >
-                    {step.title[language]}
+                    {step.title[lang]}
                   </h3>
                   <p
                     className="font-body text-[13px] leading-[1.7] mb-2"
                     style={{ color: 'var(--text-secondary)' }}
                   >
-                    {step.desc[language]}
+                    {step.desc[lang]}
                   </p>
                   <span
                     className="inline-block font-mono text-[10px] px-3 py-1.5 rounded-sm"
@@ -195,7 +194,7 @@ export default function Methodology() {
                       color: 'var(--accent)',
                     }}
                   >
-                    {step.deliverables[language]}
+                    {step.deliverables[lang]}
                   </span>
                 </div>
               </motion.div>
