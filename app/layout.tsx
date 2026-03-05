@@ -1,20 +1,14 @@
 import type { Metadata } from 'next';
-import { Cormorant_Garamond, DM_Sans, DM_Mono } from 'next/font/google';
+import { Outfit, DM_Mono } from 'next/font/google';
+import { Analytics } from '@vercel/analytics/next';
 import { LanguageProvider } from '@/context/LanguageContext';
 import { ThemeProvider } from '@/context/ThemeContext';
 import './globals.css';
 
-const cormorant = Cormorant_Garamond({
+const outfit = Outfit({
   subsets: ['latin'],
-  weight: ['300', '400', '500', '600', '700'],
-  variable: '--font-cormorant',
-  display: 'swap',
-});
-
-const dmSans = DM_Sans({
-  subsets: ['latin'],
-  weight: ['300', '400', '500', '600', '700'],
-  variable: '--font-dm-sans',
+  weight: ['300', '400', '500', '600', '700', '800', '900'],
+  variable: '--font-outfit',
   display: 'swap',
 });
 
@@ -70,15 +64,16 @@ export default function RootLayout({
     <html
       lang="pt-BR"
       suppressHydrationWarning
-      className={`${cormorant.variable} ${dmSans.variable} ${dmMono.variable}`}
+      className={`${outfit.variable} ${dmMono.variable}`}
     >
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>
-      <body className="bg-bg-primary text-text-primary antialiased">
+      <body className="bg-bg-primary text-text-primary antialiased font-body">
         <ThemeProvider>
           <LanguageProvider>{children}</LanguageProvider>
         </ThemeProvider>
+        <Analytics />
       </body>
     </html>
   );

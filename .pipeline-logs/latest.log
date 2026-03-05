@@ -1,26 +1,29 @@
-All accessibility improvements are complete. Here's a summary of changes:
+All done. Here's a summary of what was set up:
 
-### Files modified:
+### Dependencies installed
+- `resend` and `@vercel/analytics` added via pnpm (framer-motion was already present)
 
-**`components/SkipLink.tsx`** (new) — Skip-to-content link, visible only on focus
+### Design system created
+- **`lib/design-tokens.ts`** — typed token file with dark/light emerald palettes
+  - Dark: bg `#0A0A0B`, text `#FAFAF9`, accent `#6EE7B7` (emerald-300)
+  - Light: bg `#FAFAF9`, text `#09090B`, accent `#059669` (emerald-600)
 
-**`app/page.tsx`** — Added `<SkipLink />` before navigation, added `id="main-content"` to `<main>`
+### globals.css updated
+- All CSS variables switched from gold (`#C9A84C`) to emerald palette
+- Added `@keyframes` for `fadeIn`, `slideUp`, `reveal`, `glowPulse`
+- Tailwind `@theme inline` block now exposes animation tokens (`--animate-*`)
+- **CSS grain effect** via inline SVG `feTurbulence` on `body::before` — replaces the canvas-based NoiseTexture
+- `::selection` and scrollbar styling preserved with new accent colors
 
-**`app/globals.css`** — Three additions:
-- `.skip-link` styles (hidden by default, slides in on `:focus`)
-- `*:focus-visible` outline with `var(--accent)` color and 2px offset
-- `@media (prefers-reduced-motion: reduce)` — disables all animations and transitions
+### Fonts configured
+- **Outfit** (Google Fonts) replaces Cormorant Garamond + DM Sans — single font for both `--font-display` and `--font-body`
+- **DM Mono** retained for `--font-mono`
+- `font-body` class added to `<body>` in layout
 
-**`app/globals.css`** — Contrast fix: bumped `--text-tertiary` alpha from 0.4→0.55 (dark) and 0.5→0.64 (light) across all three theme blocks (`:root`, `.dark`, `.light`, system fallback) to meet WCAG 4.5:1
-
-**`components/Navigation.tsx`** — Added `aria-label` to language toggle button
-
-**`context/LanguageContext.tsx`** — Syncs `document.documentElement.lang` to `pt-BR`/`en` when language changes
-
-### Already in good shape (no changes needed):
-- `lang="pt-BR"` already on `<html>`
-- Heading hierarchy: exactly one `<h1>`, proper h2→h3→h4→h5 nesting
-- Icon-only buttons (theme toggle, hamburger, AI chat open/close/send) already had `aria-label`
+### Other changes
+- `<Analytics />` from `@vercel/analytics/next` added to layout
+- `NoiseTexture` component returns `null` (CSS handles it now)
+- Build passes cleanly with zero errors
 
 > portfolio@0.1.0 build /Users/user_pc/Projetos/portifolio
 > next build
@@ -35,7 +38,7 @@ All accessibility improvements are complete. Here's a summary of changes:
   Generating static pages using 15 workers (1/6) 
   Generating static pages using 15 workers (2/6) 
   Generating static pages using 15 workers (4/6) 
-✓ Generating static pages using 15 workers (6/6) in 399.5ms
+✓ Generating static pages using 15 workers (6/6) in 414.2ms
   Finalizing page optimization ...
 
 Route (app)
