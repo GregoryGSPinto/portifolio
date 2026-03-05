@@ -1,22 +1,9 @@
-All done. Build passes clean (metadataBase warning also resolved). Here's a summary:
+All done. Here's what was created:
 
-**1. `app/layout.tsx`** — Comprehensive metadata:
-- `title` with default/template pattern
-- `metadataBase` pointing to `https://gregorypinto.dev`
-- SEO description, 14 keywords
-- OpenGraph: website type, `en_US`/`pt_BR` locales, `/og-image.png` (1200x630)
-- Twitter: `summary_large_image` card
-- Robots: index + follow
-
-**2. `app/projects/[slug]/page.tsx`** — Enhanced `generateMetadata`:
-- Dynamic OG image via `/api/og?title=...&subtitle=...`
-- Twitter card with same dynamic image
-- Title uses the layout template (`%s | Gregory Pinto`)
-
-**3. `app/api/og/route.tsx`** — Edge OG image generator:
-- Dark background (`#0A0A0B`), gold gradient `GG` logo, title, subtitle, `gregorypinto.dev`
-- Accepts `?title` and `?subtitle` query params
-- `runtime: 'edge'`, outputs 1200x630 `ImageResponse`
+- **`components/seo/JsonLd.tsx`** — `PersonJsonLd` (schema.org Person with name, jobTitle, sameAs, knowsAbout) and `WebsiteJsonLd` (schema.org WebSite), both rendering `<script type="application/ld+json">`
+- **`app/layout.tsx`** — Both JsonLd components added in `<head>`
+- **`app/sitemap.ts`** — Home (priority 1) + 3 project pages (priority 0.8), outputs at `/sitemap.xml`
+- **`app/robots.ts`** — Allow `/`, disallow `/api/` and `/_next/`, sitemap URL included, outputs at `/robots.txt`
 
 > portfolio@0.1.0 build /Users/user_pc/Projetos/portifolio
 > next build
@@ -28,11 +15,11 @@ All done. Build passes clean (metadataBase warning also resolved). Here's a summ
   Running TypeScript ...
   Collecting page data using 15 workers ...
 ⚠ Using edge runtime on a page currently disables static generation for that page
-  Generating static pages using 15 workers (0/10) ...
-  Generating static pages using 15 workers (2/10) 
-  Generating static pages using 15 workers (4/10) 
-  Generating static pages using 15 workers (7/10) 
-✓ Generating static pages using 15 workers (10/10) in 467.0ms
+  Generating static pages using 15 workers (0/12) ...
+  Generating static pages using 15 workers (3/12) 
+  Generating static pages using 15 workers (6/12) 
+  Generating static pages using 15 workers (9/12) 
+✓ Generating static pages using 15 workers (12/12) in 503.3ms
   Finalizing page optimization ...
 
 Route (app)
@@ -42,10 +29,12 @@ Route (app)
 ├ ƒ /api/contact
 ├ ƒ /api/github-stack
 ├ ƒ /api/og
-└ ● /projects/[slug]
-  ├ /projects/efvm360
-  ├ /projects/blackbelt-os
-  └ /projects/portfolio
+├ ● /projects/[slug]
+│ ├ /projects/efvm360
+│ ├ /projects/blackbelt-os
+│ └ /projects/portfolio
+├ ○ /robots.txt
+└ ○ /sitemap.xml
 
 
 ○  (Static)   prerendered as static content

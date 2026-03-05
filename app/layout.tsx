@@ -7,6 +7,7 @@ import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import ScrollProgress from '@/components/layout/ScrollProgress';
 import SkipLink from '@/components/layout/SkipLink';
+import { PersonJsonLd, WebsiteJsonLd } from '@/components/seo/JsonLd';
 import './globals.css';
 
 const outfit = Outfit({
@@ -106,6 +107,30 @@ export default function RootLayout({
     >
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+        <PersonJsonLd
+          name="Gregory Pinto"
+          jobTitle="AI Solutions Architect"
+          url="https://gregorypinto.dev"
+          sameAs={[
+            'https://github.com/GregoryGSPinto',
+            'https://www.linkedin.com/in/mqt-gregory/',
+          ]}
+          knowsAbout={[
+            'Solution Architecture',
+            'Domain-Driven Design',
+            'AI/ML',
+            'TypeScript',
+            'React',
+            'Next.js',
+            'Node.js',
+            'Python',
+          ]}
+        />
+        <WebsiteJsonLd
+          url="https://gregorypinto.dev"
+          name="Gregory Pinto — AI Solutions Architect"
+          description="Solution Architect specializing in DDD, scalable systems, and AI/ML — transforming complex operations into data-driven decisions."
+        />
       </head>
       <body className="bg-bg-primary text-text-primary antialiased font-body">
         <ThemeProvider>
