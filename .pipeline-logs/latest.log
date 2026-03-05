@@ -1,19 +1,23 @@
-All done. Here's what was added:
+Blog infrastructure is complete. Here's a summary of what was done:
 
-**Analytics & SpeedInsights** (`app/layout.tsx`):
-- `@vercel/analytics/react` — Analytics (was already present, updated import path)
-- `@vercel/speed-insights/next` — SpeedInsights (new, installed and added after `{children}`)
+**Already existed (from prior work):**
+- `lib/blog.ts` — `getAllPosts`, `getPostBySlug`, `getAllTags` with bilingual frontmatter support
+- `components/blog/MDXComponents.tsx` — styled overrides for h1-h3, p, a, code, pre, blockquote, lists, tables
+- `app/blog/page.tsx` — post listing with `BlogList` client component for tag filtering
+- `app/blog/[slug]/page.tsx` — `generateStaticParams`, `generateMetadata`, prev/next navigation
+- `app/blog/[slug]/BlogPostPage.tsx` — post layout with TOC sidebar
+- `content/blog/hello-world.mdx` — sample post with bilingual frontmatter
 
-**Performance headers** (`next.config.ts`):
-- Fonts: `Cache-Control: public, max-age=31536000, immutable` (1 year)
-- Images: `Cache-Control: public, max-age=86400, stale-while-revalidate=43200` (1 day + 12h stale)
-- Image optimization: `formats: ['image/avif', 'image/webp']` (already present)
+**Created/fixed:**
+- `components/blog/MDXRemote.tsx` — server component wrapper using `next-mdx-remote/rsc` with `remark-gfm` + `rehype-slug` plugins
+- `types/mdx.d.ts` — type declarations for `next-mdx-remote/rsc`, `gray-matter`, `reading-time`, `rehype-slug`, `remark-gfm`
+- Refactored `BlogPostPage.tsx` to accept rendered MDX as `children` (ReactNode) instead of raw source
+- Refactored `[slug]/page.tsx` to render MDX server-side and extract TOC server-side
 
-**Verification passed**:
-- No raw `<img>` tags — no images use HTML img directly
-- Fonts use `next/font/google` with `display: 'swap'`
-- 7 heavy components use `dynamic()` imports (Projects, Skills, Timeline, Contact, AIChatbot, Preloader, NoiseTexture)
-- Build compiles clean with no errors or warnings
+**Installed:**
+- `gray-matter`, `reading-time`, `next-mdx-remote`, `@mdx-js/react`, `remark-gfm`, `rehype-slug`, `rehype-pretty-code`, `@types/mdx`
+
+Build passes with the blog at `/blog` and the sample post at `/blog/hello-world`.
 
 > portfolio@0.1.0 build /Users/user_pc/Projetos/portifolio
 > next build
@@ -25,11 +29,11 @@ All done. Here's what was added:
   Running TypeScript ...
   Collecting page data using 15 workers ...
 ⚠ Using edge runtime on a page currently disables static generation for that page
-  Generating static pages using 15 workers (0/12) ...
-  Generating static pages using 15 workers (3/12) 
-  Generating static pages using 15 workers (6/12) 
-  Generating static pages using 15 workers (9/12) 
-✓ Generating static pages using 15 workers (12/12) in 491.9ms
+  Generating static pages using 15 workers (0/14) ...
+  Generating static pages using 15 workers (3/14) 
+  Generating static pages using 15 workers (6/14) 
+  Generating static pages using 15 workers (10/14) 
+✓ Generating static pages using 15 workers (14/14) in 718.9ms
   Finalizing page optimization ...
 
 Route (app)
@@ -39,6 +43,9 @@ Route (app)
 ├ ƒ /api/contact
 ├ ƒ /api/github-stack
 ├ ƒ /api/og
+├ ○ /blog
+├ ● /blog/[slug]
+│ └ /blog/hello-world
 ├ ● /projects/[slug]
 │ ├ /projects/efvm360
 │ ├ /projects/blackbelt-os

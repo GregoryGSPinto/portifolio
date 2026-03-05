@@ -1,0 +1,55 @@
+---
+title:
+  pt: "Construindo um Blog com MDX e Next.js"
+  en: "Building a Blog with MDX and Next.js"
+description:
+  pt: "Como criei um blog integrado ao meu portfolio usando MDX, Next.js App Router e Tailwind CSS."
+  en: "How I built a blog integrated into my portfolio using MDX, Next.js App Router, and Tailwind CSS."
+date: "2026-03-05"
+tags: ["Next.js", "MDX", "React", "Tailwind CSS"]
+project: "portfolio"
+---
+
+## Why MDX?
+
+MDX lets you write JSX directly inside Markdown. This means you get the best of both worlds: the simplicity of Markdown for content, and the full power of React components when you need interactivity.
+
+### Key Benefits
+
+- **Component embedding** — drop interactive React components right into your posts
+- **Syntax highlighting** — powered by `rehype-pretty-code` with beautiful themes
+- **Frontmatter** — structured metadata for each post using `gray-matter`
+- **Reading time** — auto-calculated based on content length
+
+## The Architecture
+
+The blog follows the Next.js App Router convention:
+
+```
+content/blog/          # MDX files with frontmatter
+app/blog/              # Blog routes
+  page.tsx             # Post listing with tag filters
+  [slug]/page.tsx      # Individual post pages
+lib/blog.ts            # Post parsing utilities
+components/blog/       # MDX component overrides
+```
+
+## Code Example
+
+Here is a simple utility for parsing frontmatter:
+
+```typescript
+import matter from 'gray-matter';
+
+const { data, content } = matter(source);
+console.log(data.title); // Post title
+console.log(content);    // MDX content body
+```
+
+## What's Next
+
+This blog will be the home for deep dives into architecture decisions, AI/ML experiments, and lessons learned from building scalable systems.
+
+> The best way to learn is to build, and the best way to share is to write.
+
+Stay tuned for more posts!
