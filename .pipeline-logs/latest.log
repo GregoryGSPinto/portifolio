@@ -1,25 +1,20 @@
-Build passes. Here's what was created:
+All done. Here's what was built:
 
-### New files
-- **`components/hero/Hero.tsx`** — Main wrapper with staggered framer-motion animation timeline (bg→name→subtitle→typewriter→CTAs→scroll indicator)
-- **`components/hero/GradientMesh.tsx`** — 4 animated color blobs (emerald/teal/subtle blue) using CSS `@keyframes` with `blur(80px)`. Respects `prefers-reduced-motion` via the existing global CSS rule
-- **`components/hero/Typewriter.tsx`** — Cycles through i18n roles with 80ms type / 40ms delete / 2s pause / 530ms cursor blink. Resets on language change
+**New files created:**
+- `components/about/About.tsx` — Main section with `01 — About` header, two-column photo+bio layout, metric counters grid, and tech badges grid
+- `components/about/PhotoFrame.tsx` — Gradient circle placeholder with "GG" initials, dashed accent border that rotates on hover, subtle glow effect
+- `components/about/AnimatedCounter.tsx` — Scroll-triggered counter using framer-motion `useMotionValue` + `useTransform` + `animate`, IntersectionObserver (once), 2s easeOut duration, mono font with accent color
+- `components/about/TechBadge.tsx` — Small badge with SVG icon + name, hover scale/bg effects
 
-### Modified files
-- **`lib/data/i18n.ts`** — Updated roles (PT: `Arquiteto de Solucoes`, `Especialista em IA`, etc. / EN: `Solution Architect`, `AI Specialist`, etc.) and CTA labels (`View My Work` / `Download CV`)
-- **`app/globals.css`** — Added 4 `blobDrift` keyframes for the gradient mesh
-- **`app/page.tsx`** — Import updated to `@/components/hero/Hero`
+**Modified files:**
+- `lib/data/i18n.ts` — Added `about` section with PT-BR/EN translations (title, 3 bio paragraphs, 4 metric labels)
+- `app/page.tsx` — Imported and placed `<About />` between Hero and Vision
 
-### Animation timeline
-| Time | Element |
-|------|---------|
-| 0.0s | Background gradient mesh fades in |
-| 0.2s | Pre-title label appears |
-| 0.3s | Name reveals (translateY 40→0, blur 10→0) |
-| 0.6s | Subtitle slides up with blur clear |
-| 0.9s | Typewriter starts cycling |
-| 1.2s | CTA buttons fade in |
-| 1.8s | Scroll indicator with animated chevron |
+**Key details:**
+- 4 metrics: `5+` Years, `3` Enterprise Projects, `900+` Tests Passing, `95+` Lighthouse Score
+- 15 tech badges in 5-col desktop / 3-col mobile grid: React, Next.js, TypeScript, Node.js, Supabase, Python, TailwindCSS, Docker, Azure, Vercel, DDD, Event Sourcing, CQRS, AI/ML, Figma
+- All animations use `whileInView` with stagger children pattern matching the existing codebase style
+- Build passes cleanly
 
 > portfolio@0.1.0 build /Users/user_pc/Projetos/portifolio
 > next build
@@ -27,14 +22,14 @@ Build passes. Here's what was created:
 ▲ Next.js 16.1.6 (Turbopack)
 
   Creating an optimized production build ...
-✓ Compiled successfully in 2.1s
+✓ Compiled successfully in 2.0s
   Running TypeScript ...
   Collecting page data using 15 workers ...
   Generating static pages using 15 workers (0/6) ...
   Generating static pages using 15 workers (1/6) 
   Generating static pages using 15 workers (2/6) 
   Generating static pages using 15 workers (4/6) 
-✓ Generating static pages using 15 workers (6/6) in 411.2ms
+✓ Generating static pages using 15 workers (6/6) in 417.0ms
   Finalizing page optimization ...
 
 Route (app)

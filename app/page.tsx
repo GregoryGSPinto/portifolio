@@ -2,6 +2,7 @@
 
 import dynamic from 'next/dynamic';
 import Hero from '@/components/hero/Hero';
+import About from '@/components/about/About';
 import Vision from '@/components/Vision';
 import Architecture from '@/components/Architecture';
 import Methodology from '@/components/Methodology';
@@ -22,6 +23,7 @@ export default function Home() {
       <NoiseTexture />
       <main id="main-content">
         <Hero />
+        <About />
         <Vision />
         <Architecture />
         <Methodology />

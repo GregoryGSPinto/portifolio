@@ -15,6 +15,19 @@ export const translations = {
       cta2: 'Download CV',
       scroll: 'SCROLL',
     },
+    about: {
+      label: 'Sobre',
+      title: 'Construindo\nSolucoes que Importam',
+      bio1: 'Sou um arquiteto de solucoes com mais de 5 anos transformando desafios complexos de negocio em sistemas escalaveis e elegantes. Minha abordagem combina engenharia rigorosa com visao de produto — cada linha de codigo serve a um proposito de negocio.',
+      bio2: 'Especializado em arquiteturas distribuidas, integracao de IA e lideranca tecnica, trabalho na intersecao entre tecnologia e estrategia. De microsservicos event-driven a pipelines de machine learning, projeto sistemas que crescem com o negocio.',
+      bio3: 'Acredito que excelencia tecnica e experiencia do usuario sao inseparaveis. Cada sistema que construo prioriza performance, acessibilidade e manutencao a longo prazo.',
+      metrics: {
+        years: 'Anos de Experiencia',
+        projects: 'Projetos Enterprise',
+        tests: 'Testes Passando',
+        lighthouse: 'Lighthouse Score',
+      },
+    },
     vision: {
       label: 'Visao Estrategica',
       title: 'Engenharia com\nProposito Executivo',
@@ -184,6 +197,19 @@ export const translations = {
       cta1: 'View My Work',
       cta2: 'Download CV',
       scroll: 'SCROLL',
+    },
+    about: {
+      label: 'About',
+      title: 'Building\nSolutions that Matter',
+      bio1: "I'm a solutions architect with 5+ years transforming complex business challenges into scalable, elegant systems. My approach combines rigorous engineering with product vision — every line of code serves a business purpose.",
+      bio2: 'Specialized in distributed architectures, AI integration and technical leadership, I work at the intersection of technology and strategy. From event-driven microservices to machine learning pipelines, I design systems that grow with the business.',
+      bio3: 'I believe technical excellence and user experience are inseparable. Every system I build prioritizes performance, accessibility, and long-term maintainability.',
+      metrics: {
+        years: 'Years of Experience',
+        projects: 'Enterprise Projects',
+        tests: 'Tests Passing',
+        lighthouse: 'Lighthouse Score',
+      },
     },
     vision: {
       label: 'Strategic Vision',
