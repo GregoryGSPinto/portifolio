@@ -1,4 +1,25 @@
-Done. The `old/` directory has been removed and `pnpm build` passes cleanly. No files in the current project referenced anything from `old/` — it was just a legacy static HTML site with no content worth preserving.
+All tasks complete. Here's a summary:
+
+## Performance Optimizations Applied
+
+### 1. `<img>` tags → Already clean, none found in the codebase.
+
+### 2. Fonts → Already using `next/font/google` with `display: 'swap'` for all 3 fonts (Cormorant Garamond, DM Sans, DM Mono). No external font stylesheets.
+
+### 3. Dynamic imports added in `app/page.tsx`:
+- **`NoiseTexture`** — `ssr: false` (canvas-only, no server rendering needed)
+- **`AIChatbot`** — `ssr: false` (chat widget, client-side only)
+- **`Cases`, `AIExperience`, `TechStack`, `Timeline`, `Certifications`, `Insights`, `Contact`** — lazy-loaded (below-the-fold sections)
+- Above-the-fold components (`Navigation`, `Hero`, `Vision`, `Architecture`, `Methodology`, `Footer`) remain eagerly loaded for fast initial render.
+
+### 4. Image sizes/priority → Not applicable. Project uses canvas-based graphics and SVGs, no raster `<Image>` components.
+
+### 5. Image formats config added to `next.config.ts`:
+```ts
+images: { formats: ['image/avif', 'image/webp'] }
+```
+
+### 6. Build passes successfully with Turbopack.
 
 > portfolio@0.1.0 build /Users/user_pc/Projetos/portifolio
 > next build
@@ -6,14 +27,14 @@ Done. The `old/` directory has been removed and `pnpm build` passes cleanly. No 
 ▲ Next.js 16.1.6 (Turbopack)
 
   Creating an optimized production build ...
-✓ Compiled successfully in 1964.9ms
+✓ Compiled successfully in 2.0s
   Running TypeScript ...
   Collecting page data using 15 workers ...
   Generating static pages using 15 workers (0/6) ...
   Generating static pages using 15 workers (1/6) 
   Generating static pages using 15 workers (2/6) 
   Generating static pages using 15 workers (4/6) 
-✓ Generating static pages using 15 workers (6/6) in 401.2ms
+✓ Generating static pages using 15 workers (6/6) in 417.9ms
   Finalizing page optimization ...
 
 Route (app)

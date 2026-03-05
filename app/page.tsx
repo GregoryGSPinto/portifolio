@@ -1,18 +1,22 @@
+'use client';
+
+import dynamic from 'next/dynamic';
 import Navigation from '@/components/Navigation';
 import Hero from '@/components/Hero';
 import Vision from '@/components/Vision';
 import Architecture from '@/components/Architecture';
 import Methodology from '@/components/Methodology';
-import Cases from '@/components/Cases';
-import AIExperience from '@/components/AIExperience';
-import TechStack from '@/components/TechStack';
-import Timeline from '@/components/Timeline';
-import Certifications from '@/components/Certifications';
-import Insights from '@/components/Insights';
-import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
-import NoiseTexture from '@/components/NoiseTexture';
-import AIChatbot from '@/components/AIChatbot';
+
+const NoiseTexture = dynamic(() => import('@/components/NoiseTexture'), { ssr: false });
+const Cases = dynamic(() => import('@/components/Cases'));
+const AIExperience = dynamic(() => import('@/components/AIExperience'));
+const TechStack = dynamic(() => import('@/components/TechStack'));
+const Timeline = dynamic(() => import('@/components/Timeline'));
+const Certifications = dynamic(() => import('@/components/Certifications'));
+const Insights = dynamic(() => import('@/components/Insights'));
+const Contact = dynamic(() => import('@/components/Contact'));
+const AIChatbot = dynamic(() => import('@/components/AIChatbot'), { ssr: false });
 
 export default function Home() {
   return (
