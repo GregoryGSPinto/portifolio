@@ -78,8 +78,7 @@ export async function POST(request: NextRequest) {
     });
 
     if (!response.ok) {
-      const errorText = await response.text();
-      console.error('Anthropic API error:', errorText);
+      await response.text();
       return NextResponse.json(
         { error: 'Failed to get AI response' },
         { status: 502 }
@@ -91,8 +90,7 @@ export async function POST(request: NextRequest) {
       data.content?.[0]?.text || 'Sorry, I could not generate a response.';
 
     return NextResponse.json({ message: assistantMessage });
-  } catch (error) {
-    console.error('Chat API error:', error);
+  } catch {
     return NextResponse.json(
       { error: 'Internal server error' },
       { status: 500 }
