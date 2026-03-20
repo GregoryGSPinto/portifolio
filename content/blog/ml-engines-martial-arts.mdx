@@ -1,0 +1,208 @@
+---
+title:
+  pt: "8 Engines de ML para um SaaS de Artes Marciais"
+  en: "8 ML Engines for a Martial Arts SaaS"
+description:
+  pt: "Como projetei e integrei oito motores de machine learning no BlackBelt OS para personalizar treinos, prever evasao e gamificar progressao."
+  en: "How I designed and integrated eight machine learning engines into BlackBelt OS to personalize training, predict churn, and gamify progression."
+date: "2026-01-15"
+tags: ["machine-learning", "ai", "saas"]
+project: "blackbelt-os"
+---
+
+## The Problem Space
+
+BlackBelt OS is a gym management platform for martial arts schools. Unlike generic fitness apps, martial arts training has unique characteristics: belt progression systems, technique catalogs that vary by style, sparring performance metrics, and injury risk patterns specific to combat sports.
+
+Generic recommendation engines do not understand that a blue belt in BJJ needs different training than a brown belt, or that a fighter preparing for competition has different needs than a recreational practitioner. Off-the-shelf ML solutions treat all students the same — they optimize for generic "engagement" rather than domain-specific outcomes like technique mastery or safe progression.
+
+The challenge was designing ML engines that understand martial arts deeply enough to be useful, while keeping infrastructure costs manageable for a SaaS serving hundreds of small gyms.
+
+## The Eight Engines
+
+Each ML engine addresses a specific domain problem. Here is the complete catalog:
+
+### 1. Training Recommender
+
+Suggests daily workouts based on belt level, recent performance, and fatigue indicators. Uses collaborative filtering combined with domain rules — a white belt should never be recommended advanced submissions, regardless of what the model thinks.
+
+```typescript
+interface TrainingRecommendation {
+  exercises: Exercise[];
+  estimatedDuration: number;
+  intensityLevel: 'light' | 'moderate' | 'high';
+  rationale: string; // "Based on your blue belt curriculum gaps"
+  confidence: number;
+}
+
+async function recommend(studentId: string): Promise<TrainingRecommendation> {
+  const profile = await getStudentProfile(studentId);
+  const recentSessions = await getRecentSessions(studentId, 14); // 2 weeks
+  const fatigueScore = computeFatigue(recentSessions);
+
+  // Domain constraint: never exceed belt-appropriate difficulty
+  const maxDifficulty = BELT_DIFFICULTY_MAP[profile.currentBelt];
+
+  // Collaborative filtering: what did similar students benefit from?
+  const similarStudents = await findSimilarProfiles(profile, 50);
+  const candidateExercises = aggregateSuccessfulExercises(similarStudents);
+
+  // Filter by domain rules and current fatigue
+  const filtered = candidateExercises
+    .filter(e => e.difficulty <= maxDifficulty)
+    .filter(e => fatigueScore < 0.7 || e.intensity !== 'high');
+
+  return buildWorkout(filtered, profile.goals, profile.weakAreas);
+}
+```
+
+### 2. Technique Progression
+
+Tracks which techniques a student has drilled and identifies gaps. Models the skill tree as a directed graph with prerequisite relationships — you cannot learn a flying armbar before mastering the basic armbar from guard.
+
+```
+Skill Graph Example (BJJ Guard):
+
+  Closed Guard Control
+        │
+    ┌───┴───┐
+    ▼       ▼
+  Hip Escape  Armbar from Guard
+    │              │
+    ▼          ┌───┴───┐
+  Guard Recovery ▼       ▼
+             Triangle   Omoplata
+                │
+                ▼
+           Flying Triangle
+```
+
+The engine identifies the highest-value technique to learn next by finding "frontier nodes" — techniques whose prerequisites are all mastered but that the student has not yet drilled.
+
+### 3. Churn Predictor
+
+Identifies students likely to cancel within 30 days based on attendance patterns, engagement metrics, and seasonal trends. Gives gym owners time to intervene with personal outreach before the student disappears.
+
+The feature engineering here matters more than model complexity:
+
+```typescript
+interface ChurnFeatures {
+  attendanceRatio14d: number;    // Classes attended / expected (last 14 days)
+  attendanceRatio30d: number;    // Same for 30 days
+  attendanceTrend: number;       // Slope of weekly attendance over 60 days
+  daysSinceLastClass: number;
+  daysSinceLastBeltPromotion: number;
+  totalMonthsEnrolled: number;
+  classesPerWeekAvg: number;
+  peerGroupRetention: number;    // Are their training partners still active?
+  seasonalFactor: number;        // January spike, summer drop
+  paymentDelayDays: number;      // Late payments correlate with churn
+}
+```
+
+The peerGroupRetention feature was the biggest insight. Students who train with a regular group are far less likely to churn than solo practitioners. When a student's training partners start dropping off, their own churn risk increases — even if their personal attendance has not changed yet.
+
+### 4. Injury Risk Assessment
+
+Flags students at elevated injury risk based on training volume, recovery patterns, and historical injury data. This is particularly important in combat sports where overtraining directly leads to injuries.
+
+```typescript
+function assessInjuryRisk(studentId: string): RiskAssessment {
+  const volume = getTrainingVolume(studentId, 7); // Weekly hours
+  const recovery = getRecoveryMetrics(studentId);
+  const history = getInjuryHistory(studentId);
+
+  // Acute-to-chronic workload ratio (ACWR)
+  const acuteLoad = getTrainingLoad(studentId, 7);  // 1 week
+  const chronicLoad = getTrainingLoad(studentId, 28); // 4 weeks
+  const acwr = acuteLoad / (chronicLoad / 4);
+
+  // ACWR between 0.8-1.3 is the "sweet spot"
+  // Above 1.5 = high injury risk
+  const riskLevel = acwr > 1.5 ? 'high' :
+                    acwr > 1.3 ? 'moderate' : 'low';
+
+  return {
+    riskLevel,
+    acwr,
+    recommendation: acwr > 1.3
+      ? 'Reduce training intensity this week'
+      : 'Training load is within safe range',
+    factors: identifyRiskFactors(volume, recovery, history),
+  };
+}
+```
+
+### 5-8. Supporting Engines
+
+The remaining four engines round out the platform:
+
+- **Competition Readiness** — Scores a fighter's preparation across cardio, technique diversity, and sparring results. Compares against historical competitors at the same belt/weight class.
+- **Class Scheduling Optimizer** — Analyzes attendance patterns and instructor availability to suggest optimal class times that maximize enrollment. A/B tests schedule changes.
+- **Video Analysis** — Processes uploaded training videos to provide basic form feedback using pose estimation. Identifies common mistakes like posture breakdown during takedowns.
+- **Gamification Engine** — Generates personalized challenges and achievement milestones based on individual progress curves. Keeps motivation high without making goals unrealistic.
+
+## Integration Architecture
+
+All engines share a common interface — input features, output predictions, and a confidence score:
+
+```typescript
+interface MLEngine<TInput, TOutput> {
+  name: string;
+  version: string;
+  predict(input: TInput): Promise<Prediction<TOutput>>;
+  getFeatureImportance(): FeatureWeight[];
+}
+
+interface Prediction<T> {
+  result: T;
+  confidence: number;     // 0-1 confidence score
+  explanations: string[]; // Human-readable reasoning
+  computedAt: string;
+}
+```
+
+They run as serverless functions on Supabase Edge Functions, triggered by application events (class completed, attendance logged, video uploaded). The key architectural decision was keeping ML inference serverless rather than running persistent model servers.
+
+```
+┌────────────────────────────────────────────────┐
+│              Next.js Application                │
+│  (Server Components + Client Components)        │
+├────────────────────────────────────────────────┤
+│              Supabase                           │
+│  ┌──────────┐  ┌──────────┐  ┌──────────┐     │
+│  │ Database  │  │ Realtime │  │   Auth   │     │
+│  │(Postgres) │  │ Channels │  │  (RLS)   │     │
+│  └─────┬────┘  └──────────┘  └──────────┘     │
+│        │                                        │
+│  ┌─────▼────────────────────────────────┐      │
+│  │      Edge Functions (ML Engines)      │      │
+│  │  ┌─────┐ ┌─────┐ ┌─────┐ ┌─────┐   │      │
+│  │  │Train│ │Churn│ │Risk │ │Game │   │      │
+│  │  │Rec. │ │Pred.│ │Asmt.│ │ify  │   │      │
+│  │  └─────┘ └─────┘ └─────┘ └─────┘   │      │
+│  │  ┌─────┐ ┌─────┐ ┌─────┐ ┌─────┐   │      │
+│  │  │Tech │ │Comp.│ │Sched│ │Video│   │      │
+│  │  │Prog.│ │Ready│ │Opt. │ │Anal.│   │      │
+│  │  └─────┘ └─────┘ └─────┘ └─────┘   │      │
+│  └──────────────────────────────────────┘      │
+└────────────────────────────────────────────────┘
+```
+
+For a SaaS with variable load across hundreds of small gyms, cold-start latency of two to three seconds is acceptable for background predictions, and the cost savings compared to always-on GPU instances are substantial. Predictions that need to be fast (training recommender) are pre-computed and cached; predictions that can be async (churn, scheduling) run on triggers.
+
+## What I Learned
+
+Domain expertise matters more than model sophistication. The churn predictor using simple logistic regression with carefully engineered features — especially peerGroupRetention — outperforms complex architectures with generic inputs. In vertical SaaS, understanding the domain deeply is the real competitive advantage.
+
+The second lesson: explainability is not optional. Gym owners are not data scientists. When the system says "Student X is at 78% churn risk," they need to know why. Every prediction includes human-readable explanations: "Attendance dropped 40% in the last two weeks and their regular training partner cancelled last month." This transparency builds trust and drives action.
+
+## Key Takeaways
+
+- **Domain rules constrain ML outputs.** Never recommend advanced techniques to beginners, regardless of what the model suggests. Hard constraints protect users.
+- **Feature engineering beats model complexity.** The peerGroupRetention feature alone improved churn prediction accuracy by 12 percentage points.
+- **Serverless ML works for variable-load SaaS.** Pre-compute what you can, run the rest on triggers. Cold starts are fine for background tasks.
+- **Explainability drives adoption.** If users cannot understand why the system makes a recommendation, they will not trust it — and they will not act on it.
+- **Vertical SaaS demands domain depth.** Generic fitness ML misses what makes martial arts unique. Invest in understanding the domain before building models.
+
+Related: [BlackBelt OS](/projects/blackbelt-os)

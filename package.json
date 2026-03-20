@@ -1,0 +1,42 @@
+{
+  "name": "portfolio",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint",
+    "typecheck": "tsc --noEmit",
+    "lint:strict": "eslint --max-warnings 0",
+    "check": "pnpm typecheck && pnpm lint:strict && pnpm build"
+  },
+  "dependencies": {
+    "@mdx-js/react": "^3.1.1",
+    "@vercel/analytics": "^1.6.1",
+    "@vercel/og": "^0.11.1",
+    "@vercel/speed-insights": "^1.3.1",
+    "framer-motion": "^12.34.5",
+    "gray-matter": "^4.0.3",
+    "next": "16.1.6",
+    "next-mdx-remote": "^6.0.0",
+    "react": "19.2.3",
+    "react-dom": "19.2.3",
+    "reading-time": "^1.5.0",
+    "rehype-pretty-code": "^0.14.3",
+    "rehype-slug": "^6.0.0",
+    "remark-gfm": "^4.0.1",
+    "resend": "^6.9.3"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4",
+    "@types/mdx": "^2.0.13",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "16.1.6",
+    "tailwindcss": "^4",
+    "typescript": "^5"
+  }
+}
