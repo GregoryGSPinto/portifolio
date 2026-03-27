@@ -83,7 +83,7 @@ export const projects: Project[] = [
     category: 'frontend',
     categoryLabel: { pt: 'SaaS operacional', en: 'Operational SaaS' },
     gradient: 'from-orange-500/20 via-red-500/10 to-amber-500/20',
-    image: '/images/projects/blackbelt-v2.png',
+    image: '/images/projects/blackbelt-v2.jpg',
     relatedSlugs: ['aura-v1'],
     challenge: {
       pt: 'Criar um sistema unificado que atendesse rotina academica, progressao de alunos e operacao financeira sem virar um painel generico.',
@@ -181,7 +181,7 @@ export const projects: Project[] = [
     category: 'ai-ml',
     categoryLabel: { pt: 'IA local-first', en: 'Local-first AI' },
     gradient: 'from-rose-500/20 via-pink-500/10 to-fuchsia-500/20',
-    image: '/images/projects/aura-v1.png',
+    image: '/images/projects/aura-v1.jpg',
     relatedSlugs: ['blackbelt-v2'],
     challenge: {
       pt: 'Criar um assistente operacional que funcione localmente, sem dependencia de servidores externos ou conexao constante.',
@@ -260,6 +260,7 @@ export const projects: Project[] = [
     category: 'railway',
     categoryLabel: { pt: 'Industria ferroviaria', en: 'Railway industry' },
     gradient: 'from-teal-500/20 via-emerald-500/10 to-cyan-500/20',
+    image: '/images/projects/rail360.jpg',
     relatedSlugs: ['t4-platform', 'rail-ecosystem'],
     challenge: {
       pt: 'Digitalizar um processo critico de seguranca com 10 perfis de acesso, operacao 24/7, e funcionamento offline obrigatorio em areas sem sinal.',
@@ -351,6 +352,7 @@ export const projects: Project[] = [
     category: 'railway',
     categoryLabel: { pt: 'Simulacao ferroviaria', en: 'Railway simulation' },
     gradient: 'from-sky-500/20 via-blue-500/10 to-indigo-500/20',
+    image: '/images/projects/rail-ecosystem.jpg',
     relatedSlugs: ['rail360', 't4-platform'],
     challenge: {
       pt: 'Construir um ecossistema coeso de treinamento com simulacao 3D, compartilhando codigo entre apps sem acoplamento.',
@@ -429,6 +431,7 @@ export const projects: Project[] = [
     category: 'railway',
     categoryLabel: { pt: 'Operacao ferroviaria', en: 'Railway operations' },
     gradient: 'from-emerald-500/20 via-green-500/10 to-lime-500/20',
+    image: '/images/projects/t4-platform.jpg',
     relatedSlugs: ['rail360', 't4-deslocamento'],
     challenge: {
       pt: 'Criar um super app que funcione 100% offline em areas sem sinal, com UX otimizada para uso em campo durante operacao ferroviaria.',
@@ -511,6 +514,7 @@ export const projects: Project[] = [
     category: 'railway',
     categoryLabel: { pt: 'Logistica ferroviaria', en: 'Railway logistics' },
     gradient: 'from-amber-500/20 via-yellow-500/10 to-orange-500/20',
+    image: '/images/projects/t4-deslocamento.jpg',
     relatedSlugs: ['t4-platform', 'rail360'],
     challenge: {
       pt: 'Substituir coordenacao manual por telefone por um sistema automatizado com tracking GPS, BI e compliance LGPD.',
