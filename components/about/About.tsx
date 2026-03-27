@@ -18,9 +18,9 @@ const stagger = {
 
 const metrics = [
   { target: 8, suffix: '+', key: 'years' as const },
-  { target: 2, suffix: '', key: 'projects' as const },
-  { target: 100, suffix: '+', key: 'tests' as const },
-  { target: 2, suffix: '', key: 'domains' as const },
+  { target: 9, suffix: '', key: 'projects' as const },
+  { target: 1000, suffix: '+', key: 'tests' as const },
+  { target: 5, suffix: '', key: 'domains' as const },
 ];
 
 /* Simple SVG icons for tech badges */

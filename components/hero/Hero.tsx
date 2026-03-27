@@ -48,13 +48,13 @@ export default function Hero() {
   const proofItems =
     lang === 'pt'
       ? [
-          { value: '2', label: 'projetos com decisao tecnica documentada' },
-          { value: '100+', label: 'testes automatizados' },
+          { value: '9', label: 'projetos com decisao tecnica documentada' },
+          { value: '1000+', label: 'testes automatizados' },
           { value: '8+', label: 'anos em operacoes criticas e ambientes complexos' },
         ]
       : [
-          { value: '2', label: 'projects with documented technical decisions' },
-          { value: '100+', label: 'automated tests' },
+          { value: '9', label: 'projects with documented technical decisions' },
+          { value: '1000+', label: 'automated tests' },
           { value: '8+', label: 'years in critical operations and complex environments' },
         ];
 
