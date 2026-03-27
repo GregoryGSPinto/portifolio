@@ -335,22 +335,7 @@ export default function ProjectDetail({ project }: { project: Project }) {
                 className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-wider px-5 py-3 rounded-lg transition-all duration-300 hover:scale-[1.02]"
                 style={{ background: 'var(--accent)', color: 'var(--bg-primary)' }}
               >
-                {lang === 'pt' ? 'Ver projeto' : 'View project'}
-              </a>
-            ) : null}
-            {project.links.github ? (
-              <a
-                href={project.links.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-wider px-5 py-3 rounded-lg transition-all duration-300 hover:scale-[1.02]"
-                style={{
-                  background: 'var(--card-bg)',
-                  border: '1px solid var(--border-subtle)',
-                  color: 'var(--text-secondary)',
-                }}
-              >
-                {lang === 'pt' ? 'Ver codigo' : 'View source'}
+                {lang === 'pt' ? 'Ver Projeto' : 'View Project'}
               </a>
             ) : null}
             {project.timeline ? (
@@ -522,29 +507,10 @@ export default function ProjectDetail({ project }: { project: Project }) {
                     {lang === 'pt' ? 'Deploy publico' : 'Public deployment'}
                   </p>
                   <h4 className="mb-2 font-display text-lg" style={{ color: 'var(--text-primary)' }}>
-                    {lang === 'pt' ? 'Abrir aplicacao' : 'Open application'}
+                    {lang === 'pt' ? 'Ver Projeto' : 'View Project'}
                   </h4>
                   <p className="text-sm leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
                     {project.links.live}
-                  </p>
-                </a>
-              ) : null}
-              {project.links.github ? (
-                <a
-                  href={project.links.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="rounded-2xl p-5 transition-colors duration-200 hover:border-[var(--border-hover)]"
-                  style={{ background: 'var(--card-bg)', border: '1px solid var(--border-subtle)' }}
-                >
-                  <p className="mb-2 font-mono text-[11px] uppercase tracking-[2px]" style={{ color: 'var(--accent)' }}>
-                    GitHub
-                  </p>
-                  <h4 className="mb-2 font-display text-lg" style={{ color: 'var(--text-primary)' }}>
-                    {lang === 'pt' ? 'Inspecionar codigo e estrutura' : 'Inspect code and structure'}
-                  </h4>
-                  <p className="text-sm leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
-                    {project.links.github}
                   </p>
                 </a>
               ) : null}
